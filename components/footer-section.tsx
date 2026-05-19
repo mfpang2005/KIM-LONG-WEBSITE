@@ -44,8 +44,8 @@ export function FooterSection({ lang = "en" }: FooterSectionProps) {
           >
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-primary-foreground mb-6 text-balance tracking-tight">
               {isChinese
-                ? "准备好筹办您的盛宴了吗？金龙自助餐与您相伴每一个珍贵时刻。"
-                : "Ready to host your event? We are with you during the moments you cherish."}
+                ? "准备好筹办您的盛宴了吗？“岁月沉淀经典，金龙与您共赴人生每一个重要时刻。”"
+                : "Ready to host your event? \"Time honors classic taste. Kim Long accompanies you through every momentous milestone of life.\""}
             </h2>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
@@ -89,8 +89,8 @@ export function FooterSection({ lang = "en" }: FooterSectionProps) {
               </Link>
               <p className="text-background/70 text-sm leading-relaxed">
                 {isChinese
-                  ? "始于 1982 年的舌尖非遗传承。为马来西亚柔佛提供最正宗的手工中餐老字号味道与高档宴席承办。"
-                  : "A taste heritage from 1982. Serving Johor with authentic Chinese cuisine and premium catering services."}
+                  ? "“岁月沉淀经典，金龙与您共赴人生每一个重要时刻。” 始于 1982 年的舌尖非遗传承，为马来西亚柔佛提供最正宗的手工中餐味道与高档宴席承办。"
+                  : "\"Time honors classic taste. Kim Long accompanies you through every momentous milestone of life.\" Serving Johor with authentic taste since 1982."}
               </p>
               <div className="flex items-center gap-2 text-background/70 text-xs">
                 <Truck className="w-4 h-4 text-primary" />

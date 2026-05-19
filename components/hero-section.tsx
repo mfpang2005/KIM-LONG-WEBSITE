@@ -45,8 +45,8 @@ export function HeroSection({ lang = "en" }: HeroSectionProps) {
 
             <p className="text-lg md:text-xl text-muted-foreground max-w-xl leading-relaxed">
               {isChinese
-                ? "金龙自助餐（Golden Dragon Buffet）不仅是极致感官的美食盛宴，更是您与挚爱亲友生命中每一个重要且珍贵时刻的温情见证。"
-                : "Golden Dragon Buffet is not merely a dining experience; it is also a testament to the significant moments in your life."}
+                ? "岁月沉淀经典，金龙与您共赴人生每一个重要时刻。"
+                : "Time honors classic taste. Kim Long accompanies you through every momentous milestone of life."}
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4">
@@ -303,7 +303,7 @@ export function HeroSection({ lang = "en" }: HeroSectionProps) {
                   transition={{ duration: 0.6, delay: 3.5 }}
                   className="mt-4 text-muted-foreground text-xs font-bold tracking-widest"
                 >
-                  {isChinese ? "始于 1982 • 诚信服务" : "SINCE 1982"}
+                  {isChinese ? "岁月沉淀经典 • 共赴重要时刻" : "SINCE 1982"}
                 </motion.p>
               </motion.div>
 
