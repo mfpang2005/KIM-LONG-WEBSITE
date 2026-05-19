@@ -167,15 +167,15 @@ export function QuoteCalculator({ lang = "en" }: QuoteCalculatorProps) {
   const [paxCount, setPaxCount] = useState(80);
   const [selectedUpgrades, setSelectedUpgrades] = useState<string[]>([]);
   
-  // DIY selected dishes state
   const [selectedDishes, setSelectedDishes] = useState<Record<string, string>>({});
   const [activeSwapCategory, setActiveSwapCategory] = useState<string | null>(null);
 
-  const activePackage = packages.find((p) => p.id === selectedPackageId) || packages[1];
+  const activePackage = packages.find((p) => p.id === selectedPackageId) || packages[0];
 
-  // When package changes, initialize selected dishes to defaults
   useEffect(() => {
-    setSelectedDishes({ ...activePackage.defaultDishes });
+    if (activePackage && activePackage.defaultDishes) {
+      setSelectedDishes(Object.assign({}, activePackage.defaultDishes));
+    }
     setActiveSwapCategory(null);
   }, [selectedPackageId, activePackage]);
 
@@ -199,7 +199,7 @@ export function QuoteCalculator({ lang = "en" }: QuoteCalculatorProps) {
   const serverCount = Math.ceil(paxCount / 30);
 
   let upgradesCost = 0;
-  selectedUpgrades.forEach((id) => {
+  selectedUpgrades.forEach((id: string) => {
     const upgrade = upgrades.find((u) => u.id === id);
     if (upgrade) {
       if (upgrade.type === "flat") {
@@ -216,13 +216,13 @@ export function QuoteCalculator({ lang = "en" }: QuoteCalculatorProps) {
   const avgCostPerPax = totalCost / paxCount;
 
   const handleToggleUpgrade = (id: string) => {
-    setSelectedUpgrades((prev) =>
-      prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
+    setSelectedUpgrades((prev: string[]) =>
+      prev.includes(id) ? prev.filter((item: string) => item !== id) : [...prev, id]
     );
   };
 
   const handleSwapDish = (category: string, dishId: string) => {
-    setSelectedDishes((prev) => ({
+    setSelectedDishes((prev: Record<string, string>) => ({
       ...prev,
       [category]: dishId,
     }));
@@ -233,7 +233,7 @@ export function QuoteCalculator({ lang = "en" }: QuoteCalculatorProps) {
     const isChinese = lang === "zh";
 
     // Format selected dishes detail
-    const dishesText = Object.entries(selectedDishes)
+    const dishesText = (Object.entries(selectedDishes) as [string, string][])
       .map(([category, dishId]) => {
         const pool = dishPool[category];
         const dish = pool?.find((d) => d.id === dishId);
@@ -265,7 +265,7 @@ ${
   selectedUpgrades.length === 0
     ? " 无额外加购项目"
     : selectedUpgrades
-        .map((id) => {
+        .map((id: string) => {
           const u = upgrades.find((item) => item.id === id);
           if (u?.id === "waitstaff") {
             return ` - ${u.chineseName} (配置 ${serverCount} 位服务员): RM ${u.price * serverCount}`;
@@ -302,7 +302,7 @@ ${
   selectedUpgrades.length === 0
     ? " None"
     : selectedUpgrades
-        .map((id) => {
+        .map((id: string) => {
           const u = upgrades.find((item) => item.id === id);
           if (u?.id === "waitstaff") {
             return `  * ${u.name} (Qty: ${serverCount} servers): RM ${u.price * serverCount}`;
@@ -428,7 +428,7 @@ Thank you!`;
                   max={500}
                   step={5}
                   value={[paxCount]}
-                  onValueChange={(val) => setPaxCount(val[0])}
+                  onValueChange={(val: number[]) => setPaxCount(val[0])}
                   className="[&_[data-slot=slider-range]]:bg-primary [&_[data-slot=slider-thumb]]:border-primary [&_[data-slot=slider-thumb]]:bg-background"
                 />
                 <div className="flex justify-between text-[11px] text-muted-foreground mt-3">
@@ -649,7 +649,7 @@ Thank you!`;
                       {lang === "en" ? "Selected Upgrades" : "加购服务项目"}
                     </p>
                     
-                    {selectedUpgrades.map((id) => {
+                    {selectedUpgrades.map((id: string) => {
                       const u = upgrades.find((item) => item.id === id);
                       if (!u) return null;
                       
