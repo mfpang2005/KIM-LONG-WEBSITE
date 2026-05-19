@@ -68,7 +68,7 @@ export function HeroSection({ lang = "en" }: HeroSectionProps) {
             </div>
 
             {/* Stats */}
-            <div className="flex gap-8 pt-8 border-t border-border">
+            <div className="flex flex-wrap gap-x-8 gap-y-4 pt-8 border-t border-border">
               <div>
                 <p className="text-3xl font-extrabold text-foreground tracking-tight">40+</p>
                 <p className="text-muted-foreground text-xs mt-1">
@@ -85,6 +85,12 @@ export function HeroSection({ lang = "en" }: HeroSectionProps) {
                 <p className="text-3xl font-extrabold text-foreground tracking-tight">65</p>
                 <p className="text-muted-foreground text-xs mt-1">
                   {isChinese ? "趟物流配送/天" : "Truck Trips/Day"}
+                </p>
+              </div>
+              <div>
+                <p className="text-3xl font-extrabold text-amber-500 tracking-tight">RM2M</p>
+                <p className="text-muted-foreground text-xs mt-1 font-medium">
+                  {isChinese ? "RM2,000,000 食品保险" : "RM2,000,000 Food Insurance"}
                 </p>
               </div>
             </div>
