@@ -212,7 +212,7 @@ export function HeroSection({ lang = "en" }: HeroSectionProps) {
                       delay: 1.3,
                       ease: [0.25, 1, 0.5, 1],
                     }}
-                    className="text-4xl md:text-5xl lg:text-6xl font-black tracking-[0.18em] bg-gradient-to-r from-amber-100 via-amber-400 to-yellow-600 bg-clip-text text-transparent drop-shadow-[0_4px_12px_rgba(0,0,0,0.4)] uppercase"
+                    className="text-4xl md:text-5xl lg:text-6xl font-black tracking-[0.18em] bg-gradient-to-r from-amber-500 via-amber-600 to-yellow-700 bg-clip-text text-transparent uppercase"
                   >
                     {isChinese ? "金龙自助餐" : "KIM LONG"}
                   </motion.h2>
@@ -228,7 +228,7 @@ export function HeroSection({ lang = "en" }: HeroSectionProps) {
                       delay: 1.6,
                       ease: [0.25, 1, 0.5, 1],
                     }}
-                    className="text-sm md:text-base font-light tracking-[0.55em] text-amber-200/80 drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)] ml-[0.55em] uppercase"
+                    className="text-sm md:text-base font-bold tracking-[0.55em] text-amber-600 ml-[0.55em] uppercase"
                   >
                     CATERING
                   </motion.p>
@@ -245,9 +245,9 @@ export function HeroSection({ lang = "en" }: HeroSectionProps) {
                   }}
                   className="my-5 flex items-center justify-center gap-3 w-[220px] mx-auto"
                 >
-                  <div className="h-[1px] flex-1 bg-gradient-to-r from-transparent to-amber-400/50" />
-                  <div className="w-1.5 h-1.5 bg-amber-400 rotate-45 border border-amber-300 shadow-[0_0_6px_rgba(245,158,11,0.8)]" />
-                  <div className="h-[1px] flex-1 bg-gradient-to-r from-amber-400/50 to-transparent" />
+                  <div className="h-[1px] flex-1 bg-gradient-to-r from-transparent to-amber-500/50" />
+                  <div className="w-1.5 h-1.5 bg-amber-500 rotate-45 border border-amber-400" />
+                  <div className="h-[1px] flex-1 bg-gradient-to-r from-amber-500/50 to-transparent" />
                 </motion.div>
 
                 {/* Brand slogan / timeline with glowing finish */}
@@ -255,7 +255,7 @@ export function HeroSection({ lang = "en" }: HeroSectionProps) {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.8, delay: 2.2 }}
-                  className="text-xs md:text-sm font-bold tracking-[0.25em] text-foreground/80 drop-shadow-[0_1px_3px_rgba(0,0,0,0.2)] text-balance max-w-sm mx-auto"
+                  className="text-xs md:text-sm font-black tracking-[0.25em] text-foreground/90 text-balance max-w-sm mx-auto"
                 >
                   {isChinese ? "岁月沉淀经典 • 共赴重要时刻" : "ESTABLISHED 1982"}
                 </motion.p>
