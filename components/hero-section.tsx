@@ -91,242 +91,234 @@ export function HeroSection({ lang = "en" }: HeroSectionProps) {
           </motion.div>
 
           {/* Right Content - Grand Logo Reveal */}
-          <div className="relative flex items-center justify-center min-h-[500px]">
-            {/* Radial light burst background */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1.5, delay: 0.5 }}
-              className="absolute inset-0 flex items-center justify-center"
-            >
-              <div className="w-[600px] h-[600px] bg-gradient-radial from-primary/30 via-primary/10 to-transparent rounded-full blur-2xl" />
-            </motion.div>
-
-            {/* Rotating golden rings */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0, rotate: -180 }}
-              animate={{ opacity: 1, scale: 1, rotate: 0 }}
-              transition={{ duration: 1.2, delay: 0.3, ease: "easeOut" }}
-              className="absolute w-[400px] h-[400px]"
-            >
+          <div className="relative flex items-center justify-center min-h-[600px] lg:min-h-[700px] select-none">
+            {/* Multi-layered luxury backdrop glow: crimson & imperial gold */}
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
               <motion.div
-                animate={{ rotate: 360 }}
-                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                className="w-full h-full rounded-full border-2 border-primary/30 border-dashed"
+                animate={{
+                  scale: [1, 1.15, 1],
+                  opacity: [0.5, 0.8, 0.5],
+                }}
+                transition={{
+                  duration: 6,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+                className="absolute w-[450px] h-[450px] rounded-full bg-radial from-amber-500/25 via-red-600/10 to-transparent blur-3xl"
               />
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, scale: 0, rotate: 180 }}
-              animate={{ opacity: 1, scale: 1, rotate: 0 }}
-              transition={{ duration: 1.2, delay: 0.5, ease: "easeOut" }}
-              className="absolute w-[340px] h-[340px]"
-            >
               <motion.div
-                animate={{ rotate: -360 }}
-                transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-                className="w-full h-full rounded-full border border-primary/20"
+                animate={{
+                  scale: [1.1, 0.95, 1.1],
+                  opacity: [0.4, 0.7, 0.4],
+                }}
+                transition={{
+                  duration: 8,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: 1,
+                }}
+                className="absolute w-[350px] h-[350px] rounded-full bg-radial from-red-600/20 via-amber-500/10 to-transparent blur-2xl"
               />
-            </motion.div>
+            </div>
+
+            {/* 3D Cosmic golden rings system */}
+            <div className="absolute w-[500px] h-[500px] flex items-center justify-center pointer-events-none [perspective:1000px]">
+              {/* Ring 1 - Deep outer ring */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8, rotateX: 60, rotateY: -15, rotateZ: 0 }}
+                animate={{ opacity: 1, scale: 1, rotateZ: 360 }}
+                transition={{
+                  opacity: { duration: 1.5, delay: 0.2 },
+                  scale: { duration: 1.5, delay: 0.2 },
+                  rotateZ: { duration: 25, repeat: Infinity, ease: "linear" }
+                }}
+                className="absolute w-[440px] h-[440px] rounded-full border border-dashed border-amber-500/30"
+              />
+
+              {/* Ring 2 - Bright middle ring with accent notches */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8, rotateX: 65, rotateY: 15, rotateZ: 0 }}
+                animate={{ opacity: 1, scale: 1, rotateZ: -360 }}
+                transition={{
+                  opacity: { duration: 1.5, delay: 0.4 },
+                  scale: { duration: 1.5, delay: 0.4 },
+                  rotateZ: { duration: 20, repeat: Infinity, ease: "linear" }
+                }}
+                className="absolute w-[380px] h-[380px] rounded-full border-2 border-double border-amber-400/20"
+              />
+
+              {/* Ring 3 - Inner solid thin glow ring */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8, rotateX: 55, rotateY: 0, rotateZ: 0 }}
+                animate={{ opacity: 0.8, scale: 1, rotateZ: 180 }}
+                transition={{
+                  opacity: { duration: 1.5, delay: 0.6 },
+                  scale: { duration: 1.5, delay: 0.6 },
+                  rotateZ: { duration: 15, repeat: Infinity, ease: "linear" }
+                }}
+                className="absolute w-[320px] h-[320px] rounded-full border border-amber-300/40 shadow-[0_0_15px_rgba(245,158,11,0.2)]"
+              />
+            </div>
 
             {/* Animation Container */}
-            <div className="relative flex flex-col items-center justify-center">
-              {/* Logo Grand Entrance */}
+            <div className="relative flex flex-col items-center justify-center z-10">
+              {/* Grand Emblem / Logo window */}
               <motion.div
-                initial={{ opacity: 0, scale: 0, rotateY: -180 }}
+                initial={{ opacity: 0, scale: 0.7, rotateY: -90 }}
                 animate={{ opacity: 1, scale: 1, rotateY: 0 }}
                 transition={{
-                  duration: 1.2,
-                  delay: 0.8,
+                  duration: 1.5,
+                  delay: 0.6,
                   type: "spring",
-                  stiffness: 100,
+                  stiffness: 70,
                   damping: 15,
                 }}
                 className="relative"
               >
-                {/* Outer glow pulse */}
+                {/* Golden imperial aura glow */}
                 <motion.div
-                  initial={{ opacity: 0, scale: 0.8 }}
                   animate={{
-                    opacity: [0, 0.6, 0.3, 0.6, 0.3],
-                    scale: [0.8, 1.1, 1.05, 1.1, 1.05],
+                    opacity: [0.5, 0.9, 0.5],
+                    scale: [0.95, 1.05, 0.95],
                   }}
                   transition={{
-                    duration: 3,
-                    delay: 1.5,
+                    duration: 4,
                     repeat: Infinity,
                     repeatType: "reverse",
                   }}
-                  className="absolute -inset-8 bg-primary/40 rounded-3xl blur-2xl"
+                  className="absolute -inset-6 bg-gradient-to-tr from-amber-500/30 via-red-600/20 to-yellow-400/30 rounded-[3rem] blur-2xl pointer-events-none"
                 />
 
-                {/* Secondary glow */}
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: [0.3, 0.6, 0.3] }}
-                  transition={{
-                    duration: 2,
-                    delay: 2,
-                    repeat: Infinity,
-                    repeatType: "reverse",
-                  }}
-                  className="absolute -inset-4 bg-gradient-to-br from-primary/50 via-yellow-400/30 to-primary/50 rounded-2xl blur-xl"
-                />
+                {/* Classical Octagonal / Glassmorphic Chinese Window Border */}
+                <div className="relative p-3.5 bg-gradient-to-br from-amber-300/40 via-red-950/40 to-amber-600/40 rounded-[2.8rem] shadow-[0_20px_50px_rgba(0,0,0,0.5),_0_0_30px_rgba(245,158,11,0.2)] border border-amber-400/30 backdrop-blur-md">
+                  
+                  {/* Subtle inner gold frame */}
+                  <div className="absolute inset-1.5 rounded-[2.4rem] border border-amber-300/20 pointer-events-none" />
 
-                {/* Logo with frame */}
-                <motion.div
-                  initial={{ boxShadow: "0 0 0 0 rgba(250, 204, 21, 0)" }}
-                  animate={{
-                    boxShadow: [
-                      "0 0 0 0 rgba(250, 204, 21, 0)",
-                      "0 0 60px 20px rgba(250, 204, 21, 0.4)",
-                      "0 0 40px 10px rgba(250, 204, 21, 0.2)",
-                    ],
-                  }}
-                  transition={{
-                    duration: 2,
-                    delay: 1.8,
-                    repeat: Infinity,
-                    repeatType: "reverse",
-                  }}
-                  className="relative rounded-2xl overflow-hidden shadow-2xl"
-                >
-                  <Image
-                    src="/images/logo.jpg"
-                    alt="Kim Long Catering Logo"
-                    width={280}
-                    height={280}
-                    className="rounded-2xl"
-                    priority
-                  />
+                  {/* Corner ornate decorative dots */}
+                  <div className="absolute top-4 left-4 w-1.5 h-1.5 bg-amber-400 rounded-full shadow-[0_0_8px_rgba(250,204,21,1)]" />
+                  <div className="absolute top-4 right-4 w-1.5 h-1.5 bg-amber-400 rounded-full shadow-[0_0_8px_rgba(250,204,21,1)]" />
+                  <div className="absolute bottom-4 left-4 w-1.5 h-1.5 bg-amber-400 rounded-full shadow-[0_0_8px_rgba(250,204,21,1)]" />
+                  <div className="absolute bottom-4 right-4 w-1.5 h-1.5 bg-amber-400 rounded-full shadow-[0_0_8px_rgba(250,204,21,1)]" />
 
-                  {/* Shine sweep effect */}
-                  <motion.div
-                    initial={{ x: "-100%", opacity: 0 }}
-                    animate={{ x: "200%", opacity: [0, 1, 0] }}
-                    transition={{
-                      duration: 1.5,
-                      delay: 2.5,
-                      repeat: Infinity,
-                      repeatDelay: 4,
-                    }}
-                    className="absolute inset-0 w-1/2 bg-gradient-to-r from-transparent via-white/40 to-transparent skew-x-12"
-                  />
-                </motion.div>
+                  {/* Actual Logo Image container with golden sheen */}
+                  <div className="relative w-[230px] h-[230px] md:w-[260px] md:h-[260px] rounded-[2rem] overflow-hidden shadow-inner bg-red-950/60">
+                    <Image
+                      src="/images/logo.jpg"
+                      alt="Kim Long Catering Logo"
+                      fill
+                      className="object-cover rounded-[2rem] transition-transform duration-700 hover:scale-105"
+                      priority
+                    />
 
-                {/* Corner decorations */}
-                {[0, 90, 180, 270].map((rotation, i) => (
-                  <motion.div
-                    key={rotation}
-                    initial={{ opacity: 0, scale: 0 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.5, delay: 2 + i * 0.1 }}
-                    className="absolute w-6 h-6"
-                    style={{
-                      top: rotation === 0 || rotation === 90 ? -12 : "auto",
-                      bottom: rotation === 180 || rotation === 270 ? -12 : "auto",
-                      left: rotation === 0 || rotation === 270 ? -12 : "auto",
-                      right: rotation === 90 || rotation === 180 ? -12 : "auto",
-                    }}
-                  >
+                    {/* Luxurious metallic sweep effect */}
                     <motion.div
-                      animate={{ rotate: [0, 360] }}
-                      transition={{ duration: 8, repeat: Infinity, ease: "linear", delay: i * 0.5 }}
-                      className="w-full h-full"
-                    >
-                      <div className="w-2 h-2 bg-primary rounded-full" />
-                    </motion.div>
-                  </motion.div>
-                ))}
+                      initial={{ x: "-150%", opacity: 0 }}
+                      animate={{ x: "250%", opacity: [0, 1, 0] }}
+                      transition={{
+                        duration: 2,
+                        delay: 3,
+                        repeat: Infinity,
+                        repeatDelay: 5,
+                      }}
+                      className="absolute inset-0 w-[40%] bg-gradient-to-r from-transparent via-white/30 to-transparent skew-x-12 pointer-events-none"
+                    />
+                  </div>
+                </div>
               </motion.div>
 
-              {/* Brand Text Reveal */}
+              {/* Sophisticated Typographical Logo Brand Block */}
               <motion.div
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 35 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{
-                  duration: 0.8,
-                  delay: 2.5,
+                  duration: 1,
+                  delay: 1.2,
                   type: "spring",
-                  stiffness: 100,
+                  stiffness: 80,
                 }}
-                className="mt-10 text-center"
+                className="mt-12 text-center relative"
               >
-                {/* KIM LONG text */}
-                <motion.div className="overflow-hidden">
+                {/* Core Brand Title with 3D Gold Gradient Effect */}
+                <div className="overflow-hidden py-1">
                   <motion.h2
-                    initial={{ y: 100, opacity: 0 }}
+                    initial={{ y: 80, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{
-                      duration: 0.8,
-                      delay: 2.6,
-                      ease: [0.33, 1, 0.68, 1],
+                      duration: 0.9,
+                      delay: 1.3,
+                      ease: [0.25, 1, 0.5, 1],
                     }}
-                    className="text-5xl md:text-6xl font-black text-foreground tracking-widest"
+                    className="text-4xl md:text-5xl lg:text-6xl font-black tracking-[0.18em] bg-gradient-to-r from-amber-100 via-amber-400 to-yellow-600 bg-clip-text text-transparent drop-shadow-[0_4px_12px_rgba(0,0,0,0.4)] uppercase"
                   >
                     {isChinese ? "金龙自助餐" : "KIM LONG"}
                   </motion.h2>
-                </motion.div>
+                </div>
 
-                {/* CATERING text */}
-                <motion.div className="overflow-hidden mt-2">
+                {/* Subtitle with highly spacious spacing */}
+                <div className="overflow-hidden mt-2">
                   <motion.p
-                    initial={{ y: 50, opacity: 0 }}
+                    initial={{ y: 40, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{
-                      duration: 0.8,
-                      delay: 2.9,
-                      ease: [0.33, 1, 0.68, 1],
+                      duration: 0.9,
+                      delay: 1.6,
+                      ease: [0.25, 1, 0.5, 1],
                     }}
-                    className="text-xl md:text-2xl font-light text-primary tracking-[0.4em]"
+                    className="text-sm md:text-base font-light tracking-[0.55em] text-amber-200/80 drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)] ml-[0.55em] uppercase"
                   >
                     CATERING
                   </motion.p>
-                </motion.div>
+                </div>
 
-                {/* Underline decoration */}
+                {/* Traditional Chinese Filigree Line - symmetric gold separator */}
                 <motion.div
                   initial={{ scaleX: 0 }}
                   animate={{ scaleX: 1 }}
                   transition={{
-                    duration: 0.8,
-                    delay: 3.2,
+                    duration: 1,
+                    delay: 1.9,
                     ease: "easeOut",
                   }}
-                  className="mt-4 h-0.5 bg-gradient-to-r from-transparent via-primary to-transparent origin-center"
-                />
+                  className="my-5 flex items-center justify-center gap-3 w-[220px] mx-auto"
+                >
+                  <div className="h-[1px] flex-1 bg-gradient-to-r from-transparent to-amber-400/50" />
+                  <div className="w-1.5 h-1.5 bg-amber-400 rotate-45 border border-amber-300 shadow-[0_0_6px_rgba(245,158,11,0.8)]" />
+                  <div className="h-[1px] flex-1 bg-gradient-to-r from-amber-400/50 to-transparent" />
+                </motion.div>
 
-                {/* Tagline */}
+                {/* Brand slogan / timeline with glowing finish */}
                 <motion.p
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  transition={{ duration: 0.6, delay: 3.5 }}
-                  className="mt-4 text-muted-foreground text-xs font-bold tracking-widest"
+                  transition={{ duration: 0.8, delay: 2.2 }}
+                  className="text-xs md:text-sm font-bold tracking-[0.25em] text-foreground/80 drop-shadow-[0_1px_3px_rgba(0,0,0,0.2)] text-balance max-w-sm mx-auto"
                 >
-                  {isChinese ? "岁月沉淀经典 • 共赴重要时刻" : "SINCE 1982"}
+                  {isChinese ? "岁月沉淀经典 • 共赴重要时刻" : "ESTABLISHED 1982"}
                 </motion.p>
               </motion.div>
 
-              {/* Sparkle particles */}
-              {[...Array(8)].map((_, i) => (
+              {/* Floating ambient fairy sparks */}
+              {[...Array(10)].map((_, i) => (
                 <motion.div
                   key={i}
                   initial={{ opacity: 0, scale: 0 }}
                   animate={{
-                    opacity: [0, 1, 0],
+                    opacity: [0, 0.75, 0],
                     scale: [0, 1, 0],
+                    y: [0, -40, 0],
                   }}
                   transition={{
-                    duration: 2,
-                    delay: 2.5 + i * 0.2,
+                    duration: 3 + Math.random() * 2,
+                    delay: 2.5 + i * 0.3,
                     repeat: Infinity,
-                    repeatDelay: 3,
+                    repeatType: "reverse",
                   }}
-                  className="absolute w-1 h-1 bg-primary rounded-full"
+                  className="absolute w-[3px] h-[3px] bg-amber-400 rounded-full"
                   style={{
-                    top: `${20 + Math.sin((i * 45 * Math.PI) / 180) * 45}%`,
-                    left: `${50 + Math.cos((i * 45 * Math.PI) / 180) * 45}%`,
-                    boxShadow: "0 0 6px 2px rgba(250, 204, 21, 0.6)",
+                    top: `${35 + Math.sin((i * 36 * Math.PI) / 180) * 38}%`,
+                    left: `${50 + Math.cos((i * 36 * Math.PI) / 180) * 38}%`,
+                    boxShadow: "0 0 8px 3px rgba(251,191,36,0.6)",
                   }}
                 />
               ))}
