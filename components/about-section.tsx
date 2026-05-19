@@ -1,21 +1,22 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Award, Star, Trophy, Crown } from "lucide-react";
 import Image from "next/image";
 
 const awardsData = {
   en: [
-    { icon: Trophy, title: "Malaysia Top Heritage Award 2019" },
-    { icon: Star, title: "Consumer's Choice Award 2020" },
-    { icon: Award, title: "The Asia Pacific Book of The Top Recognition 2019" },
-    { icon: Crown, title: "World Heritage Food Recognition" },
+    { icon: Trophy, title: "Malaysia Top Heritage Award 2019", image: "/images/award-1.png" },
+    { icon: Star, title: "Consumer's Choice Award 2020", image: "/images/award-2.png" },
+    { icon: Award, title: "The Asia Pacific Book of The Top Recognition 2019", image: "/images/award-3.png" },
+    { icon: Crown, title: "World Heritage Food Recognition", image: "/images/award-4.png" },
   ],
   zh: [
-    { icon: Trophy, title: "马来西亚老字号传统经典品牌奖 2019" },
-    { icon: Star, title: "国家消费者首选品牌大奖 2020" },
-    { icon: Award, title: "亚太杰出品牌至高荣誉认证 2019" },
-    { icon: Crown, title: "世界非遗美食文化传承奖" },
+    { icon: Trophy, title: "马来西亚老字号传统经典品牌奖 2019", image: "/images/award-1.png" },
+    { icon: Star, title: "国家消费者首选品牌大奖 2020", image: "/images/award-2.png" },
+    { icon: Award, title: "亚太杰出品牌至高荣誉认证 2019", image: "/images/award-3.png" },
+    { icon: Crown, title: "世界非遗美食文化传承奖", image: "/images/award-4.png" },
   ],
 };
 
@@ -26,6 +27,14 @@ interface AboutSectionProps {
 export function AboutSection({ lang = "en" }: AboutSectionProps) {
   const isChinese = lang === "zh";
   const awards = awardsData[lang];
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % awards.length);
+    }, 3000);
+    return () => clearInterval(timer);
+  }, [awards.length]);
 
   return (
     <section id="about" className="py-24 bg-secondary/30">
@@ -56,32 +65,9 @@ export function AboutSection({ lang = "en" }: AboutSectionProps) {
               </p>
               <p>
                 {isChinese
-                  ? "如今，在第三代首席执行官郭志贤（Keh Zhi Xian）的带领下，我们在恪守传统祖传秘方的同时，积极拥抱数字化变革，引入冷链配送车队与标准化现代厨政管理。每一道摆上餐台的佳肴，都倾注了三代人传承不息的诚意与温度。"
-                  : "Now led by our 3rd-generation CEO, Keh Zhi Xian, we continue to honor our heritage while embracing innovation. Every dish we serve carries the passion, dedication, and expertise passed down through three generations of culinary masters."}
+                  ? "如今，我们在恪守传统祖传秘方的同时，积极拥抱数字化变革，引入冷链配送车队与标准化现代厨政管理。每一道摆上餐台的佳肴，都倾注了三代人传承不息的诚意与温度。"
+                  : "Now, we continue to honor our heritage while embracing innovation. Every dish we serve carries the passion, dedication, and expertise passed down through generations of culinary masters."}
               </p>
-            </div>
-
-            {/* CEO Image */}
-            <div className="flex items-center gap-4 p-4 bg-card border border-border rounded-2xl shadow-sm">
-              <div className="relative w-20 h-20 rounded-xl overflow-hidden flex-shrink-0 bg-secondary">
-                <Image
-                  src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&q=80"
-                  alt="CEO Keh Zhi Xian"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <div>
-                <p className="font-bold text-foreground">
-                  {isChinese ? "郭志贤" : "Keh Zhi Xian"}
-                </p>
-                <p className="text-xs text-muted-foreground">
-                  {isChinese ? "第三代首席执行官 (CEO)" : "3rd Generation CEO"}
-                </p>
-                <p className="text-xs text-primary font-bold mt-1">
-                  {isChinese ? "坚守本源 • 开拓前行" : "Leading with Vision & Tradition"}
-                </p>
-              </div>
             </div>
           </motion.div>
 
@@ -102,30 +88,63 @@ export function AboutSection({ lang = "en" }: AboutSectionProps) {
               </h3>
             </div>
 
-            {/* Awards Marquee */}
-            <div className="relative overflow-hidden py-4 border-y border-border/60">
-              <div className="flex animate-marquee gap-6">
-                {[...awards, ...awards].map((award, index) => (
-                  <div
-                    key={index}
-                    className="flex-shrink-0 bg-card border border-border rounded-2xl p-6 min-w-[280px] hover:shadow-lg transition-shadow"
-                  >
-                    <div className="flex items-start gap-4">
-                      <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                        <award.icon className="w-6 h-6 text-primary" />
+            {/* 3D Page Flip Viewer (Background-free & Flipping continuous) */}
+            <div className="relative h-[180px] w-full flex items-center justify-center overflow-hidden border-y border-border/60 py-6">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeIndex}
+                  initial={{ opacity: 0, rotateX: 80, y: 40 }}
+                  animate={{ opacity: 1, rotateX: 0, y: 0 }}
+                  exit={{ opacity: 0, rotateX: -80, y: -40 }}
+                  transition={{ duration: 0.6, ease: "easeInOut" }}
+                  className="absolute w-full flex flex-col md:flex-row items-center justify-center gap-6 select-none"
+                  style={{ transformStyle: "preserve-3d" }}
+                >
+                  {/* Left: Award Emblem / Image Slot (Background-free) */}
+                  <div className="relative w-24 h-24 flex items-center justify-center flex-shrink-0">
+                    {awards[activeIndex].image ? (
+                      <div className="relative w-20 h-20">
+                        <Image
+                          src={awards[activeIndex].image}
+                          alt={awards[activeIndex].title}
+                          fill
+                          className="object-contain animate-pulse"
+                          priority
+                        />
                       </div>
-                      <div className="space-y-1">
-                        <p className="font-bold text-foreground text-sm leading-snug">
-                          {award.title}
-                        </p>
-                        <div className="flex gap-0.5">
-                          {[...Array(5)].map((_, i) => (
-                            <Star key={i} className="w-3 h-3 fill-primary text-primary" />
-                          ))}
-                        </div>
+                    ) : (
+                      <div className="w-20 h-20 bg-primary/5 rounded-full flex items-center justify-center border border-amber-500/20">
+                        {(() => {
+                          const IconComponent = awards[activeIndex].icon;
+                          return <IconComponent className="w-10 h-10 text-primary" />;
+                        })()}
                       </div>
+                    )}
+                  </div>
+
+                  {/* Right: Typography (Clean & Transparent) */}
+                  <div className="text-center md:text-left space-y-2">
+                    <h4 className="text-xl md:text-2xl font-black bg-gradient-to-r from-foreground via-amber-600 to-amber-700 bg-clip-text text-transparent tracking-wide leading-tight max-w-md">
+                      {awards[activeIndex].title}
+                    </h4>
+                    <div className="flex justify-center md:justify-start gap-1">
+                      {[...Array(5)].map((_, i) => (
+                        <Star key={i} className="w-4 h-4 fill-primary text-primary animate-pulse" />
+                      ))}
                     </div>
                   </div>
+                </motion.div>
+              </AnimatePresence>
+
+              {/* Ornate page flip indicators */}
+              <div className="absolute left-2 flex flex-col gap-1.5 pointer-events-none">
+                {awards.map((_, idx) => (
+                  <div
+                    key={idx}
+                    className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
+                      idx === activeIndex ? "bg-primary scale-125 shadow-[0_0_6px_rgba(245,158,11,0.6)]" : "bg-border"
+                    }`}
+                  />
                 ))}
               </div>
             </div>
