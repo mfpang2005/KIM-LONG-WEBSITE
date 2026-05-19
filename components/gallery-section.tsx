@@ -108,18 +108,18 @@ export function GallerySection({ lang = "en" }: GallerySectionProps) {
             transition={{ delay: 0.1 }}
             className="text-4xl md:text-5xl font-bold text-foreground mb-4 text-balance"
           >
-            {lang === "en" ? "Culinary Showcase & Setup" : "菜品与宴席实景展示"}
+            {lang === "en" ? "Culinary Showcase & Elite Layout" : "菜品与宴席实景展示"}
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="text-muted-foreground text-lg max-w-2xl mx-auto"
+            className="text-muted-foreground text-lg max-w-3xl mx-auto leading-relaxed"
           >
             {lang === "en"
-              ? "Take a look at our award-winning heritage dishes and premium catering setups crafted for your special moments."
-              : "饱览我们屡获殊荣的传统手工名菜与专为您的珍贵时刻精心设计的五星级宴会布置。"}
+              ? "Kim Long Catering redefines mobile dining with award-winning heritage flavors and elite banquet layouts. Here, every masterfully crafted dish and high-spec service crowns your life's greatest moments."
+              : "“金龙餐饮，以屡获殊荣的传世风味与高规格宴席布置，重塑外烩餐饮新标准。在这里，每一道大师级臻肴与高级工序，皆为您的人生成就加冕。”"}
           </motion.p>
         </div>
 
