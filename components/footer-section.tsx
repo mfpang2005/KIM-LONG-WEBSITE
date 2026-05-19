@@ -8,6 +8,7 @@ import Image from "next/image";
 const linksData = {
   en: [
     { name: "About Us", href: "#about" },
+    { name: "Our Clients", href: "#clients" },
     { name: "Gallery", href: "#gallery" },
     { name: "Services", href: "#services" },
     { name: "Calculator", href: "#calculator" },
@@ -15,6 +16,7 @@ const linksData = {
   ],
   zh: [
     { name: "关于我们", href: "#about" },
+    { name: "合作客户", href: "#clients" },
     { name: "菜品画廊", href: "#gallery" },
     { name: "业务服务", href: "#services" },
     { name: "预算估算", href: "#calculator" },
@@ -77,15 +79,23 @@ export function FooterSection({ lang = "en" }: FooterSectionProps) {
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
             {/* Brand */}
             <div className="lg:col-span-1 space-y-6">
-              <Link href="/" className="flex items-center gap-3">
-                <Image
-                  src="/images/logo.jpg"
-                  alt="Kim Long Catering Logo"
-                  width={44}
-                  height={44}
-                  className="rounded-lg"
-                />
-                <span className="font-black text-xl tracking-tight text-white">Kim Long</span>
+              <Link href="/" className="flex items-center gap-3.5 group">
+                <div className="relative w-[48px] h-[48px] rounded-xl overflow-hidden border border-amber-500/20 shadow-[0_0_12px_rgba(245,158,11,0.1)] transition-transform duration-300 group-hover:scale-105">
+                  <Image
+                    src="/images/logo.jpg"
+                    alt="Kim Long Catering Logo"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div className="flex flex-col text-left justify-center select-none">
+                  <span className="font-black text-base md:text-lg text-white tracking-[0.1em] uppercase leading-none bg-gradient-to-r from-white via-amber-400 to-amber-500 bg-clip-text text-transparent transition-all duration-300 group-hover:via-amber-300">
+                    KIM LONG
+                  </span>
+                  <span className="text-[8px] md:text-[9px] font-black tracking-[0.38em] text-primary uppercase mt-1.5 leading-none mr-[-0.38em]">
+                    CATERING
+                  </span>
+                </div>
               </Link>
               <p className="text-background/70 text-sm leading-relaxed">
                 {isChinese

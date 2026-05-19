@@ -9,6 +9,7 @@ import Image from "next/image";
 const navLinks = {
   en: [
     { name: "About Us", href: "#about" },
+    { name: "Our Clients", href: "#clients" },
     { name: "Gallery", href: "#gallery" },
     { name: "Services", href: "#services" },
     { name: "Calculator", href: "#calculator" },
@@ -17,6 +18,7 @@ const navLinks = {
   ],
   zh: [
     { name: "关于我们", href: "#about" },
+    { name: "合作客户", href: "#clients" },
     { name: "菜品画廊", href: "#gallery" },
     { name: "业务服务", href: "#services" },
     { name: "预算估算", href: "#calculator" },
@@ -73,17 +75,23 @@ export function Navbar({ lang = "en", setLang }: NavbarProps) {
       <nav className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-3">
-            <Image
-              src="/images/logo.jpg"
-              alt="Kim Long Catering Logo"
-              width={44}
-              height={44}
-              className="rounded-lg"
-            />
-            <span className="font-extrabold text-xl text-foreground tracking-tight">
-              Kim Long
-            </span>
+          <Link href="/" className="flex items-center gap-3.5 group">
+            <div className="relative w-[52px] h-[52px] md:w-[56px] md:h-[56px] rounded-xl overflow-hidden border border-amber-500/20 shadow-[0_0_15px_rgba(245,158,11,0.12)] transition-transform duration-300 group-hover:scale-105">
+              <Image
+                src="/images/logo.jpg"
+                alt="Kim Long Catering Logo"
+                fill
+                className="object-cover"
+              />
+            </div>
+            <div className="flex flex-col text-left justify-center select-none">
+              <span className="font-black text-lg md:text-xl text-foreground tracking-[0.1em] uppercase leading-none bg-gradient-to-r from-foreground via-amber-600 to-amber-700 bg-clip-text text-transparent transition-all duration-300 group-hover:via-amber-500">
+                KIM LONG
+              </span>
+              <span className="text-[9px] md:text-[10px] font-black tracking-[0.38em] text-primary uppercase mt-1.5 leading-none mr-[-0.38em]">
+                CATERING
+              </span>
+            </div>
           </Link>
 
           {/* Desktop Navigation */}

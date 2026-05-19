@@ -91,36 +91,7 @@ export function HeroSection({ lang = "en" }: HeroSectionProps) {
           </motion.div>
 
           {/* Right Content - Grand Logo Reveal */}
-          <div className="relative flex items-center justify-center min-h-[600px] lg:min-h-[700px] select-none">
-            {/* Multi-layered luxury backdrop glow: crimson & imperial gold */}
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-              <motion.div
-                animate={{
-                  scale: [1, 1.15, 1],
-                  opacity: [0.5, 0.8, 0.5],
-                }}
-                transition={{
-                  duration: 6,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-                className="absolute w-[450px] h-[450px] rounded-full bg-radial from-amber-500/25 via-red-600/10 to-transparent blur-3xl"
-              />
-              <motion.div
-                animate={{
-                  scale: [1.1, 0.95, 1.1],
-                  opacity: [0.4, 0.7, 0.4],
-                }}
-                transition={{
-                  duration: 8,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  delay: 1,
-                }}
-                className="absolute w-[350px] h-[350px] rounded-full bg-radial from-red-600/20 via-amber-500/10 to-transparent blur-2xl"
-              />
-            </div>
-
+          <div className="relative flex items-center justify-center min-h-[550px] lg:min-h-[620px] select-none">
             {/* 3D Cosmic golden rings system */}
             <div className="absolute w-[500px] h-[500px] flex items-center justify-center pointer-events-none [perspective:1000px]">
               {/* Ring 1 - Deep outer ring */}
@@ -132,7 +103,7 @@ export function HeroSection({ lang = "en" }: HeroSectionProps) {
                   scale: { duration: 1.5, delay: 0.2 },
                   rotateZ: { duration: 25, repeat: Infinity, ease: "linear" }
                 }}
-                className="absolute w-[440px] h-[440px] rounded-full border border-dashed border-amber-500/30"
+                className="absolute w-[440px] h-[440px] rounded-full border border-dashed border-amber-500/20"
               />
 
               {/* Ring 2 - Bright middle ring with accent notches */}
@@ -144,10 +115,10 @@ export function HeroSection({ lang = "en" }: HeroSectionProps) {
                   scale: { duration: 1.5, delay: 0.4 },
                   rotateZ: { duration: 20, repeat: Infinity, ease: "linear" }
                 }}
-                className="absolute w-[380px] h-[380px] rounded-full border-2 border-double border-amber-400/20"
+                className="absolute w-[380px] h-[380px] rounded-full border-2 border-double border-amber-400/10"
               />
 
-              {/* Ring 3 - Inner solid thin glow ring */}
+              {/* Ring 3 - Inner solid thin ring */}
               <motion.div
                 initial={{ opacity: 0, scale: 0.8, rotateX: 55, rotateY: 0, rotateZ: 0 }}
                 animate={{ opacity: 0.8, scale: 1, rotateZ: 180 }}
@@ -156,7 +127,7 @@ export function HeroSection({ lang = "en" }: HeroSectionProps) {
                   scale: { duration: 1.5, delay: 0.6 },
                   rotateZ: { duration: 15, repeat: Infinity, ease: "linear" }
                 }}
-                className="absolute w-[320px] h-[320px] rounded-full border border-amber-300/40 shadow-[0_0_15px_rgba(245,158,11,0.2)]"
+                className="absolute w-[320px] h-[320px] rounded-full border border-amber-300/30"
               />
             </div>
 
@@ -175,39 +146,25 @@ export function HeroSection({ lang = "en" }: HeroSectionProps) {
                 }}
                 className="relative"
               >
-                {/* Golden imperial aura glow */}
-                <motion.div
-                  animate={{
-                    opacity: [0.5, 0.9, 0.5],
-                    scale: [0.95, 1.05, 0.95],
-                  }}
-                  transition={{
-                    duration: 4,
-                    repeat: Infinity,
-                    repeatType: "reverse",
-                  }}
-                  className="absolute -inset-6 bg-gradient-to-tr from-amber-500/30 via-red-600/20 to-yellow-400/30 rounded-[3rem] blur-2xl pointer-events-none"
-                />
-
-                {/* Classical Octagonal / Glassmorphic Chinese Window Border */}
-                <div className="relative p-3.5 bg-gradient-to-br from-amber-300/40 via-red-950/40 to-amber-600/40 rounded-[2.8rem] shadow-[0_20px_50px_rgba(0,0,0,0.5),_0_0_30px_rgba(245,158,11,0.2)] border border-amber-400/30 backdrop-blur-md">
+                {/* Classical / Ornate Chinese Window Border - Extremely clean and flat */}
+                <div className="relative p-2.5 bg-card border-2 border-amber-500/30 rounded-[2.4rem]">
                   
                   {/* Subtle inner gold frame */}
-                  <div className="absolute inset-1.5 rounded-[2.4rem] border border-amber-300/20 pointer-events-none" />
+                  <div className="absolute inset-1 rounded-[2.1rem] border border-amber-500/10 pointer-events-none" />
 
-                  {/* Corner ornate decorative dots */}
-                  <div className="absolute top-4 left-4 w-1.5 h-1.5 bg-amber-400 rounded-full shadow-[0_0_8px_rgba(250,204,21,1)]" />
-                  <div className="absolute top-4 right-4 w-1.5 h-1.5 bg-amber-400 rounded-full shadow-[0_0_8px_rgba(250,204,21,1)]" />
-                  <div className="absolute bottom-4 left-4 w-1.5 h-1.5 bg-amber-400 rounded-full shadow-[0_0_8px_rgba(250,204,21,1)]" />
-                  <div className="absolute bottom-4 right-4 w-1.5 h-1.5 bg-amber-400 rounded-full shadow-[0_0_8px_rgba(250,204,21,1)]" />
+                  {/* Corner ornate decorative dots (flat and clean) */}
+                  <div className="absolute top-3 left-3 w-1.5 h-1.5 bg-amber-500 rounded-full" />
+                  <div className="absolute top-3 right-3 w-1.5 h-1.5 bg-amber-500 rounded-full" />
+                  <div className="absolute bottom-3 left-3 w-1.5 h-1.5 bg-amber-500 rounded-full" />
+                  <div className="absolute bottom-3 right-3 w-1.5 h-1.5 bg-amber-500 rounded-full" />
 
                   {/* Actual Logo Image container with golden sheen */}
-                  <div className="relative w-[230px] h-[230px] md:w-[260px] md:h-[260px] rounded-[2rem] overflow-hidden shadow-inner bg-red-950/60">
+                  <div className="relative w-[230px] h-[230px] md:w-[260px] md:h-[260px] rounded-[1.8rem] overflow-hidden border border-border">
                     <Image
                       src="/images/logo.jpg"
                       alt="Kim Long Catering Logo"
                       fill
-                      className="object-cover rounded-[2rem] transition-transform duration-700 hover:scale-105"
+                      className="object-cover rounded-[1.8rem] transition-transform duration-700 hover:scale-105"
                       priority
                     />
 
@@ -221,7 +178,7 @@ export function HeroSection({ lang = "en" }: HeroSectionProps) {
                         repeat: Infinity,
                         repeatDelay: 5,
                       }}
-                      className="absolute inset-0 w-[40%] bg-gradient-to-r from-transparent via-white/30 to-transparent skew-x-12 pointer-events-none"
+                      className="absolute inset-0 w-[40%] bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12 pointer-events-none"
                     />
                   </div>
                 </div>
