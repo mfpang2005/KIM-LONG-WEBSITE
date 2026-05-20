@@ -20,7 +20,8 @@ if (typeof window === "undefined") {
     // 同步资质图片
     const awardsMap = {
       "media__1779275958392.jpg": "award-3.jpg",
-      "media__1779275996360.jpg": "award-4.jpg"
+      "media__1779275996360.jpg": "award-4.jpg",
+      "media__1779276023256.jpg": "award-2.jpg"
     };
     
     for (const [srcFile, destFile] of Object.entries(awardsMap)) {
@@ -37,14 +38,14 @@ if (typeof window === "undefined") {
 const awardsData = {
   en: [
     { icon: Trophy, title: "World Top Heritage Gourmet Awards 2023", image: "/images/award-1.png", blendMode: "normal" },
-    { icon: Star, title: "Consumers' Choice Award (MTPN)", image: "/images/award-2.png", blendMode: "multiply" },
+    { icon: Star, title: "Consumers' Choice Award (MTPN)", image: "/images/award-2.jpg", blendMode: "normal" },
     { icon: Award, title: "Asia Pacific Excellence Brand - Brand of the Year 2019", image: "/images/award-3.jpg", blendMode: "normal" },
     { icon: Crown, title: "Famous Gourmet Award 2024 (Charcoal Roasted Pipa Duck)", image: "/images/award-4.jpg", blendMode: "normal" },
     { icon: ShieldCheck, title: "Food Safety & Public Liability Insurance", image: "", blendMode: "normal" },
   ],
   zh: [
     { icon: Trophy, title: "世界传统美食大奖 2023", image: "/images/award-1.png", blendMode: "normal" },
-    { icon: Star, title: "国家消费者首选品牌大奖 (MTPN)", image: "/images/award-2.png", blendMode: "multiply" },
+    { icon: Star, title: "国家消费者首选品牌大奖 (MTPN)", image: "/images/award-2.jpg", blendMode: "normal" },
     { icon: Award, title: "国际至尊品牌大奖・年度品牌（2019）", image: "/images/award-3.jpg", blendMode: "normal" },
     { icon: Crown, title: "世界著名美食大奖（炭烧琵琶鸭）2024", image: "/images/award-4.jpg", blendMode: "normal" },
     { icon: ShieldCheck, title: "食品安全与公共责任保险认证", image: "", blendMode: "normal" },
