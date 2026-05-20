@@ -21,10 +21,9 @@ if (typeof window === "undefined") {
       fs.mkdirSync(destDir, { recursive: true });
     }
     
-    // 1. 同步原有的四张金色奖牌资质图片
+    // 1. 同步原有的四张金色奖牌资质图片 (已将大奖1升级为高清大图)
     const oldSrcDir = "C:\\Users\\User\\.gemini\\antigravity\\brain\\ecae9dbb-99ba-4d55-ab5e-9ce60b9b2ed8";
     const oldAwardsMap = {
-      "media__1779239558913.png": "award-1.png",
       "media__1779239558955.png": "award-2.png",
       "media__1779239559068.jpg": "award-3.jpg",
       "media__1779239624122.png": "award-4.png"
@@ -43,7 +42,8 @@ if (typeof window === "undefined") {
       "media__1779276669909.jpg": "food-safety-2.jpg",
       "media__1779276669911.jpg": "food-safety-3.jpg",
       "media__1779276669903.jpg": "food-safety-insurance.jpg",
-      "media__1779276801319.jpg": "pipa-duck.jpg"
+      "media__1779276801319.jpg": "pipa-duck.jpg",
+      "media__1779277404656.png": "award-1.png"
     };
     for (const [srcFile, destFile] of Object.entries(newAwardsMap)) {
       const srcPath = path.join(newSrcDir, srcFile);
