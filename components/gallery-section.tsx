@@ -84,7 +84,7 @@ const galleryItems: GalleryItem[] = [
     category: "western",
     description: "Pan-seared prawns tossed in a vibrant Mediterranean tomato glaze with fresh Italian basil and olive oil.",
     chineseDescription: "煎至弹牙的鲜虾裹满地中海风味茄汁，伴以新鲜意大利罗勒与初榨橄榄油，酸甜清爽。",
-    image: "https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=800&q=80",
+    image: "https://images.unsplash.com/photo-1534422298391-e4f8317fba10?w=800&q=80",
   },
   {
     id: "dessert-table",
@@ -93,7 +93,7 @@ const galleryItems: GalleryItem[] = [
     category: "western",
     description: "An elegant assortment of petite desserts, fresh seasonal fruits, and premium traditional Chinese sweet soup.",
     chineseDescription: "琳琅满目的西式一口小甜点、时令新鲜水果，搭配传统滋补中式糖水，为宴席画上完美句号。",
-    image: "https://images.unsplash.com/photo-1535141192574-5d4897c13636?w=800&q=80",
+    image: "https://images.unsplash.com/photo-1488477181946-6428a0291777?w=800&q=80",
   },
   {
     id: "black-pepper-sirloin",
@@ -102,7 +102,7 @@ const galleryItems: GalleryItem[] = [
     category: "western",
     description: "Australian grain-fed sirloin grilled to perfection, drizzled with robust cracked black pepper sauce.",
     chineseDescription: "严选澳洲谷饲沙朗牛排煎烤至完美熟度，淋上特调粗磨黑胡椒汁，外焦里嫩，肉汁充盈。",
-    image: "https://images.unsplash.com/photo-1546964124-0cce460f38ef?w=800&q=80",
+    image: "https://images.unsplash.com/photo-1529694157872-4e0c0f3b238b?w=800&q=80",
     tag: "High Protein • 精选牛肉",
   },
   {
@@ -121,7 +121,7 @@ const galleryItems: GalleryItem[] = [
     category: "western",
     description: "Tender beef cheek slow-braised for 6 hours in rich Bordeaux red wine, root vegetables, and fresh herbs.",
     chineseDescription: "精选极嫩牛颊肉，融入波尔多红酒、香草和根茎蔬菜在文火中慢熬6小时，入口即化，极为甘美。",
-    image: "https://images.unsplash.com/photo-1544025162-d76694265947?w=800&q=80",
+    image: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&q=80",
   },
   {
     id: "truffle-mushroom-pasta",
@@ -130,7 +130,7 @@ const galleryItems: GalleryItem[] = [
     category: "western",
     description: "Artisanal pasta tossed with woodland mushrooms and a luxurious porcini and truffle cream sauce.",
     chineseDescription: "意式手工宽面融入饱满野菇，裹着细腻馥郁的牛肝菌与黑松露特制奶油，香气极其摄人。",
-    image: "https://images.unsplash.com/photo-1645112411341-6c4fd023714a?w=800&q=80",
+    image: "https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=800&q=80",
   },
 
   // ================= 宴席摆盘 (6张) =================
@@ -141,7 +141,7 @@ const galleryItems: GalleryItem[] = [
     category: "setup",
     description: "Premium warm-lit catering layout with silver chafing dishes, premium tablecloths, and floral decorations.",
     chineseDescription: "高端温光餐台布置，配备银光熠熠的保温炉、高雅桌布和精致花艺，尽显宴席奢华气度。",
-    image: "https://images.unsplash.com/photo-1555244162-803834f70033?w=800&q=80",
+    image: "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=800&q=80",
     tag: "5-Star Setup • 五星布置",
   },
   {
@@ -151,7 +151,7 @@ const galleryItems: GalleryItem[] = [
     category: "setup",
     description: "Stunning table design featuring fresh white roses, gold cutlery, crystal goblets, and ambient candlelights.",
     chineseDescription: "欧式典雅长桌设计，精选白玫瑰花艺，烫金描边餐盘，水晶高脚杯与浪漫烛光交相辉映。",
-    image: "https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?w=800&q=80",
+    image: "https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?w=800&q=80",
     tag: "Romantic • 唯美浪漫",
   },
   {
@@ -170,7 +170,7 @@ const galleryItems: GalleryItem[] = [
     category: "setup",
     description: "Majestic round table layout adorned with traditional rich crimson linen, golden centerpieces, and fine china.",
     chineseDescription: "极具威仪的巨型圆桌，大气的传统喜庆正红台布，配以璀璨金器盆景与华贵瓷器，尽显大家风范。",
-    image: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80",
+    image: "https://images.unsplash.com/photo-1519741497674-611481863552?w=800&q=80",
   },
   {
     id: "setup-cocktail-canapes",
@@ -179,7 +179,7 @@ const galleryItems: GalleryItem[] = [
     category: "setup",
     description: "Sleek and illuminated food stations featuring meticulously arranged finger foods and party appetizers.",
     chineseDescription: "极简发光餐盘上，整齐排列着五彩斑斓、精致玲珑的西式一口冷餐小食，凸显商务酒会的高端格调。",
-    image: "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=800&q=80",
+    image: "https://images.unsplash.com/photo-1555244162-803834f70033?w=800&q=80",
   },
   {
     id: "setup-eco-elegant",
