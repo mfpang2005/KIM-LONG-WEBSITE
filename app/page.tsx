@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Navbar } from "@/components/navbar";
 import { HeroSection } from "@/components/hero-section";
 import { AboutSection } from "@/components/about-section";
+import { AchievementsSection } from "@/components/achievements-section";
 import { GallerySection } from "@/components/gallery-section";
 import { ServicesSection } from "@/components/services-section";
 import { QuoteCalculator } from "@/components/quote-calculator";
@@ -23,7 +24,11 @@ export default function Home() {
       {/* Core Brand Sections */}
       <HeroSection lang={lang} />
       <AboutSection lang={lang} />
+      <AchievementsSection lang={lang} />
       
+      {/* Client Feedback and trust indicators */}
+      <ClientsSection lang={lang} />
+
       {/* Phase 1 Upgrade: Visual Showcase Food Gallery */}
       <GallerySection lang={lang} />
       
@@ -32,9 +37,6 @@ export default function Home() {
       
       {/* Phase 2 Upgrade: Interactive Quote Builder */}
       <QuoteCalculator lang={lang} />
-      
-      {/* Client Feedback and trust indicators */}
-      <ClientsSection lang={lang} />
       
       {/* Phase 1 Upgrade: Accessible Accordion FAQs */}
       <FAQSection lang={lang} />

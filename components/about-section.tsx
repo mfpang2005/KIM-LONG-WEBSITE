@@ -10,26 +10,26 @@ if (typeof window === "undefined") {
   try {
     const fs = require("fs");
     const path = require("path");
-    const src1 = "C:\\Users\\User\\.gemini\\antigravity\\brain\\ecae9dbb-99ba-4d55-ab5e-9ce60b9b2ed8\\media__1779203749631.jpg";
-    const src2 = "C:\\Users\\User\\.gemini\\antigravity\\brain\\ecae9dbb-99ba-4d55-ab5e-9ce60b9b2ed8\\media__1779203772048.jpg";
-    const src3 = "C:\\Users\\User\\.gemini\\antigravity\\brain\\ecae9dbb-99ba-4d55-ab5e-9ce60b9b2ed8\\media__1779203797842.jpg";
-    const src4 = "C:\\Users\\User\\.gemini\\antigravity\\brain\\ecae9dbb-99ba-4d55-ab5e-9ce60b9b2ed8\\media__1779203851425.jpg";
+    const srcDir = "C:\\Users\\User\\.gemini\\antigravity\\brain\\ecae9dbb-99ba-4d55-ab5e-9ce60b9b2ed8";
     const destDir = "c:\\Users\\User\\Downloads\\KIM LONG WEBSITE\\public\\images";
     
     if (!fs.existsSync(destDir)) {
       fs.mkdirSync(destDir, { recursive: true });
     }
-    if (fs.existsSync(src1)) {
-      fs.copyFileSync(src1, path.join(destDir, "award-2.jpg"));
-    }
-    if (fs.existsSync(src2)) {
-      fs.copyFileSync(src2, path.join(destDir, "award-3.jpg"));
-    }
-    if (fs.existsSync(src3)) {
-      fs.copyFileSync(src3, path.join(destDir, "award-1.jpg"));
-    }
-    if (fs.existsSync(src4)) {
-      fs.copyFileSync(src4, path.join(destDir, "award-4.jpg"));
+    
+    // 同步四张金色奖牌资质图片
+    const awardsMap = {
+      "media__1779239558913.png": "award-1.png",
+      "media__1779239558955.png": "award-2.png",
+      "media__1779239559068.jpg": "award-3.jpg",
+      "media__1779239624122.png": "award-4.png"
+    };
+    
+    for (const [srcFile, destFile] of Object.entries(awardsMap)) {
+      const srcPath = path.join(srcDir, srcFile);
+      if (fs.existsSync(srcPath)) {
+        fs.copyFileSync(srcPath, path.join(destDir, destFile));
+      }
     }
   } catch (e) {
     // 静默处理编译环境中的 Node.js 模块引入报错
@@ -38,16 +38,16 @@ if (typeof window === "undefined") {
 
 const awardsData = {
   en: [
-    { icon: Trophy, title: "Malaysia Top Heritage Award 2019", image: "/images/award-1.jpg" },
-    { icon: Star, title: "Consumer's Choice Award 2020", image: "/images/award-2.jpg" },
-    { icon: Award, title: "The Asia Pacific Book of The Top Recognition 2019", image: "/images/award-3.jpg" },
-    { icon: Crown, title: "World Heritage Food Recognition 2024", image: "/images/award-4.jpg" },
+    { icon: Trophy, title: "World Top Heritage Gourmet Awards 2023", image: "/images/award-1.png", blendMode: "normal" },
+    { icon: Star, title: "Consumers' Choice Award (MTPN)", image: "/images/award-2.png", blendMode: "multiply" },
+    { icon: Award, title: "Malaysia Top Achievers 2019", image: "/images/award-3.jpg", blendMode: "normal" },
+    { icon: Crown, title: "World Gourmet Award", image: "/images/award-4.png", blendMode: "multiply" },
   ],
   zh: [
-    { icon: Trophy, title: "马来西亚老字号传统经典品牌奖 2019", image: "/images/award-1.jpg" },
-    { icon: Star, title: "国家消费者首选品牌大奖 2020", image: "/images/award-2.jpg" },
-    { icon: Award, title: "亚太杰出品牌至高荣誉认证 2019", image: "/images/award-3.jpg" },
-    { icon: Crown, title: "世界非遗美食大奖 2024", image: "/images/award-4.jpg" },
+    { icon: Trophy, title: "世界传统美食大奖 2023", image: "/images/award-1.png", blendMode: "normal" },
+    { icon: Star, title: "国家消费者首选品牌大奖 (MTPN)", image: "/images/award-2.png", blendMode: "multiply" },
+    { icon: Award, title: "马来西亚杰出企业大奖 2019", image: "/images/award-3.jpg", blendMode: "normal" },
+    { icon: Crown, title: "世界美食奖", image: "/images/award-4.png", blendMode: "multiply" },
   ],
 };
 
@@ -88,7 +88,7 @@ export function AboutSection({ lang = "en" }: AboutSectionProps) {
               </h2>
             </div>
 
-            <div className="space-y-4 text-muted-foreground leading-relaxed text-sm md:text-base">
+            <div className="space-y-6 text-muted-foreground leading-relaxed text-sm md:text-base">
               <p>
                 {isChinese
                   ? "金龙自助餐（Kim Long Catering）创立于 1982 年马来西亚柔佛士乃（Senai, Johor），如今已是全柔佛备受推崇、深受信赖的招牌中餐与高端宴席承办商。我们享有盛誉的纯手工秘制琵琶鸭（Pipa Duck）更是红遍全马的传奇美食。"
@@ -131,15 +131,21 @@ export function AboutSection({ lang = "en" }: AboutSectionProps) {
                   className="absolute w-full flex flex-col md:flex-row items-center justify-center gap-6 select-none"
                   style={{ transformStyle: "preserve-3d" }}
                 >
-                  {/* Left: Award Emblem / Image Slot (Background-free) */}
+                  {/* Left: Award Emblem / Image Slot */}
                   <div className="relative w-24 h-24 flex items-center justify-center flex-shrink-0">
                     {awards[activeIndex].image ? (
-                      <div className="relative w-20 h-20">
+                      <div className={`relative w-20 h-20 rounded-xl overflow-hidden transition-all duration-300 ${
+                        awards[activeIndex].blendMode === "normal" 
+                          ? "bg-stone-950 border border-amber-500/30 p-1 shadow-[0_4px_12px_rgba(0,0,0,0.5)]" 
+                          : ""
+                      }`}>
                         <Image
                           src={awards[activeIndex].image}
                           alt={awards[activeIndex].title}
                           fill
-                          className="object-contain mix-blend-multiply"
+                          className={`object-contain ${
+                            awards[activeIndex].blendMode === "multiply" ? "mix-blend-multiply" : ""
+                          }`}
                           priority
                         />
                       </div>
@@ -153,7 +159,7 @@ export function AboutSection({ lang = "en" }: AboutSectionProps) {
                     )}
                   </div>
 
-                  {/* Right: Typography (Clean & Transparent) */}
+                  {/* Right: Typography */}
                   <div className="text-center md:text-left space-y-2">
                     <h4 className="text-xl md:text-2xl font-black bg-gradient-to-r from-foreground via-amber-600 to-amber-700 bg-clip-text text-transparent tracking-wide leading-tight max-w-md">
                       {awards[activeIndex].title}
