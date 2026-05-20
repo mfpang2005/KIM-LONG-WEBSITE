@@ -24,7 +24,7 @@ const galleryItems: GalleryItem[] = [
     category: "chinese",
     description: "Our legendary recipe since 1982. Crispy skin with tender, aromatic duck meat served with custom Plum Sauce.",
     chineseDescription: "自1982年传承至今的镇店之宝。外皮酥脆香浓，鸭肉鲜嫩多汁，搭配特制秘方酸梅酱。",
-    image: "https://images.unsplash.com/photo-1606890737304-57a1ca8a5b62?w=800&q=80",
+    image: "/images/pipa-duck.jpg",
     tag: "Signature • 招牌",
   },
   {
