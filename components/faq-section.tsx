@@ -26,11 +26,11 @@ const faqs: FAQItem[] = [
     chineseAnswer: "我们总部设在士乃（Senai），配送范围全面覆盖新山（JB）、古来（Kulai）、士姑来（Skudai）、巴西古当（Pasir Gudang）、马西（Masai）及周边邻近地区。若有柔佛其他县市需求，欢迎联系客服确认档期与安排。",
   },
   {
-    id: "halal-sourced",
-    question: "Is your food Halal-certified or Muslim-friendly?",
-    chineseQuestion: "你们的食物是清真的吗？适合穆斯林食用吗？",
-    answer: "We are a pork-free establishment. All raw meat, poultry, and ingredients are sourced exclusively from Halal-certified suppliers. We routinely cater for multicultural corporate events, government agencies, and multi-ethnic community gatherings.",
-    chineseAnswer: "我们是一家无猪肉（Pork-Free）餐饮企业。所有家禽肉类及调味原料均100%采购自持有马来西亚清真认证（Halal）的合格供应商。我们经常承接各大跨国企业多元种族联欢会、政府机构及多元文化社区集会，广受各族同胞信赖。",
+    id: "non-halal",
+    question: "Is your catering Halal-certified?",
+    chineseQuestion: "你们的餐点是清真（Halal）的吗？",
+    answer: "We specialize in authentic Chinese buffet catering, and our signature menu includes pork and non-Halal ingredients. While our food is not Halal-certified, we are always happy to arrange customized vegetarian or special dietary options for your guests upon request.",
+    chineseAnswer: "我们主打传统中式风味自助餐，由于部分招牌菜肴包含猪肉及非清真食材，因此我们并未持有清真认证（Non-Halal）。如果您有部分宾客需要素食或其他特殊饮食安排，欢迎提前告知，我们将为您提供专属定制方案。",
   },
   {
     id: "packages-include",

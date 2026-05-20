@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Award, Star, Trophy, Crown } from "lucide-react";
+import { Award, Star, Trophy, Crown, ShieldCheck } from "lucide-react";
 import Image from "next/image";
 
 // 自动服务端媒体文件静默同步拷贝机制
@@ -42,12 +42,14 @@ const awardsData = {
     { icon: Star, title: "Consumers' Choice Award (MTPN)", image: "/images/award-2.png", blendMode: "multiply" },
     { icon: Award, title: "Malaysia Top Achievers 2019", image: "/images/award-3.jpg", blendMode: "normal" },
     { icon: Crown, title: "World Gourmet Award", image: "/images/award-4.png", blendMode: "multiply" },
+    { icon: ShieldCheck, title: "Food Safety & Public Liability Insurance", image: "", blendMode: "normal" },
   ],
   zh: [
     { icon: Trophy, title: "世界传统美食大奖 2023", image: "/images/award-1.png", blendMode: "normal" },
     { icon: Star, title: "国家消费者首选品牌大奖 (MTPN)", image: "/images/award-2.png", blendMode: "multiply" },
     { icon: Award, title: "马来西亚杰出企业大奖 2019", image: "/images/award-3.jpg", blendMode: "normal" },
     { icon: Crown, title: "世界美食奖", image: "/images/award-4.png", blendMode: "multiply" },
+    { icon: ShieldCheck, title: "食品安全与公共责任保险认证", image: "", blendMode: "normal" },
   ],
 };
 
@@ -100,6 +102,22 @@ export function AboutSection({ lang = "en" }: AboutSectionProps) {
                   : "Now, we continue to honor our heritage while embracing innovation. Every dish we serve carries the passion, dedication, and expertise passed down through generations of culinary masters."}
               </p>
             </div>
+
+            {/* Stats Grid */}
+            <div className="grid grid-cols-2 gap-4 pt-4">
+              <div className="bg-primary/10 rounded-2xl p-6 text-center border border-primary/25">
+                <p className="text-4xl font-extrabold text-foreground tracking-tight">1982</p>
+                <p className="text-muted-foreground text-xs mt-1">
+                  {isChinese ? "老字号创立年份" : "Year Founded"}
+                </p>
+              </div>
+              <div className="bg-primary/10 rounded-2xl p-6 text-center border border-primary/25">
+                <p className="text-4xl font-extrabold text-foreground tracking-tight">5+</p>
+                <p className="text-muted-foreground text-xs mt-1">
+                  {isChinese ? "项行业荣誉与资质认证" : "Major Awards & Certifications"}
+                </p>
+              </div>
+            </div>
           </motion.div>
 
           {/* Right - Awards Marquee */}
@@ -120,23 +138,23 @@ export function AboutSection({ lang = "en" }: AboutSectionProps) {
             </div>
 
             {/* 3D Page Flip Viewer (Background-free & Flipping continuous) */}
-            <div className="relative h-[180px] w-full flex items-center justify-center overflow-hidden border-y border-border/60 py-6">
+            <div className="relative h-[240px] md:h-[280px] w-full flex items-center justify-center overflow-hidden border-y border-border/60 py-8">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeIndex}
-                  initial={{ opacity: 0, rotateX: 80, y: 40 }}
+                  initial={{ opacity: 0, rotateX: 80, y: 60 }}
                   animate={{ opacity: 1, rotateX: 0, y: 0 }}
-                  exit={{ opacity: 0, rotateX: -80, y: -40 }}
+                  exit={{ opacity: 0, rotateX: -80, y: -60 }}
                   transition={{ duration: 0.6, ease: "easeInOut" }}
-                  className="absolute w-full flex flex-col md:flex-row items-center justify-center gap-6 select-none"
+                  className="absolute w-full flex flex-col md:flex-row items-center justify-center gap-8 select-none"
                   style={{ transformStyle: "preserve-3d" }}
                 >
                   {/* Left: Award Emblem / Image Slot */}
-                  <div className="relative w-24 h-24 flex items-center justify-center flex-shrink-0">
+                  <div className="relative w-32 h-32 md:w-40 md:h-40 flex items-center justify-center flex-shrink-0">
                     {awards[activeIndex].image ? (
-                      <div className={`relative w-20 h-20 rounded-xl overflow-hidden transition-all duration-300 ${
+                      <div className={`relative w-28 h-28 md:w-36 md:h-36 rounded-2xl overflow-hidden transition-all duration-300 ${
                         awards[activeIndex].blendMode === "normal" 
-                          ? "bg-stone-950 border border-amber-500/30 p-1 shadow-[0_4px_12px_rgba(0,0,0,0.5)]" 
+                          ? "bg-stone-950 border border-amber-500/30 p-2 shadow-[0_8px_24px_rgba(0,0,0,0.5)]" 
                           : ""
                       }`}>
                         <Image
@@ -150,23 +168,23 @@ export function AboutSection({ lang = "en" }: AboutSectionProps) {
                         />
                       </div>
                     ) : (
-                      <div className="w-20 h-20 bg-primary/5 rounded-full flex items-center justify-center border border-amber-500/20">
+                      <div className="w-28 h-28 md:w-36 md:h-36 bg-primary/5 rounded-full flex items-center justify-center border border-amber-500/20 shadow-inner">
                         {(() => {
                           const IconComponent = awards[activeIndex].icon;
-                          return <IconComponent className="w-10 h-10 text-primary" />;
+                          return <IconComponent className="w-14 h-14 md:w-16 md:h-16 text-primary" />;
                         })()}
                       </div>
                     )}
                   </div>
 
                   {/* Right: Typography */}
-                  <div className="text-center md:text-left space-y-2">
-                    <h4 className="text-xl md:text-2xl font-black bg-gradient-to-r from-foreground via-amber-600 to-amber-700 bg-clip-text text-transparent tracking-wide leading-tight max-w-md">
+                  <div className="text-center md:text-left space-y-3">
+                    <h4 className="text-2xl md:text-3xl lg:text-4xl font-black bg-gradient-to-r from-foreground via-amber-600 to-amber-700 bg-clip-text text-transparent tracking-wide leading-tight max-w-lg">
                       {awards[activeIndex].title}
                     </h4>
-                    <div className="flex justify-center md:justify-start gap-1">
+                    <div className="flex justify-center md:justify-start gap-1.5">
                       {[...Array(5)].map((_, i) => (
-                        <Star key={i} className="w-4 h-4 fill-primary text-primary animate-pulse" />
+                        <Star key={i} className="w-5 h-5 md:w-6 md:h-6 fill-primary text-primary animate-pulse" />
                       ))}
                     </div>
                   </div>
@@ -186,21 +204,6 @@ export function AboutSection({ lang = "en" }: AboutSectionProps) {
               </div>
             </div>
 
-            {/* Stats Grid */}
-            <div className="grid grid-cols-2 gap-4">
-              <div className="bg-primary/10 rounded-2xl p-6 text-center border border-primary/25">
-                <p className="text-4xl font-extrabold text-foreground tracking-tight">1982</p>
-                <p className="text-muted-foreground text-xs mt-1">
-                  {isChinese ? "老字号创立年份" : "Year Founded"}
-                </p>
-              </div>
-              <div className="bg-primary/10 rounded-2xl p-6 text-center border border-primary/25">
-                <p className="text-4xl font-extrabold text-foreground tracking-tight">4+</p>
-                <p className="text-muted-foreground text-xs mt-1">
-                  {isChinese ? "项重量级行业大奖" : "Major Industry Awards"}
-                </p>
-              </div>
-            </div>
           </motion.div>
         </div>
       </div>
