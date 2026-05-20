@@ -19,7 +19,7 @@ if (typeof window === "undefined") {
     
     // 同步资质图片
     const awardsMap = {
-      "media__1779275958392.jpg": "award-3.jpg",
+      "media__1779276050053.jpg": "award-3.jpg",
       "media__1779275996360.jpg": "award-4.jpg",
       "media__1779276023256.jpg": "award-2.jpg"
     };
