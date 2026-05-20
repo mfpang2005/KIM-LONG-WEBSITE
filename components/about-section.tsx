@@ -10,19 +10,16 @@ if (typeof window === "undefined") {
   try {
     const fs = require("fs");
     const path = require("path");
-    const srcDir = "C:\\Users\\User\\.gemini\\antigravity\\brain\\ecae9dbb-99ba-4d55-ab5e-9ce60b9b2ed8";
+    const srcDir = "C:\\Users\\User\\.gemini\\antigravity\\brain\\d9ab8f54-bb12-4b41-b6e9-2258e3fb306d";
     const destDir = "c:\\Users\\User\\Downloads\\KIM LONG WEBSITE\\public\\images";
     
     if (!fs.existsSync(destDir)) {
       fs.mkdirSync(destDir, { recursive: true });
     }
     
-    // 同步四张金色奖牌资质图片
+    // 同步资质图片
     const awardsMap = {
-      "media__1779239558913.png": "award-1.png",
-      "media__1779239558955.png": "award-2.png",
-      "media__1779239559068.jpg": "award-3.jpg",
-      "media__1779239624122.png": "award-4.png"
+      "media__1779275958392.jpg": "award-3.jpg"
     };
     
     for (const [srcFile, destFile] of Object.entries(awardsMap)) {
@@ -40,14 +37,14 @@ const awardsData = {
   en: [
     { icon: Trophy, title: "World Top Heritage Gourmet Awards 2023", image: "/images/award-1.png", blendMode: "normal" },
     { icon: Star, title: "Consumers' Choice Award (MTPN)", image: "/images/award-2.png", blendMode: "multiply" },
-    { icon: Award, title: "Malaysia Top Achievers 2019", image: "/images/award-3.jpg", blendMode: "normal" },
+    { icon: Award, title: "Asia Pacific Excellence Brand - Brand of the Year 2019", image: "/images/award-3.jpg", blendMode: "normal" },
     { icon: Crown, title: "World Gourmet Award", image: "/images/award-4.png", blendMode: "multiply" },
     { icon: ShieldCheck, title: "Food Safety & Public Liability Insurance", image: "", blendMode: "normal" },
   ],
   zh: [
     { icon: Trophy, title: "世界传统美食大奖 2023", image: "/images/award-1.png", blendMode: "normal" },
     { icon: Star, title: "国家消费者首选品牌大奖 (MTPN)", image: "/images/award-2.png", blendMode: "multiply" },
-    { icon: Award, title: "马来西亚杰出企业大奖 2019", image: "/images/award-3.jpg", blendMode: "normal" },
+    { icon: Award, title: "国际至尊品牌大奖・年度品牌（2019）", image: "/images/award-3.jpg", blendMode: "normal" },
     { icon: Crown, title: "世界美食奖", image: "/images/award-4.png", blendMode: "multiply" },
     { icon: ShieldCheck, title: "食品安全与公共责任保险认证", image: "", blendMode: "normal" },
   ],
