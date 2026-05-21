@@ -11,7 +11,7 @@ interface HeroSectionProps {
 
 export function HeroSection({ lang = "en" }: HeroSectionProps) {
   const isChinese = lang === "zh";
-  const [activeMedia, setActiveMedia] = useState<"logo" | "banquet" | "cooking" | "plating" | "hygiene">("logo");
+  const [activeMedia, setActiveMedia] = useState<"logo" | "banquet" | "cooking" | "plating" | "hygiene">("banquet");
   const [isPlaying, setIsPlaying] = useState(true);
   const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -186,7 +186,7 @@ export function HeroSection({ lang = "en" }: HeroSectionProps) {
           {/* Right Content - Grand Logo & Video Reveal */}
           <div className="relative flex items-center justify-center min-h-[580px] lg:min-h-[660px] select-none">
             {/* 3D Cosmic golden rings system */}
-            <div className="absolute w-[500px] h-[500px] flex items-center justify-center pointer-events-none [perspective:1000px]">
+            <div className="absolute w-[320px] h-[320px] sm:w-[500px] sm:h-[500px] md:w-[700px] md:h-[700px] flex items-center justify-center pointer-events-none [perspective:1000px]">
               {/* Ring 1 - Deep outer ring */}
               <motion.div
                 initial={{ opacity: 0, scale: 0.8, rotateX: 60, rotateY: -15, rotateZ: 0 }}
@@ -196,7 +196,7 @@ export function HeroSection({ lang = "en" }: HeroSectionProps) {
                   scale: { duration: 1.5, delay: 0.2 },
                   rotateZ: { duration: 25, repeat: Infinity, ease: "linear" }
                 }}
-                className="absolute w-[440px] h-[440px] rounded-full border border-dashed border-amber-500/20"
+                className="absolute w-[280px] h-[280px] sm:w-[440px] sm:h-[440px] md:w-[620px] md:h-[620px] rounded-full border border-dashed border-amber-500/20"
               />
 
               {/* Ring 2 - Bright middle ring with accent notches */}
@@ -208,7 +208,7 @@ export function HeroSection({ lang = "en" }: HeroSectionProps) {
                   scale: { duration: 1.5, delay: 0.4 },
                   rotateZ: { duration: 20, repeat: Infinity, ease: "linear" }
                 }}
-                className="absolute w-[380px] h-[380px] rounded-full border-2 border-double border-amber-400/10"
+                className="absolute w-[240px] h-[240px] sm:w-[380px] sm:h-[380px] md:w-[540px] md:h-[540px] rounded-full border-2 border-double border-amber-400/10"
               />
 
               {/* Ring 3 - Inner solid thin ring */}
@@ -220,7 +220,7 @@ export function HeroSection({ lang = "en" }: HeroSectionProps) {
                   scale: { duration: 1.5, delay: 0.6 },
                   rotateZ: { duration: 15, repeat: Infinity, ease: "linear" }
                 }}
-                className="absolute w-[320px] h-[320px] rounded-full border border-amber-300/30"
+                className="absolute w-[200px] h-[200px] sm:w-[320px] sm:h-[320px] md:w-[460px] md:h-[460px] rounded-full border border-amber-300/30"
               />
             </div>
 
@@ -252,102 +252,42 @@ export function HeroSection({ lang = "en" }: HeroSectionProps) {
                   <div className="absolute bottom-3 right-3 w-1.5 h-1.5 bg-amber-500 rounded-full" />
 
                   {/* Actual Media Container */}
-                  <div className="relative w-[230px] h-[230px] md:w-[260px] md:h-[260px] rounded-[1.8rem] overflow-hidden border border-border bg-stone-950">
+                  <div className="relative w-[300px] h-[300px] sm:w-[360px] sm:h-[360px] md:w-[450px] md:h-[450px] rounded-[1.8rem] overflow-hidden border border-border bg-stone-950">
                     <AnimatePresence mode="wait">
-                      {activeMedia === "logo" ? (
-                        <motion.div
-                          key="logo-media"
-                          initial={{ opacity: 0, scale: 0.95 }}
-                          animate={{ opacity: 1, scale: 1 }}
-                          exit={{ opacity: 0, scale: 0.95 }}
-                          transition={{ duration: 0.4 }}
-                          className="relative w-full h-full"
+                      <motion.div
+                        key="video-media"
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.95 }}
+                        transition={{ duration: 0.4 }}
+                        className="relative w-full h-full"
+                      >
+                        <video
+                          ref={videoRef}
+                          src="https://player.vimeo.com/external/371433846.sd.mp4?s=236da2f3c025f73ab7885d3120ae1b114113ae10&profile_id=165&oauth2_token_id=57447761"
+                          autoPlay
+                          muted
+                          loop
+                          playsInline
+                          className="w-full h-full object-cover rounded-[1.8rem]"
+                        />
+                        {/* Play/Pause glassmorphic controller overlay */}
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setIsPlaying(!isPlaying);
+                          }}
+                          className="absolute bottom-3 right-3 w-10 h-10 flex items-center justify-center rounded-full bg-black/60 hover:bg-black text-white hover:text-amber-500 border border-white/10 transition-colors backdrop-blur-sm shadow-md cursor-pointer z-20"
                         >
-                          <Image
-                            src="/images/logo.jpg"
-                            alt="Kim Long Catering Logo"
-                            fill
-                            className="object-cover rounded-[1.8rem] transition-transform duration-700 hover:scale-105"
-                            priority
-                          />
-
-                          {/* Luxurious metallic sweep effect */}
-                          <motion.div
-                            initial={{ x: "-150%", opacity: 0 }}
-                            animate={{ x: "250%", opacity: [0, 1, 0] }}
-                            transition={{
-                              duration: 2,
-                              delay: 3,
-                              repeat: Infinity,
-                              repeatDelay: 5,
-                            }}
-                            className="absolute inset-0 w-[40%] bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12 pointer-events-none"
-                          />
-                        </motion.div>
-                      ) : (
-                        <motion.div
-                          key={activeMedia}
-                          initial={{ opacity: 0, scale: 0.95 }}
-                          animate={{ opacity: 1, scale: 1 }}
-                          exit={{ opacity: 0, scale: 0.95 }}
-                          transition={{ duration: 0.4 }}
-                          className="relative w-full h-full"
-                        >
-                          <video
-                            ref={videoRef}
-                            src={mediaTabs.find(t => t.id === activeMedia)?.src}
-                            autoPlay
-                            muted
-                            loop
-                            playsInline
-                            className="w-full h-full object-cover rounded-[1.8rem]"
-                          />
-                          {/* Play/Pause glassmorphic controller overlay */}
-                          <button
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              setIsPlaying(!isPlaying);
-                            }}
-                            className="absolute bottom-3 right-3 w-10 h-10 flex items-center justify-center rounded-full bg-black/60 hover:bg-black text-white hover:text-amber-500 border border-white/10 transition-colors backdrop-blur-sm shadow-md cursor-pointer z-20"
-                          >
-                            {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4 fill-white" />}
-                          </button>
-                        </motion.div>
-                      )}
+                          {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4 fill-white" />}
+                        </button>
+                      </motion.div>
                     </AnimatePresence>
                   </div>
                 </div>
               </motion.div>
 
-              {/* Interactive Video & Logo Deck Tab Switcher */}
-              <motion.div
-                initial={{ opacity: 0, y: 15 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.8 }}
-                className="mt-6 flex flex-wrap justify-center gap-1.5 p-1.5 bg-card/75 backdrop-blur-md border border-amber-500/20 rounded-2xl max-w-[90vw] md:max-w-md shadow-lg shadow-black/10 z-20"
-              >
-                {mediaTabs.map((tab) => {
-                  const Icon = tab.icon;
-                  const isActive = activeMedia === tab.id;
-                  return (
-                    <button
-                      key={tab.id}
-                      onClick={() => {
-                        setActiveMedia(tab.id);
-                        setIsPlaying(true);
-                      }}
-                      className={`relative flex items-center gap-1 px-3 py-2 rounded-xl text-xs font-bold transition-all duration-300 cursor-pointer ${
-                        isActive
-                          ? "bg-amber-500 text-white shadow-md shadow-amber-500/20 scale-105"
-                          : "text-muted-foreground hover:text-foreground hover:bg-stone-500/10"
-                      }`}
-                    >
-                      <Icon className="w-3.5 h-3.5" />
-                      <span>{isChinese ? tab.labelZh : tab.labelEn}</span>
-                    </button>
-                  );
-                })}
-              </motion.div>
+
 
               {/* Sophisticated Typographical Logo Brand Block */}
               <motion.div
@@ -414,9 +354,9 @@ export function HeroSection({ lang = "en" }: HeroSectionProps) {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.8, delay: 2.2 }}
-                  className="text-xs md:text-sm font-black tracking-[0.25em] text-foreground/90 text-balance max-w-sm mx-auto"
+                  className="text-sm md:text-base font-extrabold tracking-[0.2em] text-foreground/95 text-balance max-w-md md:max-w-lg mx-auto"
                 >
-                  {isChinese ? "岁月沉淀经典 • 共赴重要时刻" : "ESTABLISHED 1982"}
+                  {isChinese ? "在您珍惜的日子里，我们与您同在" : "ESTABLISHED 1982"}
                 </motion.p>
               </motion.div>
 

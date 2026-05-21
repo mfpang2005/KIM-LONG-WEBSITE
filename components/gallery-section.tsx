@@ -183,12 +183,12 @@ const galleryItems: GalleryItem[] = [
   },
   {
     id: "setup-eco-elegant",
-    title: "Modern Eco-Elegant Plating",
-    chineseTitle: "北欧极简绿植木质摆盘",
+    title: "Premium Dessert Table",
+    chineseTitle: "奢华艺术甜品台设计",
     category: "setup",
-    description: "Contemporary organic styling using polished wood tables, abundant eucalyptus garlands, and raw textures.",
-    chineseDescription: "清新自然的北欧风长桌布置，纯实木桌面点缀大面积尤加利叶，素雅亚麻餐巾，洋溢有机与原生态美感。",
-    image: "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&q=80",
+    description: "Elegant curation of handcrafted pastries, fine desserts, and fresh seasonal fruits elegantly presented on tiered platters.",
+    chineseDescription: "精心陈列的手工烘焙西式糕点、精美甜品与时令鲜果，以极具艺术层次感的层架高雅呈现，为您的盛宴更添甜蜜与尊贵。",
+    image: "https://images.unsplash.com/photo-1517260911058-0fcfd733c021?w=800&q=80",
   },
 ];
 
