@@ -16,7 +16,6 @@ import { motion } from "framer-motion";
 
 export default function Home() {
   const [lang, setLang] = useState<"en" | "zh">("zh"); // Set default language to Chinese for high localization conversion
-  const [activeVideoId, setActiveVideoId] = useState<"banquet" | "cooking" | "plating" | "hygiene">("banquet");
   const isChinese = lang === "zh";
 
   return (
@@ -25,11 +24,7 @@ export default function Home() {
       <Navbar lang={lang} setLang={setLang} />
       
       {/* Core Brand Sections */}
-      <HeroSectionVideo 
-        lang={lang} 
-        activeVideoId={activeVideoId}
-        onChangeVideo={setActiveVideoId}
-      />
+      <HeroSectionVideo lang={lang} />
       
       <AboutSection lang={lang} />
       <AchievementsSection lang={lang} />

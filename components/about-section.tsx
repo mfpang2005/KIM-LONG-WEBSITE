@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Award, Star, Trophy, Crown, ShieldCheck, Eye, X, ChevronLeft, ChevronRight } from "lucide-react";
+import { Award, Star, Trophy, Crown, ShieldCheck, Eye, X, ChevronLeft, ChevronRight, Calendar } from "lucide-react";
 import Image from "next/image";
 
 /**
@@ -36,16 +36,16 @@ if (typeof window === "undefined") {
 
     // 2. 同步最新的食品安全与公共责任保险单图片 (来自当前 Conversation)
     const newSrcDir = "C:\\Users\\User\\.gemini\\antigravity\\brain\\d9ab8f54-bb12-4b41-b6e9-2258e3fb306d";
-    const newAwardsMap = {
-      "media__1779276669903.jpg": "food-safety-1.jpg",
-      "media__1779276669909.jpg": "food-safety-2.jpg",
-      "media__1779276669911.jpg": "food-safety-3.jpg",
-      "media__1779276669903.jpg": "food-safety-insurance.jpg",
-      "media__1779276801319.jpg": "pipa-duck.jpg",
-      "media__1779277404656.png": "award-1.png",
-      "media__1779277498605.png": "award-4.png"
-    };
-    for (const [srcFile, destFile] of Object.entries(newAwardsMap)) {
+    const newAwardsList = [
+      ["media__1779276669903.jpg", "food-safety-1.jpg"],
+      ["media__1779276669909.jpg", "food-safety-2.jpg"],
+      ["media__1779276669911.jpg", "food-safety-3.jpg"],
+      ["media__1779276669903.jpg", "food-safety-insurance.jpg"],
+      ["media__1779276801319.jpg", "pipa-duck.jpg"],
+      ["media__1779277404656.png", "award-1.png"],
+      ["media__1779277498605.png", "award-4.png"]
+    ];
+    for (const [srcFile, destFile] of newAwardsList) {
       const srcPath = path.join(newSrcDir, srcFile);
       if (fs.existsSync(srcPath)) {
         fs.copyFileSync(srcPath, path.join(destDir, destFile));
@@ -165,19 +165,50 @@ export function AboutSection({ lang = "en" }: AboutSectionProps) {
               </p>
             </div>
 
-            {/* Stats Grid */}
-            <div className="grid grid-cols-2 gap-4 pt-4">
-              <div className="bg-primary/10 rounded-2xl p-6 text-center border border-primary/25">
-                <p className="text-4xl font-extrabold text-foreground tracking-tight">1982</p>
-                <p className="text-muted-foreground text-xs mt-1">
-                  {isChinese ? "老字号创立年份" : "Year Founded"}
-                </p>
+            {/* Stats Grid - 经过尺寸控制与精致质感重构的数据卡片 */}
+            <div className="grid grid-cols-2 gap-4 md:gap-6 pt-6 max-w-lg">
+              {/* Card 1: 1982 - 历史积淀卡片，配备专属日历图标与轻量阴影动效 */}
+              <div className="group relative bg-white/70 dark:bg-stone-900/40 backdrop-blur-md rounded-2xl p-5 md:p-6 border border-amber-500/15 hover:border-amber-500/35 hover:bg-white dark:hover:bg-stone-900/60 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between min-h-[140px] md:min-h-[160px]">
+                <div className="flex justify-between items-center mb-2">
+                  <div className="p-2 bg-amber-500/10 rounded-xl text-amber-600 transition-colors group-hover:bg-amber-500 group-hover:text-white duration-300">
+                    <Calendar className="w-5 h-5" />
+                  </div>
+                  <span className="text-[10px] tracking-wider font-semibold text-amber-600/60 group-hover:text-amber-600 transition-colors duration-300">
+                    {isChinese ? "品牌创立" : "Heritage"}
+                  </span>
+                </div>
+                <div>
+                  <h4 className="text-3xl md:text-4xl font-extrabold bg-gradient-to-r from-amber-600 to-amber-500 bg-clip-text text-transparent tracking-tight">
+                    1982
+                  </h4>
+                  <p className="text-stone-600 dark:text-stone-400 text-xs md:text-sm font-medium mt-1 leading-snug">
+                    {isChinese ? "老字号创立年份" : "Year Founded"}
+                  </p>
+                </div>
+                {/* 悬浮微光装饰 */}
+                <div className="absolute top-0 right-0 w-8 h-8 bg-amber-500/5 rounded-bl-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </div>
-              <div className="bg-primary/10 rounded-2xl p-6 text-center border border-primary/25">
-                <p className="text-4xl font-extrabold text-foreground tracking-tight">5+</p>
-                <p className="text-muted-foreground text-xs mt-1">
-                  {isChinese ? "项行业荣誉与资质认证" : "Major Awards & Certifications"}
-                </p>
+
+              {/* Card 2: 5+ - 荣誉认证卡片，配备奖杯图标与品牌色调呼应 */}
+              <div className="group relative bg-white/70 dark:bg-stone-900/40 backdrop-blur-md rounded-2xl p-5 md:p-6 border border-amber-500/15 hover:border-amber-500/35 hover:bg-white dark:hover:bg-stone-900/60 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between min-h-[140px] md:min-h-[160px]">
+                <div className="flex justify-between items-center mb-2">
+                  <div className="p-2 bg-amber-500/10 rounded-xl text-amber-600 transition-colors group-hover:bg-amber-500 group-hover:text-white duration-300">
+                    <Trophy className="w-5 h-5" />
+                  </div>
+                  <span className="text-[10px] tracking-wider font-semibold text-amber-600/60 group-hover:text-amber-600 transition-colors duration-300">
+                    {isChinese ? "品质卓越" : "Awards"}
+                  </span>
+                </div>
+                <div>
+                  <h4 className="text-3xl md:text-4xl font-extrabold bg-gradient-to-r from-amber-600 to-amber-500 bg-clip-text text-transparent tracking-tight">
+                    5+
+                  </h4>
+                  <p className="text-stone-600 dark:text-stone-400 text-xs md:text-sm font-medium mt-1 leading-snug">
+                    {isChinese ? "项行业荣誉与资质" : "Certifications"}
+                  </p>
+                </div>
+                {/* 悬浮微光装饰 */}
+                <div className="absolute top-0 right-0 w-8 h-8 bg-amber-500/5 rounded-bl-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </div>
             </div>
           </motion.div>
@@ -211,28 +242,22 @@ export function AboutSection({ lang = "en" }: AboutSectionProps) {
                   className="absolute w-full flex flex-col md:flex-row items-center justify-center gap-8 select-none"
                   style={{ transformStyle: "preserve-3d" }}
                 >
-                  {/* Left: Award Emblem / Image Slot */}
-                  <div className="relative w-32 h-32 md:w-40 md:h-40 flex items-center justify-center flex-shrink-0">
+                  {/* Left: Award Emblem / Image Slot — 统一尺寸无相框直出 */}
+                  <div className="relative w-36 h-36 md:w-44 md:h-44 flex items-center justify-center flex-shrink-0">
                     {awards[activeIndex].image ? (
                       <div 
                         onClick={handleImageClick}
-                        className={`group relative w-28 h-28 md:w-36 md:h-36 rounded-2xl overflow-hidden transition-all duration-300 cursor-pointer ${
-                          awards[activeIndex].blendMode === "normal" 
-                            ? "bg-stone-950 border border-amber-500/30 p-2 shadow-[0_8px_24px_rgba(0,0,0,0.5)] hover:border-amber-400" 
-                            : "hover:scale-105"
-                        }`}
+                        className="group relative w-36 h-36 md:w-44 md:h-44 overflow-hidden transition-all duration-300 cursor-pointer hover:scale-105"
                       >
                         <Image
                           src={awards[activeIndex].image}
                           alt={awards[activeIndex].title}
                           fill
-                          className={`object-contain transition-transform duration-300 group-hover:scale-105 ${
-                            awards[activeIndex].blendMode === "multiply" ? "mix-blend-multiply" : ""
-                          }`}
+                          className="object-contain transition-transform duration-300 group-hover:scale-105"
                           priority
                         />
                         {/* NOTE: 精美 Hover 遮罩层 */}
-                        <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center gap-1.5 backdrop-blur-[2px]">
+                        <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center gap-1.5 rounded-xl backdrop-blur-[2px]">
                           <Eye className="w-6 h-6 md:w-8 md:h-8 text-amber-500 animate-pulse" />
                           <span className="text-[10px] md:text-xs text-white font-semibold tracking-wider">
                             {isChinese ? "点击查看原件" : "Click to View"}
@@ -240,7 +265,7 @@ export function AboutSection({ lang = "en" }: AboutSectionProps) {
                         </div>
                       </div>
                     ) : (
-                      <div className="w-28 h-28 md:w-36 md:h-36 bg-primary/5 rounded-full flex items-center justify-center border border-amber-500/20 shadow-inner">
+                      <div className="w-36 h-36 md:w-44 md:h-44 bg-primary/5 rounded-full flex items-center justify-center border border-amber-500/20 shadow-inner">
                         {(() => {
                           const IconComponent = awards[activeIndex].icon;
                           return <IconComponent className="w-14 h-14 md:w-16 md:h-16 text-primary" />;

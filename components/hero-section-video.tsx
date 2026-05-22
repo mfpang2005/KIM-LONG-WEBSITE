@@ -1,78 +1,100 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { motion } from "framer-motion";
 import { 
   ArrowRight, 
-  Trophy, 
-  Star, 
   Sparkles, 
-  Flame, 
-  Utensils, 
-  ShieldCheck 
 } from "lucide-react";
+
+// NOTE: 两段宣传视频的本地路径，通过 onEnded 事件实现无缝轮流播放
+const HERO_VIDEOS = [
+  "/videos/banquet-bg.mp4",
+  "/videos/banquet-bg-2.mp4",
+] as const;
 
 interface HeroSectionVideoProps {
   lang?: "en" | "zh";
-  activeVideoId?: "banquet" | "cooking" | "plating" | "hygiene";
-  onChangeVideo?: (id: "banquet" | "cooking" | "plating" | "hygiene") => void;
+  /** 保留旧接口兼容性，但内部不再使用 tab 切换逻辑 */
+  activeVideoId?: string;
+  onChangeVideo?: (id: string) => void;
 }
-
-const videoTabs = [
-  { id: "banquet", labelZh: "宴席现场", labelEn: "Banquet", icon: Sparkles },
-  { id: "cooking", labelZh: "名厨烹饪", labelEn: "Cooking", icon: Flame },
-  { id: "plating", labelZh: "精致摆盘", labelEn: "Plating", icon: Utensils },
-  { id: "hygiene", labelZh: "安全冷链", labelEn: "Hygiene", icon: ShieldCheck },
-] as const;
-
-const videoSources = {
-  banquet: {
-    local: "/videos/banquet-bg.mp4",
-    online: "https://player.vimeo.com/external/371433846.sd.mp4?s=236da2f3c025f73ab7885d3120ae1b114113ae10&profile_id=165&oauth2_token_id=57447761"
-  },
-  cooking: {
-    local: "/videos/cooking-bg.mp4",
-    online: "https://player.vimeo.com/external/434045526.sd.mp4?s=c27d23d8c76af0a3e81119561de610c14c5c24e7&profile_id=165&oauth2_token_id=57447761"
-  },
-  plating: {
-    local: "/videos/plating-bg.mp4",
-    online: "https://player.vimeo.com/external/485093774.sd.mp4?s=d00cf05d5e2a2254de85d8c6b7501a35cd21c810&profile_id=165&oauth2_token_id=57447761"
-  },
-  hygiene: {
-    local: "/videos/hygiene-bg.mp4",
-    online: "https://player.vimeo.com/external/538571059.sd.mp4?s=dfbd07a111246c0e5a8fbda6f7ef0cf43878b66f&profile_id=165&oauth2_token_id=57447761"
-  }
-} as const;
 
 export function HeroSectionVideo({ 
   lang = "en", 
-  activeVideoId = "banquet",
-  onChangeVideo
 }: HeroSectionVideoProps) {
   const isChinese = lang === "zh";
   const [mounted, setMounted] = useState(false);
+
+  // NOTE: 追踪当前播放的视频索引（0 或 1），用于控制交叉淡入淡出
+  const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
+  const videoRefA = useRef<HTMLVideoElement>(null);
+  const videoRefB = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
+  /**
+   * 当当前视频播放结束时，切换到另一个视频并开始播放
+   * 通过 CSS opacity 过渡实现柔和的交叉淡入淡出效果
+   */
+  const handleVideoEnded = useCallback(() => {
+    setCurrentVideoIndex((prev) => {
+      const nextIndex = (prev + 1) % HERO_VIDEOS.length;
+
+      // NOTE: 在下一帧确保新视频从头开始播放
+      requestAnimationFrame(() => {
+        const nextRef = nextIndex === 0 ? videoRefA.current : videoRefB.current;
+        if (nextRef) {
+          nextRef.currentTime = 0;
+          nextRef.play().catch(() => {
+            // FIXME: 某些浏览器在非用户交互下可能阻止自动播放，静默处理
+          });
+        }
+      });
+
+      return nextIndex;
+    });
+  }, []);
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-stone-950 text-white pt-20">
-      {/* 局部的视频背景（仅在当前 section 内 absolute 撑满，不作全局固定，随页面滚动自然向上移出视口） */}
+      {/* 双视频交叉淡入淡出层：两个 <video> 始终存在于 DOM 中，仅通过 opacity 切换可见性 */}
       <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none z-0">
+        {/* 视频 A */}
         <video
-          key={activeVideoId}
+          ref={videoRefA}
           autoPlay
           muted
-          loop
           playsInline
+          onEnded={currentVideoIndex === 0 ? handleVideoEnded : undefined}
           poster="/images/setup-eco-elegant.jpg"
-          className="absolute inset-0 w-full h-full object-cover opacity-90 md:scale-[1.8] scale-100 origin-center pointer-events-none transition-transform duration-700"
+          className="absolute inset-0 w-full h-full object-cover md:scale-[1.8] scale-100 origin-center pointer-events-none"
+          style={{
+            opacity: currentVideoIndex === 0 ? 0.9 : 0,
+            transition: "opacity 1.2s ease-in-out",
+          }}
         >
-          <source src={videoSources[activeVideoId].local} type="video/mp4" />
-          <source src={videoSources[activeVideoId].online} type="video/mp4" />
-          您的浏览器不支持 HTML5 视频。
+          <source src={HERO_VIDEOS[0]} type="video/mp4" />
         </video>
+
+        {/* 视频 B */}
+        <video
+          ref={videoRefB}
+          muted
+          playsInline
+          onEnded={currentVideoIndex === 1 ? handleVideoEnded : undefined}
+          poster="/images/setup-eco-elegant.jpg"
+          className="absolute inset-0 w-full h-full object-cover scale-100 origin-center pointer-events-none"
+          style={{
+            opacity: currentVideoIndex === 1 ? 0.9 : 0,
+            transition: "opacity 1.2s ease-in-out",
+          }}
+        >
+          <source src={HERO_VIDEOS[1]} type="video/mp4" />
+        </video>
+
         {/* 金黑色高透奢华局部遮罩：保证视频局部铺满的同时保障前台文字完美易读性 */}
         <div className="absolute inset-0 bg-stone-950/35 z-10 pointer-events-none" />
       </div>
@@ -107,21 +129,21 @@ export function HeroSectionVideo({
 
 
 
-      {/* 5. 核心内容层 - 左右双翼翼展式布局，最大宽度拓展为1860px并缩减内边距使左右双翼贴边（指标极佳地向右靠拢），大屏下使整个主体结构向上适度提拉，达成纵向视觉平衡 */}
-      <div className="relative w-full max-w-[1860px] mx-auto px-6 md:px-10 lg:px-12 xl:px-4 lg:-mt-16 xl:-mt-28 z-20 flex flex-col lg:flex-row justify-between items-center lg:items-stretch gap-12 pt-8 pb-4">
+      {/* 5. 核心内容层 - 整体下移并向右偏移，营造商务大气的居中偏左视觉重心 */}
+      <div className="relative w-full max-w-[1860px] mx-auto px-6 md:px-10 lg:px-16 xl:px-8 z-20 flex flex-col lg:flex-row justify-between items-center lg:items-stretch gap-12 pt-10 md:pt-12 pb-4">
         
-        {/* 左侧翼：品牌高奢文字（完美贴在最左侧的黑色区域） */}
-        <div className="flex flex-col items-start text-left space-y-8 lg:space-y-10 w-full lg:max-w-[600px]">
+        {/* 左侧翼：品牌商务文字（向右偏移，提升视觉层次） */}
+        <div className="flex flex-col items-start text-left space-y-7 lg:space-y-9 w-full lg:max-w-[620px] pl-2 md:pl-6 lg:pl-10">
           
           {/* 金色尊贵徽章 */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2.5 bg-amber-500/10 text-amber-400 px-6 py-3 rounded-full border border-amber-500/30 backdrop-blur-md shadow-[0_0_20px_rgba(245,158,11,0.15)] select-none cursor-default"
+            className="inline-flex items-center gap-2.5 bg-amber-500/10 text-amber-400 px-5 py-2.5 rounded-full border border-amber-500/25 backdrop-blur-md shadow-[0_0_20px_rgba(245,158,11,0.12)] select-none cursor-default"
           >
-            <Sparkles className="w-4.5 h-4.5 text-amber-400 animate-pulse" />
-            <span className="text-sm md:text-base font-black tracking-widest uppercase">
+            <Sparkles className="w-4 h-4 text-amber-400 animate-pulse" />
+            <span className="text-xs md:text-sm font-bold tracking-[0.25em] uppercase">
               {isChinese ? "源自 1982 年 • 柔佛士乃老字号" : "Since 1982 • Senai, Johor"}
             </span>
           </motion.div>
@@ -132,19 +154,19 @@ export function HeroSectionVideo({
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl font-black leading-[1.1] text-white tracking-tight"
+              className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl font-extrabold leading-[1.08] text-white tracking-wide"
             >
               {isChinese ? (
                 <>
                   四十载匠心传承 <br />
-                  <span className="bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-500 bg-clip-text text-transparent drop-shadow-sm font-black">
+                  <span className="bg-gradient-to-r from-amber-300 via-yellow-200 to-amber-400 bg-clip-text text-transparent drop-shadow-sm font-extrabold">
                     始于 1982 年
                   </span>
                 </>
               ) : (
                 <>
                   A Taste Heritage <br />
-                  <span className="bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-500 bg-clip-text text-transparent drop-shadow-sm font-black">
+                  <span className="bg-gradient-to-r from-amber-300 via-yellow-200 to-amber-400 bg-clip-text text-transparent drop-shadow-sm font-extrabold">
                     from 1982
                   </span>
                 </>
@@ -155,7 +177,7 @@ export function HeroSectionVideo({
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="text-lg md:text-xl text-stone-300 max-w-2xl font-light leading-relaxed"
+              className="text-base md:text-lg text-stone-300/90 max-w-xl font-normal leading-[1.8] tracking-wide border-l-2 border-amber-500/30 pl-4"
             >
               {isChinese ? (
                 <>
@@ -184,7 +206,7 @@ export function HeroSectionVideo({
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.55 }}
-            className="text-xl md:text-2xl font-extrabold tracking-[0.2em] bg-gradient-to-r from-amber-200 via-amber-400 to-yellow-500 bg-clip-text text-transparent"
+            className="text-lg md:text-xl font-semibold tracking-[0.3em] uppercase bg-gradient-to-r from-amber-200/90 via-amber-400 to-yellow-400 bg-clip-text text-transparent"
           >
             {isChinese ? "在您珍惜的日子里，我们与您同在" : "ON THE DAYS YOU CHERISH, WE ARE WITH YOU"}
           </motion.h3>
@@ -199,7 +221,7 @@ export function HeroSectionVideo({
             <a
               id="btn-hero-video-order"
               href="#calculator"
-              className="inline-flex items-center justify-center gap-2 bg-amber-500 text-black px-8 py-3.5 rounded-full font-black text-sm md:text-base hover:bg-amber-400 transition-all hover:gap-3 shadow-md hover:shadow-amber-500/20 cursor-pointer w-full text-center select-none"
+              className="inline-flex items-center justify-center gap-2 bg-amber-500 text-black px-8 py-3 rounded-full font-bold text-sm tracking-wider hover:bg-amber-400 transition-all hover:gap-3 shadow-md hover:shadow-amber-500/20 cursor-pointer w-full text-center select-none"
             >
               {isChinese ? "自助估价/咨询" : "Order Now"}
               <ArrowRight className="w-4.5 h-4.5 text-black" />
@@ -207,7 +229,7 @@ export function HeroSectionVideo({
             <a
               id="btn-hero-video-learn"
               href="#about"
-              className="inline-flex items-center justify-center bg-white/10 hover:bg-white/20 text-white border border-white/20 px-8 py-3.5 rounded-full font-black text-sm md:text-base transition-colors cursor-pointer w-full text-center backdrop-blur-sm shadow-sm select-none"
+              className="inline-flex items-center justify-center bg-white/8 hover:bg-white/15 text-white border border-white/15 px-8 py-3 rounded-full font-bold text-sm tracking-wider transition-colors cursor-pointer w-full text-center backdrop-blur-sm shadow-sm select-none"
             >
               {isChinese ? "品牌历史" : "Our Story"}
             </a>
