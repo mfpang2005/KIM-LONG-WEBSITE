@@ -36,8 +36,24 @@ export function Navbar({ lang = "en", setLang }: NavbarProps) {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   const links = navLinks[lang];
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (typeof window !== "undefined") {
+        setIsScrolled(window.scrollY > 50);
+      }
+    };
+    if (typeof window !== "undefined") {
+      window.addEventListener("scroll", handleScroll);
+      handleScroll();
+      return () => {
+        window.removeEventListener("scroll", handleScroll);
+      };
+    }
+  }, []);
 
   useEffect(() => {
     const controlNavbar = () => {
@@ -70,9 +86,13 @@ export function Navbar({ lang = "en", setLang }: NavbarProps) {
       initial={{ y: 0 }}
       animate={{ y: isVisible ? 0 : -120 }}
       transition={{ duration: 0.3, ease: "easeInOut" }}
-      className="fixed top-0 left-0 right-0 z-50 bg-background/85 backdrop-blur-lg border-b border-border/40 shadow-[0_4px_25px_rgba(0,0,0,0.03)]"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        isScrolled || isMobileMenuOpen
+          ? "bg-background/95 backdrop-blur-lg shadow-[0_4px_25px_rgba(0,0,0,0.05)]" 
+          : "bg-gradient-to-b from-black/70 via-black/20 to-transparent shadow-none"
+      }`}
     >
-      <nav className="container mx-auto px-6 py-5 md:py-6">
+      <nav className="w-full max-w-[1860px] mx-auto px-6 md:px-10 lg:px-12 xl:px-4 py-5 md:py-6">
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-4 group">
@@ -85,10 +105,16 @@ export function Navbar({ lang = "en", setLang }: NavbarProps) {
               />
             </div>
             <div className="flex flex-col text-left justify-center select-none">
-              <span className="font-black text-xl md:text-[23px] text-foreground tracking-[0.12em] uppercase leading-none bg-gradient-to-r from-foreground via-amber-500 to-amber-600 bg-clip-text text-transparent transition-all duration-300 group-hover:via-amber-400">
+              <span className={`font-black text-xl md:text-[23px] tracking-[0.12em] uppercase leading-none bg-gradient-to-r bg-clip-text text-transparent transition-all duration-300 ${
+                isScrolled || isMobileMenuOpen
+                  ? "from-foreground via-amber-500 to-amber-600 group-hover:via-amber-400"
+                  : "from-white via-amber-400 to-amber-500 group-hover:via-amber-300 drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]"
+              }`}>
                 KIM LONG
               </span>
-              <span className="text-[10px] md:text-[11px] font-black tracking-[0.42em] text-primary uppercase mt-2 leading-none mr-[-0.42em]">
+              <span className={`text-[10px] md:text-[11px] font-black tracking-[0.42em] uppercase mt-2 leading-none mr-[-0.42em] transition-colors duration-300 ${
+                isScrolled || isMobileMenuOpen ? "text-primary" : "text-amber-400 drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]"
+              }`}>
                 CATERING
               </span>
             </div>
@@ -100,7 +126,11 @@ export function Navbar({ lang = "en", setLang }: NavbarProps) {
               <Link
                 key={link.name}
                 href={link.href}
-                className="text-muted-foreground hover:text-primary transition-all font-bold text-[15px] md:text-base tracking-wide hover:scale-105 active:scale-95 block"
+                className={`transition-all font-bold text-[15px] md:text-base tracking-wide hover:scale-105 active:scale-95 block ${
+                  isScrolled || isMobileMenuOpen
+                    ? "text-muted-foreground hover:text-primary"
+                    : "text-stone-200 hover:text-amber-400 drop-shadow-[0_1.5px_3px_rgba(0,0,0,0.6)]"
+                }`}
               >
                 {link.name}
               </Link>
@@ -108,28 +138,32 @@ export function Navbar({ lang = "en", setLang }: NavbarProps) {
           </div>
 
           {/* CTA & Language Switcher */}
-          <div className="hidden md:flex items-center gap-5">
-            {/* Language Toggle Button */}
-            <button
-              id="btn-lang-switcher"
-              onClick={toggleLanguage}
-              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full text-sm font-bold bg-secondary hover:bg-secondary/80 text-foreground border border-border cursor-pointer transition-all active:scale-95 hover:border-amber-500/30"
-              title={lang === "en" ? "Switch to Chinese" : "切换为英文"}
-            >
-              <Globe className="w-4 h-4 text-primary" />
-              <span>{lang === "en" ? "中文" : "EN"}</span>
-            </button>
-
+          <div className="hidden md:flex items-center gap-4">
             <a
               id="btn-nav-whatsapp"
               href="https://wa.me/60197288226"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2.5 bg-primary text-primary-foreground px-6 py-3 rounded-full font-bold text-base hover:bg-primary/90 transition-all hover:scale-105 active:scale-95 shadow-lg shadow-primary/15 hover:shadow-primary/25"
+              className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-5 py-2.5 rounded-full font-black text-sm hover:bg-primary/90 transition-all hover:scale-105 active:scale-95 shadow-md shadow-primary/10 hover:shadow-primary/20"
             >
-              <MessageCircle className="w-5 h-5 fill-current" />
-              {lang === "en" ? "WhatsApp Us" : "立即联系客服"}
+              <MessageCircle className="w-4 h-4 fill-current" />
+              {lang === "en" ? "WhatsApp" : "联系客服"}
             </a>
+
+            {/* Language Toggle Button */}
+            <button
+              id="btn-lang-switcher"
+              onClick={toggleLanguage}
+              className={`inline-flex items-center gap-1.5 px-4 py-2.5 rounded-full text-sm font-black border cursor-pointer transition-all active:scale-95 ${
+                isScrolled || isMobileMenuOpen
+                  ? "bg-secondary hover:bg-secondary/80 text-foreground border-border hover:border-amber-500/30"
+                  : "bg-white/10 hover:bg-white/20 text-white border-white/20 hover:border-amber-400/50 backdrop-blur-sm"
+              }`}
+              title={lang === "en" ? "Switch to Chinese" : "切换为英文"}
+            >
+              <Globe className={`w-4 h-4 ${isScrolled || isMobileMenuOpen ? "text-primary" : "text-amber-400"}`} />
+              <span>{lang === "en" ? "中文" : "EN"}</span>
+            </button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -137,14 +171,22 @@ export function Navbar({ lang = "en", setLang }: NavbarProps) {
             {/* Mobile Lang Button */}
             <button
               onClick={toggleLanguage}
-              className="p-2.5 text-foreground rounded-full bg-secondary border border-border flex items-center justify-center cursor-pointer active:scale-95"
+              className={`p-2.5 rounded-full border flex items-center justify-center cursor-pointer active:scale-95 transition-colors duration-300 ${
+                isScrolled || isMobileMenuOpen
+                  ? "text-foreground bg-secondary border-border"
+                  : "text-white bg-white/10 border-white/20 backdrop-blur-sm"
+              }`}
               aria-label="Toggle Language"
             >
-              <Globe className="w-4.5 h-4.5 text-primary" />
+              <Globe className={`w-4.5 h-4.5 ${isScrolled || isMobileMenuOpen ? "text-primary" : "text-amber-400"}`} />
             </button>
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="p-2.5 text-foreground rounded-full bg-secondary border border-border flex items-center justify-center active:scale-95"
+              className={`p-2.5 rounded-full border flex items-center justify-center active:scale-95 transition-colors duration-300 ${
+                isScrolled || isMobileMenuOpen
+                  ? "text-foreground bg-secondary border-border"
+                  : "text-white bg-white/10 border-white/20 backdrop-blur-sm"
+              }`}
               aria-label="Toggle menu"
             >
               {isMobileMenuOpen ? <X className="w-4.5 h-4.5" /> : <Menu className="w-4.5 h-4.5" />}

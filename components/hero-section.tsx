@@ -11,9 +11,14 @@ interface HeroSectionProps {
 
 export function HeroSection({ lang = "en" }: HeroSectionProps) {
   const isChinese = lang === "zh";
+  const [mounted, setMounted] = useState(false);
   const [activeMedia, setActiveMedia] = useState<"logo" | "banquet" | "cooking" | "plating" | "hygiene">("banquet");
   const [isPlaying, setIsPlaying] = useState(true);
   const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const mediaTabs = [
     { id: "logo", labelZh: "金龙徽标", labelEn: "Logo", icon: ImageIcon },
@@ -167,21 +172,27 @@ export function HeroSection({ lang = "en" }: HeroSectionProps) {
                 </p>
               </div>
               <div>
-                <p className="text-3xl font-extrabold text-foreground tracking-tight">5000+</p>
+                <p className="text-3xl font-extrabold text-foreground tracking-tight">913K+</p>
                 <p className="text-muted-foreground text-xs mt-1">
-                  {isChinese ? "人份每日配给" : "Pax Daily Supplied"}
+                  {isChinese ? "总数服务客人" : "Total Guests Served"}
+                </p>
+              </div>
+              <div>
+                <p className="text-3xl font-extrabold text-foreground tracking-tight">5k+</p>
+                <p className="text-muted-foreground text-xs mt-1">
+                  {isChinese ? "日配给人数" : "Pax Daily"}
                 </p>
               </div>
               <div>
                 <p className="text-3xl font-extrabold text-foreground tracking-tight">65</p>
                 <p className="text-muted-foreground text-xs mt-1">
-                  {isChinese ? "趟物流配送/天" : "Truck Trips/Day"}
+                  {isChinese ? "趟配送车次/天" : "Truck Trips/Day"}
                 </p>
               </div>
               <div>
-                <p className="text-3xl font-extrabold text-amber-500 tracking-tight">RM2M</p>
+                <p className="text-3xl font-extrabold text-amber-500 tracking-tight whitespace-nowrap">2MILLION</p>
                 <p className="text-muted-foreground text-xs mt-1 font-medium">
-                  {isChinese ? "RM2,000,000 食品保险" : "RM2,000,000 Food Insurance"}
+                  {isChinese ? "食品责任险" : "Food Insurance"}
                 </p>
               </div>
             </div>
@@ -365,7 +376,7 @@ export function HeroSection({ lang = "en" }: HeroSectionProps) {
               </motion.div>
 
               {/* Floating ambient fairy sparks */}
-              {[...Array(10)].map((_, i) => (
+              {mounted && [...Array(10)].map((_, i) => (
                 <motion.div
                   key={i}
                   initial={{ opacity: 0, scale: 0 }}

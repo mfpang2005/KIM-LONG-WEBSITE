@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Phone, Mail, MapPin, Truck, Clock, MessageCircle } from "lucide-react";
+import { Phone, Mail, MapPin, Truck, Clock, MessageCircle, ShieldCheck, Sparkles } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -102,11 +102,31 @@ export function FooterSection({ lang = "en" }: FooterSectionProps) {
                   ? "“岁月沉淀经典，金龙与您共赴人生每一个重要时刻。” 始于 1982 年的舌尖非遗传承，为马来西亚柔佛提供最正宗的手工中餐味道与高档宴席承办。"
                   : "\"Time honors classic taste. Kim Long accompanies you through every momentous milestone of life.\" Serving Johor with authentic taste since 1982."}
               </p>
-              <div className="flex items-center gap-2 text-background/70 text-xs">
-                <Truck className="w-4 h-4 text-primary" />
-                <span>{isChinese ? "每日配送超 5000人份" : "5000+ pax daily"}</span>
-                <span className="mx-1">•</span>
-                <span>{isChinese ? "日运超 65 趟次" : "65 trips/day"}</span>
+              <div className="space-y-3 pt-3 text-background/70 text-xs font-semibold">
+                <div className="flex items-center gap-2">
+                  <Truck className="w-4 h-4 text-primary flex-shrink-0" />
+                  <span>
+                    {isChinese 
+                      ? "每日配送超 5000人份 • 日运超 65 趟次" 
+                      : "5000+ pax daily • 65+ trips/day"}
+                  </span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <ShieldCheck className="w-4 h-4 text-primary flex-shrink-0" />
+                  <span>
+                    {isChinese 
+                      ? "投保 200 万令吉食品责任险" 
+                      : "RM 2 Million Food Product Liability Insurance"}
+                  </span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Sparkles className="w-4 h-4 text-primary flex-shrink-0" />
+                  <span>
+                    {isChinese 
+                      ? "四十载匠心传承 • 源自 1982 年老字号" 
+                      : "40+ Years Heritage • Since 1982 Johor"}
+                  </span>
+                </div>
               </div>
             </div>
 
@@ -115,7 +135,7 @@ export function FooterSection({ lang = "en" }: FooterSectionProps) {
               <h3 className="font-bold text-base tracking-wider text-white mb-6 uppercase">
                 {isChinese ? "快速导航" : "Quick Links"}
               </h3>
-              <ul className="space-y-3">
+              <ul className="grid grid-cols-2 gap-x-4 gap-y-3">
                 {links.map((link) => (
                   <li key={link.name}>
                     <a

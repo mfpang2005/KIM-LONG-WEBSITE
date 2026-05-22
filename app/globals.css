@@ -128,3 +128,47 @@
 .bg-gradient-radial {
   background-image: radial-gradient(var(--tw-gradient-stops));
 }
+
+/* ==========================================================================
+   首页全局视频背景模式 (Global Video Background Mode)
+   使网页所有板块呈现高级半透明毛玻璃质感，让底层流动的背景视频若隐若现，同时确保高易读性。
+   ========================================================================== */
+.global-video-mode {
+  background-color: transparent !important;
+}
+
+/* 针对所有主要板块的半透明和毛玻璃质感滤镜 */
+.global-video-mode section {
+  background-color: rgba(20, 20, 20, 0.45) !important;
+  backdrop-filter: blur(16px) saturate(120%) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(120%) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+  transition: background-color 0.4s ease, backdrop-filter 0.4s ease !important;
+}
+
+/* 特殊浅色或白底板块转深色半透明，确保夜间视觉的高级质感 */
+.global-video-mode .bg-secondary,
+.global-video-mode .bg-secondary\/30,
+.global-video-mode .bg-muted {
+  background-color: rgba(28, 25, 23, 0.35) !important;
+}
+
+/* 卡片、面板、对话框的半透明微透适配 */
+.global-video-mode .bg-card,
+.global-video-mode .bg-background,
+.global-video-mode .bg-stone-900,
+.global-video-mode .bg-stone-950 {
+  background-color: rgba(28, 25, 23, 0.4) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+/* 顶部导航栏通透度微调 */
+.global-video-mode header,
+.global-video-mode nav {
+  background-color: rgba(0, 0, 0, 0.5) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+}
+
