@@ -10,52 +10,6 @@ import Image from "next/image";
  * @description 金龙故事与品牌荣誉板块，支持3D卡片滚动和苏黎世保险原件Lightbox幻灯片预览
  */
 
-// NOTE: 自动服务端媒体文件静默同步拷贝机制
-if (typeof window === "undefined") {
-  try {
-    const fs = require("fs");
-    const path = require("path");
-    const destDir = "c:\\Users\\User\\Downloads\\KIM LONG WEBSITE\\public\\images";
-    
-    if (!fs.existsSync(destDir)) {
-      fs.mkdirSync(destDir, { recursive: true });
-    }
-    
-    // 1. 同步原有的四张金色奖牌资质图片 (已将大奖1、大奖4升级为高清大图)
-    const oldSrcDir = "C:\\Users\\User\\.gemini\\antigravity\\brain\\ecae9dbb-99ba-4d55-ab5e-9ce60b9b2ed8";
-    const oldAwardsMap = {
-      "media__1779239558955.png": "award-2.png",
-      "media__1779239559068.jpg": "award-3.jpg"
-    };
-    for (const [srcFile, destFile] of Object.entries(oldAwardsMap)) {
-      const srcPath = path.join(oldSrcDir, srcFile);
-      if (fs.existsSync(srcPath)) {
-        fs.copyFileSync(srcPath, path.join(destDir, destFile));
-      }
-    }
-
-    // 2. 同步最新的食品安全与公共责任保险单图片 (来自当前 Conversation)
-    const newSrcDir = "C:\\Users\\User\\.gemini\\antigravity\\brain\\d9ab8f54-bb12-4b41-b6e9-2258e3fb306d";
-    const newAwardsList = [
-      ["media__1779276669903.jpg", "food-safety-1.jpg"],
-      ["media__1779276669909.jpg", "food-safety-2.jpg"],
-      ["media__1779276669911.jpg", "food-safety-3.jpg"],
-      ["media__1779276669903.jpg", "food-safety-insurance.jpg"],
-      ["media__1779276801319.jpg", "pipa-duck.jpg"],
-      ["media__1779277404656.png", "award-1.png"],
-      ["media__1779277498605.png", "award-4.png"]
-    ];
-    for (const [srcFile, destFile] of newAwardsList) {
-      const srcPath = path.join(newSrcDir, srcFile);
-      if (fs.existsSync(srcPath)) {
-        fs.copyFileSync(srcPath, path.join(destDir, destFile));
-      }
-    }
-  } catch (e) {
-    // 静默处理编译环境中的 Node.js 模块引入报错
-  }
-}
-
 const awardsData = {
   en: [
     { icon: Trophy, title: "World Top Heritage Gourmet Awards 2023", image: "/images/award-1.png", blendMode: "normal" },
