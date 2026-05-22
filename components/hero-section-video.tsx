@@ -107,9 +107,10 @@ export function HeroSectionVideo({
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-stone-950 text-white pt-20">
       {/* 双视频交叉淡入淡出层：两个 <video> 始终存在于 DOM 中，仅通过 opacity 切换可见性 */}
       <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none z-0">
-        {/* 视频 A */}
+        {/* 视频 A - 直接绑定 src 属性以解决 React 动态子 source 标签在特定浏览器下不触发加载与播放的巨坑 */}
         <video
           ref={videoRefA}
+          src={HERO_VIDEOS[0]}
           autoPlay
           muted
           playsInline
@@ -120,13 +121,12 @@ export function HeroSectionVideo({
             opacity: currentVideoIndex === 0 ? 0.9 : 0,
             transition: "opacity 1.2s ease-in-out",
           }}
-        >
-          <source src={HERO_VIDEOS[0]} type="video/mp4" />
-        </video>
+        />
 
-        {/* 视频 B */}
+        {/* 视频 B - 直接绑定 src 属性以解决 React 动态子 source 标签在特定浏览器下不触发加载与播放的巨坑 */}
         <video
           ref={videoRefB}
+          src={HERO_VIDEOS[1]}
           autoPlay
           muted
           playsInline
@@ -137,9 +137,7 @@ export function HeroSectionVideo({
             opacity: currentVideoIndex === 1 ? 0.9 : 0,
             transition: "opacity 1.2s ease-in-out",
           }}
-        >
-          <source src={HERO_VIDEOS[1]} type="video/mp4" />
-        </video>
+        />
 
         {/* 金黑色高透奢华局部遮罩：保证视频局部铺满的同时保障前台文字完美易读性 */}
         <div className="absolute inset-0 bg-stone-950/35 z-10 pointer-events-none" />
