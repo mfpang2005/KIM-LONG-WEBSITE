@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Phone, Mail, MapPin, Truck, Clock, MessageCircle, ShieldCheck, Sparkles, Compass, ExternalLink } from "lucide-react";
+import { Phone, Mail, MapPin, Truck, Clock, MessageCircle, ShieldCheck, Sparkles, Compass, ExternalLink, Facebook, Instagram } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -57,7 +57,7 @@ export function FooterSection({ lang = "en" }: FooterSectionProps) {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
-                className="lg:col-span-8 text-center lg:text-left space-y-6"
+                className="lg:col-span-6 text-center lg:text-left space-y-6"
               >
                 <h2 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-primary-foreground leading-tight tracking-tight text-balance">
                   {isChinese
@@ -92,13 +92,13 @@ export function FooterSection({ lang = "en" }: FooterSectionProps) {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.1 }}
-                className="lg:col-span-4 flex justify-center lg:justify-end"
+                className="lg:col-span-6 flex justify-center lg:justify-end"
               >
-                {/* 纯净地图容器，直接使用 rounded-[2rem] 和轻量边框，去除外包卡片与浮条，高度调大至 200px，宽度 max-w-[350px]，带 Hover 优雅缩放动效 */}
+                {/* 纯净地图容器，直接使用 rounded-[2rem] 和轻量边框，去除外包卡片与浮条，高度调大至 320px，宽度 max-w-[500px]，带 Hover 优雅缩放动效 */}
                 <motion.div 
                   whileHover={{ scale: 1.05 }}
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                  className="relative w-full max-w-[350px] h-[180px] md:h-[200px] rounded-[2rem] overflow-hidden border border-white/20 shadow-[0_15px_35px_rgba(0,0,0,0.12)] cursor-pointer"
+                  className="relative w-full max-w-[500px] h-[260px] md:h-[320px] rounded-[2rem] overflow-hidden border border-white/20 shadow-[0_15px_35px_rgba(0,0,0,0.12)] cursor-pointer"
                 >
                   {/* Skeleton 骨架 screen */}
                   <AnimatePresence>
@@ -168,6 +168,15 @@ export function FooterSection({ lang = "en" }: FooterSectionProps) {
                   : "\"Time honors classic taste. Kim Long accompanies you through every momentous milestone of life.\" Serving Johor with authentic taste since 1982."}
               </p>
 
+              {/* 企业注册与合规披露信息，小巧精致，排在一起 */}
+              <div className="space-y-0.5 text-[11px] text-background/50 font-medium tracking-wide leading-relaxed pt-3 border-t border-white/5">
+                <p className="font-extrabold text-background/80 tracking-wider">KIM LONG CATERING SDN BHD</p>
+                <p>REG: 202301025752 (1519675-T)</p>
+                <p>SST: J31-2409-32000022</p>
+                <p>TIN: C58115357100</p>
+                <p>MISC CODE: 10799 & 56210</p>
+              </div>
+
               {/* 极度缩小、精简并排成一行的迷你背书徽章 */}
               <div className="grid grid-cols-3 gap-1.5 pt-4">
                 {/* 徽章 1 */}
@@ -228,6 +237,52 @@ export function FooterSection({ lang = "en" }: FooterSectionProps) {
                   </li>
                 ))}
               </ul>
+
+              {/* 社交媒体与 Google 链接图标 */}
+              <div className="flex items-center gap-3.5 mt-8">
+                {/* Facebook */}
+                <a
+                  href="#" // TODO: 待用户提供 Facebook 链接后替换
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Facebook"
+                  className="w-10 h-10 rounded-full flex items-center justify-center bg-white/[0.03] border border-white/5 text-background/70 hover:bg-amber-500/10 hover:border-amber-500/30 hover:text-amber-400 transition-all duration-300 active:scale-95 cursor-pointer"
+                >
+                  <Facebook className="w-5 h-5" />
+                </a>
+
+                {/* Instagram */}
+                <a
+                  href="#" // TODO: 待用户提供 Instagram 链接后替换
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Instagram"
+                  className="w-10 h-10 rounded-full flex items-center justify-center bg-white/[0.03] border border-white/5 text-background/70 hover:bg-amber-500/10 hover:border-amber-500/30 hover:text-amber-400 transition-all duration-300 active:scale-95 cursor-pointer"
+                >
+                  <Instagram className="w-5 h-5" />
+                </a>
+
+                {/* Google */}
+                <a
+                  href="#" // TODO: 待用户提供 Google 链接后替换
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Google"
+                  className="w-10 h-10 rounded-full flex items-center justify-center bg-white/[0.03] border border-white/5 text-background/70 hover:bg-amber-500/10 hover:border-amber-500/30 hover:text-amber-400 transition-all duration-300 active:scale-95 cursor-pointer"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                    className="w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M12 2a10 10 0 0 1 7.65 3.57L16.2 8.8A5.94 5.94 0 0 0 12 8a6 6 0 1 0 5.83 7.42h-5.83v-3.08H21.9a10 10 0 0 1 .1 1.66A10 10 0 1 1 12 2z" />
+                  </svg>
+                </a>
+              </div>
             </div>
 
             {/* Services */}
