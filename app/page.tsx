@@ -10,6 +10,7 @@ import { ServicesSection } from "@/components/services-section";
 import { QuoteCalculator } from "@/components/quote-calculator";
 import { ClientsSection } from "@/components/clients-section";
 import { FAQSection } from "@/components/faq-section";
+import { LocationSection } from "@/components/location-section";
 import { FooterSection } from "@/components/footer-section";
 import { WhatsAppButton } from "@/components/whatsapp-button";
 import { motion } from "framer-motion";
@@ -43,6 +44,9 @@ export default function Home() {
       
       {/* Phase 1 Upgrade: Accessible Accordion FAQs */}
       <FAQSection lang={lang} />
+      
+      {/* Google Map & Location Details */}
+      <LocationSection lang={lang} />
       
       {/* Dynamic footer contact card */}
       <FooterSection lang={lang} />

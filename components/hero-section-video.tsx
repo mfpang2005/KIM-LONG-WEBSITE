@@ -40,23 +40,68 @@ export function HeroSectionVideo({
    * 通过 CSS opacity 过渡实现柔和的交叉淡入淡出效果
    */
   const handleVideoEnded = useCallback(() => {
-    setCurrentVideoIndex((prev) => {
-      const nextIndex = (prev + 1) % HERO_VIDEOS.length;
-
-      // NOTE: 在下一帧确保新视频从头开始播放
-      requestAnimationFrame(() => {
-        const nextRef = nextIndex === 0 ? videoRefA.current : videoRefB.current;
-        if (nextRef) {
-          nextRef.currentTime = 0;
-          nextRef.play().catch(() => {
-            // FIXME: 某些浏览器在非用户交互下可能阻止自动播放，静默处理
-          });
-        }
-      });
-
-      return nextIndex;
-    });
+    setCurrentVideoIndex((prev) => (prev + 1) % HERO_VIDEOS.length);
   }, []);
+
+  // 协调两个视频的真正播放状态，绕过浏览器的 Autoplay 拦截
+  useEffect(() => {
+    if (!mounted) return;
+
+    const playCurrentVideo = () => {
+      const activeRef = currentVideoIndex === 0 ? videoRefA.current : videoRefB.current;
+      const inactiveRef = currentVideoIndex === 0 ? videoRefB.current : videoRefA.current;
+
+      // 暂停不活跃的视频
+      if (inactiveRef) {
+        try {
+          inactiveRef.pause();
+        } catch (e) {
+          // 静默捕获
+        }
+      }
+
+      // 播放当前活动视频
+      if (activeRef) {
+        try {
+          activeRef.muted = true; // 极其重要：在 JS 里显式重置 muted，防止 React 水合丢失导致浏览器拦截自动播放
+          activeRef.playsInline = true;
+          
+          const playPromise = activeRef.play();
+          if (playPromise !== undefined) {
+            playPromise.catch((err) => {
+              console.warn("自动播放被浏览器拦截或视频文件太大尚未缓冲就绪:", err);
+            });
+          }
+        } catch (error) {
+          console.warn("视频播放出错:", error);
+        }
+      }
+    };
+
+    // 初始化或视频切换时立即尝试播放
+    playCurrentVideo();
+
+    // 交互唤醒机制：一旦用户在页面上有点击、滚动、触摸操作，强制触发再次播放
+    const handleUserInteraction = () => {
+      playCurrentVideo();
+      // 触发一次后立即移除监听器，避免性能开销
+      cleanupListeners();
+    };
+
+    const cleanupListeners = () => {
+      window.removeEventListener("click", handleUserInteraction);
+      window.removeEventListener("touchstart", handleUserInteraction);
+      window.removeEventListener("scroll", handleUserInteraction);
+    };
+
+    window.addEventListener("click", handleUserInteraction);
+    window.addEventListener("touchstart", handleUserInteraction);
+    window.addEventListener("scroll", handleUserInteraction);
+
+    return () => {
+      cleanupListeners();
+    };
+  }, [mounted, currentVideoIndex]);
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-stone-950 text-white pt-20">
@@ -82,6 +127,7 @@ export function HeroSectionVideo({
         {/* 视频 B */}
         <video
           ref={videoRefB}
+          autoPlay
           muted
           playsInline
           onEnded={currentVideoIndex === 1 ? handleVideoEnded : undefined}

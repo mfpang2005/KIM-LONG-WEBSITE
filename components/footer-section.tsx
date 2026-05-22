@@ -1,7 +1,8 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Phone, Mail, MapPin, Truck, Clock, MessageCircle, ShieldCheck, Sparkles } from "lucide-react";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Phone, Mail, MapPin, Truck, Clock, MessageCircle, ShieldCheck, Sparkles, Compass, ExternalLink } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -31,45 +32,119 @@ interface FooterSectionProps {
 export function FooterSection({ lang = "en" }: FooterSectionProps) {
   const isChinese = lang === "zh";
   const links = linksData[lang];
+  const [mapLoaded, setMapLoaded] = useState(false);
+
+  // 极致缩小的 Google Map 嵌入参数与跳转链接
+  const mapEmbedSrc =
+    "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.196306354898!2d103.6338575!3d1.6033783999999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da76bbf11dfc5b%3A0x9b84a16198f3e89b!2sKim%20Long%20Catering%20Sdn%20Bhd%20%E9%87%91%E9%BE%99%E8%87%AA%E7%94%B1%E9%A4%90%E6%9C%8D%E5%8A%A1!5e0!3m2!1szh-CN!2smy!4v1716388800000!5m2!1szh-CN!2smy";
+  const mapUrl =
+    "https://www.google.com/maps/place/Kim+Long+Catering+Sdn+Bhd+%E9%87%91%E9%BE%99%E8%87%AA%E7%94%B1%E9%A4%90%E6%9C%8D%E5%8A%A1/data=!4m2!3m1!1s0x0:0x9b84a16198f3e89b?sa=X&ved=1t:2428&ictx=111";
 
   return (
     <footer id="contact" className="bg-foreground text-background">
       {/* CTA Banner */}
-      <div className="bg-primary py-16">
-        <div className="container mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center max-w-3xl mx-auto"
-          >
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-primary-foreground mb-6 text-balance tracking-tight">
-              {isChinese
-                ? "准备好筹办您的盛宴了吗？“岁月沉淀经典，金龙与您共赴人生每一个重要时刻。”"
-                : "Ready to host your event? \"Time honors classic taste. Kim Long accompanies you through every momentous milestone of life.\""}
-            </h2>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
-                id="btn-footer-whatsapp"
-                href="https://wa.me/60197288226"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 bg-foreground text-background px-8 py-4 rounded-full font-bold text-lg hover:bg-foreground/90 transition-colors cursor-pointer"
+      <div className="bg-primary py-12 md:py-16 relative overflow-hidden border-b border-white/5">
+        {/* 精美流光背景背景微光装饰 */}
+        <div className="absolute top-0 right-0 w-64 h-64 bg-white/[0.03] rounded-bl-full pointer-events-none" />
+        
+        <div className="container mx-auto px-6 relative z-10">
+          <div className="max-w-6xl mx-auto">
+            <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+              
+              {/* 左侧：原本的文字与两个按钮设计，文字排版左对齐 */}
+              <motion.div
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="lg:col-span-8 text-center lg:text-left space-y-6"
               >
-                <MessageCircle className="w-5 h-5 fill-current" />
-                {isChinese ? "立即 WhatsApp 询价" : "WhatsApp Us Now"}
-              </a>
-              <a
-                id="btn-footer-call"
-                href="tel:+60197288226"
-                className="inline-flex items-center justify-center gap-2 border-2 border-primary-foreground text-primary-foreground px-8 py-4 rounded-full font-bold text-lg hover:bg-primary-foreground/10 transition-colors cursor-pointer"
+                <h2 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-primary-foreground leading-tight tracking-tight text-balance">
+                  {isChinese
+                    ? "准备好筹办您的盛宴了吗？“岁月沉淀经典，金龙与您共赴人生每一个重要时刻。”"
+                    : "Ready to host your event? \"Time honors classic taste. Kim Long accompanies you through every momentous milestone of life.\""}
+                </h2>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                  <a
+                    id="btn-footer-whatsapp"
+                    href="https://wa.me/60197288226"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-2 bg-foreground text-background px-7 py-3.5 rounded-full font-bold text-base hover:bg-foreground/90 transition-all duration-300 hover:shadow-lg active:scale-98 cursor-pointer"
+                  >
+                    <MessageCircle className="w-5 h-5 fill-current" />
+                    {isChinese ? "立即 WhatsApp 询价" : "WhatsApp Us Now"}
+                  </a>
+                  <a
+                    id="btn-footer-call"
+                    href="tel:+60197288226"
+                    className="inline-flex items-center justify-center gap-2 border-2 border-primary-foreground text-primary-foreground px-7 py-3.5 rounded-full font-bold text-base hover:bg-primary-foreground/10 transition-all duration-300 active:scale-98 cursor-pointer"
+                  >
+                    <Phone className="w-5 h-5" />
+                    {isChinese ? "直接拨打电话" : "Call Us"}
+                  </a>
+                </div>
+              </motion.div>
+
+              {/* 右侧：极致微缩的高奢地图 */}
+              <motion.div
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="lg:col-span-4 flex justify-center lg:justify-end"
               >
-                <Phone className="w-5 h-5" />
-                {isChinese ? "直接拨打电话" : "Call Us"}
-              </a>
+                {/* 极致缩小的外层精美框，高奢的白色亮面边缘与磨砂卡片 */}
+                <div className="relative group w-full max-w-[280px] p-2 bg-white/10 backdrop-blur-md rounded-[2rem] border border-white/20 shadow-[0_12px_32px_rgba(0,0,0,0.15)] hover:border-white/30 transition-all duration-500">
+                  <div className="relative w-full h-[120px] rounded-[1.5rem] overflow-hidden">
+                    {/* Skeleton 骨架 screen */}
+                    <AnimatePresence>
+                      {!mapLoaded && (
+                        <motion.div
+                          exit={{ opacity: 0 }}
+                          transition={{ duration: 0.4 }}
+                          className="absolute inset-0 z-20 flex flex-col items-center justify-center bg-stone-100 dark:bg-stone-900 animate-pulse"
+                        >
+                          <Compass className="w-6 h-6 text-amber-600 animate-spin-slow mb-1" />
+                          <span className="text-[9px] font-bold text-muted-foreground uppercase tracking-widest">
+                            {isChinese ? "载入位置..." : "Loading..."}
+                          </span>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+
+                    {/* 地图 iframe 嵌入 */}
+                    <iframe
+                      title="Kim Long Footer Location Map"
+                      src={mapEmbedSrc}
+                      width="100%"
+                      height="100%"
+                      style={{ border: 0 }}
+                      allowFullScreen={true}
+                      loading="lazy"
+                      referrerPolicy="no-referrer-when-downgrade"
+                      onLoad={() => setMapLoaded(true)}
+                      className="w-full h-full object-cover transition-all duration-500"
+                    />
+                  </div>
+
+                  {/* 极致精简的小条幅一键导航 */}
+                  <a
+                    href={mapUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-between mt-2 px-3.5 py-2 rounded-xl bg-white/15 hover:bg-white/25 text-white transition-all duration-300 group/btn select-none"
+                  >
+                    <span className="text-[10px] font-extrabold tracking-wide">
+                      {isChinese ? "在谷歌地图中打开导航" : "Navigate via Google Maps"}
+                    </span>
+                    <ExternalLink className="w-3 h-3 opacity-80 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
+                  </a>
+                </div>
+              </motion.div>
+
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
 
@@ -77,60 +152,6 @@ export function FooterSection({ lang = "en" }: FooterSectionProps) {
       <div className="py-16 border-t border-background/5">
         <div className="container mx-auto px-6">
           
-          {/* Trust Badges Bar / 运营背书亮点横向卡片栏 */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 pb-12 mb-12 border-b border-white/5">
-            {/* 卡片 1 */}
-            <div className="group flex items-center gap-4 bg-white/[0.02] hover:bg-white/[0.04] p-5 rounded-2xl border border-white/5 hover:border-amber-500/20 transition-all duration-300">
-              <div className="p-3 rounded-xl bg-amber-500/5 group-hover:bg-amber-500/10 text-amber-400 transition-colors duration-300 flex-shrink-0">
-                <Truck className="w-6 h-6" />
-              </div>
-              <div className="text-left">
-                <h4 className="text-sm md:text-base font-extrabold text-white">
-                  {isChinese ? "卓越配送与运力" : "Logistics & Delivery"}
-                </h4>
-                <p className="text-xs text-background/60 mt-1 leading-normal font-medium">
-                  {isChinese 
-                    ? "每日配送超 5000 人份 • 日运超 65 趟次" 
-                    : "5000+ pax daily • 65+ trips/day"}
-                </p>
-              </div>
-            </div>
-
-            {/* 卡片 2 */}
-            <div className="group flex items-center gap-4 bg-white/[0.02] hover:bg-white/[0.04] p-5 rounded-2xl border border-white/5 hover:border-amber-500/20 transition-all duration-300">
-              <div className="p-3 rounded-xl bg-amber-500/5 group-hover:bg-amber-500/10 text-amber-400 transition-colors duration-300 flex-shrink-0">
-                <ShieldCheck className="w-6 h-6" />
-              </div>
-              <div className="text-left">
-                <h4 className="text-sm md:text-base font-extrabold text-white">
-                  {isChinese ? "百万食品安全保障" : "Food Safety Insurance"}
-                </h4>
-                <p className="text-xs text-background/60 mt-1 leading-normal font-medium">
-                  {isChinese 
-                    ? "投保 200 万令吉食品责任险" 
-                    : "RM 2 Million Food Product Liability"}
-                </p>
-              </div>
-            </div>
-
-            {/* 卡片 3 */}
-            <div className="group flex items-center gap-4 bg-white/[0.02] hover:bg-white/[0.04] p-5 rounded-2xl border border-white/5 hover:border-amber-500/20 transition-all duration-300">
-              <div className="p-3 rounded-xl bg-amber-500/5 group-hover:bg-amber-500/10 text-amber-400 transition-colors duration-300 flex-shrink-0">
-                <Sparkles className="w-6 h-6" />
-              </div>
-              <div className="text-left">
-                <h4 className="text-sm md:text-base font-extrabold text-white">
-                  {isChinese ? "四十载品牌传承" : "40+ Years Heritage"}
-                </h4>
-                <p className="text-xs text-background/60 mt-1 leading-normal font-medium">
-                  {isChinese 
-                    ? "源自 1982 年马来西亚柔佛老字号" 
-                    : "Since 1982 Johor Senai 老字号"}
-                </p>
-              </div>
-            </div>
-          </div>
-
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
             {/* Brand */}
             <div className="lg:col-span-1 space-y-6">
@@ -157,6 +178,48 @@ export function FooterSection({ lang = "en" }: FooterSectionProps) {
                   ? "“岁月沉淀经典，金龙与您共赴人生每一个重要时刻。” 始于 1982 年的舌尖非遗传承，为马来西亚柔佛提供最正宗的手工中餐味道与高档宴席承办。"
                   : "\"Time honors classic taste. Kim Long accompanies you through every momentous milestone of life.\" Serving Johor with authentic taste since 1982."}
               </p>
+
+              {/* 极度缩小、精简并排成一行的迷你背书徽章 */}
+              <div className="grid grid-cols-3 gap-1.5 pt-4">
+                {/* 徽章 1 */}
+                <div className="group flex flex-col items-center text-center p-2 rounded-xl bg-white/[0.015] hover:bg-white/[0.035] border border-white/5 hover:border-amber-500/15 transition-all duration-300">
+                  <div className="p-1.5 rounded-lg bg-amber-500/5 group-hover:bg-amber-500/10 text-amber-400 transition-colors duration-300 flex-shrink-0 mb-1">
+                    <Truck className="w-4 h-4" />
+                  </div>
+                  <span className="text-[10px] font-extrabold text-white tracking-wide block leading-tight whitespace-nowrap">
+                    {isChinese ? "卓越配送" : "Logistics"}
+                  </span>
+                  <span className="text-[8px] text-background/50 font-medium block mt-0.5 leading-none whitespace-nowrap">
+                    {isChinese ? "5000人/日" : "5000+ Daily"}
+                  </span>
+                </div>
+
+                {/* 徽章 2 */}
+                <div className="group flex flex-col items-center text-center p-2 rounded-xl bg-white/[0.015] hover:bg-white/[0.035] border border-white/5 hover:border-amber-500/15 transition-all duration-300">
+                  <div className="p-1.5 rounded-lg bg-amber-500/5 group-hover:bg-amber-500/10 text-amber-400 transition-colors duration-300 flex-shrink-0 mb-1">
+                    <ShieldCheck className="w-4 h-4" />
+                  </div>
+                  <span className="text-[10px] font-extrabold text-white tracking-wide block leading-tight whitespace-nowrap">
+                    {isChinese ? "200万食安" : "RM2M Insured"}
+                  </span>
+                  <span className="text-[8px] text-background/50 font-medium block mt-0.5 leading-none whitespace-nowrap">
+                    {isChinese ? "责任险保障" : "Liability Ins"}
+                  </span>
+                </div>
+
+                {/* 徽章 3 */}
+                <div className="group flex flex-col items-center text-center p-2 rounded-xl bg-white/[0.015] hover:bg-white/[0.035] border border-white/5 hover:border-amber-500/15 transition-all duration-300">
+                  <div className="p-1.5 rounded-lg bg-amber-500/5 group-hover:bg-amber-500/10 text-amber-400 transition-colors duration-300 flex-shrink-0 mb-1">
+                    <Sparkles className="w-4 h-4" />
+                  </div>
+                  <span className="text-[10px] font-extrabold text-white tracking-wide block leading-tight whitespace-nowrap">
+                    {isChinese ? "40载老字号" : "40Y Heritage"}
+                  </span>
+                  <span className="text-[8px] text-background/50 font-medium block mt-0.5 leading-none whitespace-nowrap">
+                    {isChinese ? "始于 1982" : "Since 1982"}
+                  </span>
+                </div>
+              </div>
             </div>
 
             {/* Quick Links */}
