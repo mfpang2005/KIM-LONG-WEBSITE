@@ -109,12 +109,16 @@ export function HeroSection({ lang = "en" }: HeroSectionProps) {
             transition={{ duration: 0.8 }}
             className="space-y-8"
           >
-            <div className="inline-flex items-center gap-2 bg-primary/10 text-primary-foreground px-4 py-2 rounded-full border border-primary/20">
-              <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
-              <span className="text-sm font-bold text-foreground">
+            <motion.div 
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.98 }}
+              className="inline-flex items-center gap-2.5 bg-amber-500/10 text-primary-foreground px-5 py-2.5 rounded-full border border-amber-500/30 shadow-[0_0_15px_rgba(245,158,11,0.15)] backdrop-blur-sm select-none cursor-default"
+            >
+              <Sparkles className="w-4 h-4 text-amber-500 animate-pulse" />
+              <span className="text-base md:text-lg font-black tracking-wider text-amber-700 dark:text-amber-400">
                 {isChinese ? "源自 1982 年 • 柔佛士乃老字号" : "Since 1982 • Senai, Johor"}
               </span>
-            </div>
+            </motion.div>
 
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-foreground leading-tight tracking-tight text-balance">
               {isChinese ? (

@@ -1,37 +1,72 @@
 @echo off
-:: 设置控制台为 UTF-8 编码，防止中文乱码
-chcp 65001 >nul
-title 金龙网站本地预览服务启动器
+title Kim Long Website Starter
 color 0A
 
 echo ==========================================================
-echo               金龙网站 (Kim Long Website)
-echo            正在为您启动本地预览服务，请稍候...
+echo               Kim Long Website Starter
 echo ==========================================================
 echo.
 
-:: 切换到网站项目根目录
-cd /d "C:\Users\User\Downloads\KIM LONG WEBSITE"
+:: Change directory to current folder
+cd /d "%~dp0"
 
-:: 检查 package.json 是否存在
-if not exist "package.json" (
-    echo [错误] 找不到 package.json 文件！
-    echo 请确认项目在 C:\Users\User\Downloads\KIM LONG WEBSITE 目录中。
-    pause
-    exit /b 1
-)
+:: Check if package.json exists
+if not exist "package.json" goto NO_PACKAGE
 
-echo [提示] 项目目录确认正常...
-echo [提示] 正在启动服务，请稍候 4 秒后浏览器将自动打开...
-echo [提示] 如需停止服务，请直接关闭此窗口。
+set NPM_CMD=
+
+:: 1. Try system environment npm
+where npm >nul 2>nul
+if %errorlevel% equ 0 set NPM_CMD=npm
+if not "%NPM_CMD%"=="" goto START_SERVICE
+
+:: 2. Try default installation paths
+if exist "C:\Program Files\nodejs\npm.cmd" set NPM_CMD="C:\Program Files\nodejs\npm.cmd"
+if not "%NPM_CMD%"=="" goto START_SERVICE
+
+if exist "C:\Program Files (x86)\nodejs\npm.cmd" set NPM_CMD="C:\Program Files (x86)\nodejs\npm.cmd"
+if not "%NPM_CMD%"=="" goto START_SERVICE
+
+if exist "%APPDATA%\npm\npm.cmd" set NPM_CMD="%APPDATA%\npm\npm.cmd"
+if not "%NPM_CMD%"=="" goto START_SERVICE
+
+:: If npm not found, show error
+if "%NPM_CMD%"=="" goto NO_NPM
+
+:START_SERVICE
+echo [INFO] Starting local server with %NPM_CMD% ...
+echo [INFO] Auto-opening http://localhost:3000 in 4 seconds...
+echo [INFO] Please do NOT close this window while browsing the website.
 echo.
 
-:: 4秒后自动打开浏览器（等服务器启动完毕）
-start "" cmd /c "timeout /t 5 >nul && start http://localhost:3000"
+:: Auto open browser in 4 seconds
+start "" cmd /c "timeout /t 4 >nul && start http://localhost:3000"
 
-:: 直接使用 Node.js 完整路径启动，不依赖 PATH 环境变量
-"C:\Program Files\nodejs\npm.cmd" run dev
+:: Run Next.js server
+call %NPM_CMD% run dev
+goto END
 
+:NO_PACKAGE
+echo [ERROR] package.json not found!
+echo Please make sure this script is in the website root directory.
+pause
+exit /b 1
+
+:NO_NPM
+echo ==========================================================
+echo [ERROR] Node.js or npm was NOT found on your computer!
+echo ==========================================================
+echo Please install Node.js to preview the website locally:
 echo.
-echo [提示] 服务已停止。按任意键关闭...
-pause >nul
+echo 1. Open Node.js official website: https://nodejs.org/
+echo 2. Download and install the "LTS" (Recommended) version.
+echo 3. Click "Next" all the way through the installation.
+echo 4. After installing, double-click this script again.
+echo ==========================================================
+pause
+exit /b 1
+
+:END
+echo.
+echo [INFO] Server stopped.
+pause

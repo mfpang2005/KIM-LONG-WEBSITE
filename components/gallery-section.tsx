@@ -9,7 +9,7 @@ interface GalleryItem {
   id: string;
   title: string;
   chineseTitle: string;
-  category: "chinese" | "western" | "setup";
+  category: "chinese" | "western" | "setup" | "japanese";
   description: string;
   chineseDescription: string;
   image: string;
@@ -35,7 +35,7 @@ const galleryItems: GalleryItem[] = [
     category: "chinese",
     description: "Jumbo prawns wok-fried with fragrant butter, curry leaves, bird's eye chilies, and crispy golden Nestum cereal.",
     chineseDescription: "特大鲜虾与香浓牛油、咖喱叶、指天椒及香脆麦片大火爆炒，咸香酥脆，风味十足。",
-    image: "https://images.unsplash.com/photo-1559737607-2da76d7d3d75?w=800&q=80",
+    image: "/images/nestum-prawns.jpg",
     tag: "Chef's Choice • 主厨推荐",
   },
   {
@@ -55,7 +55,7 @@ const galleryItems: GalleryItem[] = [
     category: "chinese",
     description: "Fresh live grouper steamed with superior soy sauce, ginger slivers, and fragrant scallions for a tender texture.",
     chineseDescription: "精选新鲜活石斑，以古法加入特制头抽、细嫩姜丝与香葱清蒸，肉质莹白鲜美、滑嫩弹牙。",
-    image: "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=800&q=80",
+    image: "/images/steamed-grouper.jpg",
   },
   {
     id: "braised-abalone-fishmaw",
@@ -64,16 +64,16 @@ const galleryItems: GalleryItem[] = [
     category: "chinese",
     description: "Deluxe fish maw and premium shiitake mushrooms slow-simmered in a rich, velvety abalone stock.",
     chineseDescription: "上等深海花胶与顶级厚身花菇，在特制鲍鱼高汤中历经数小时慢火细熬，胶原蛋白满满，浓郁软糯。",
-    image: "https://images.unsplash.com/photo-1563245372-f21724e3856d?w=800&q=80",
+    image: "/images/braised-abalone-fishmaw.jpg",
   },
   {
-    id: "salted-egg-crab",
-    title: "Signature Salt Egg Crab",
-    chineseTitle: "招牌金沙咸蛋蟹",
+    id: "eight-treasure-duck",
+    title: "Traditional Eight-Treasure Duck",
+    chineseTitle: "古法八宝鸭",
     category: "chinese",
-    description: "Meaty mud crabs coated in a savory, aromatic salted egg yolk sauce with curry leaves and bird's eye chilies.",
-    chineseDescription: "精选肥美肉蟹大火爆炒，裹满咸香浓郁的纯手工金黄咸蛋黄沙，伴以咖喱叶清香，吮指留香。",
-    image: "https://images.unsplash.com/photo-1534080391025-a77af6ebc1a4?w=800&q=80",
+    description: "De-boned whole duck stuffed with premium ingredients including glutinous rice, lotus seeds, shiitake mushrooms, salted egg yolks, and slow-braised to melting tenderness.",
+    chineseDescription: "经典名菜。整鸭手工去骨，酿入糯米、莲子、花菇、咸蛋黄等八种珍贵食材，文火慢熬至鸭肉酥烂，汤汁浓郁咸香。",
+    image: "/images/eight-treasure-duck.jpg",
   },
 
   // ================= 精致西餐 (6张) =================
@@ -84,16 +84,16 @@ const galleryItems: GalleryItem[] = [
     category: "western",
     description: "Pan-seared prawns tossed in a vibrant Mediterranean tomato glaze with fresh Italian basil and olive oil.",
     chineseDescription: "煎至弹牙的鲜虾裹满地中海风味茄汁，伴以新鲜意大利罗勒与初榨橄榄油，酸甜清爽。",
-    image: "https://images.unsplash.com/photo-1534422298391-e4f8317fba10?w=800&q=80",
+    image: "/images/tuscany-prawns.jpg",
   },
   {
     id: "dessert-table",
-    title: "Premium Pastry & Sweet Table",
-    chineseTitle: "西式精美甜点拼盘",
+    title: "Premium Pastry & Sweet",
+    chineseTitle: "西式精美甜点",
     category: "western",
     description: "An elegant assortment of petite desserts, fresh seasonal fruits, and premium traditional Chinese sweet soup.",
     chineseDescription: "琳琅满目的西式一口小甜点、时令新鲜水果，搭配传统滋补中式糖水，为宴席画上完美句号。",
-    image: "https://images.unsplash.com/photo-1488477181946-6428a0291777?w=800&q=80",
+    image: "/images/dessert.png",
   },
   {
     id: "black-pepper-sirloin",
@@ -112,7 +112,7 @@ const galleryItems: GalleryItem[] = [
     category: "western",
     description: "Norwegian salmon fillet pan-seared with crispy skin, served in a rich black truffle white wine cream.",
     chineseDescription: "挪威直达三文鱼排煎至表皮酥脆，伴以黑松露白葡萄酒奶油调色，奶香浓郁，层次丰富。",
-    image: "https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=800&q=80",
+    image: "/images/pan-seared-salmon.png",
   },
   {
     id: "braised-beef-cheek",
@@ -121,7 +121,7 @@ const galleryItems: GalleryItem[] = [
     category: "western",
     description: "Tender beef cheek slow-braised for 6 hours in rich Bordeaux red wine, root vegetables, and fresh herbs.",
     chineseDescription: "精选极嫩牛颊肉，融入波尔多红酒、香草和根茎蔬菜在文火中慢熬6小时，入口即化，极为甘美。",
-    image: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&q=80",
+    image: "/images/braised-beef-cheek.jpg",
   },
   {
     id: "truffle-mushroom-pasta",
@@ -130,7 +130,66 @@ const galleryItems: GalleryItem[] = [
     category: "western",
     description: "Artisanal pasta tossed with woodland mushrooms and a luxurious porcini and truffle cream sauce.",
     chineseDescription: "意式手工宽面融入饱满野菇，裹着细腻馥郁的牛肝菌与黑松露特制奶油，香气极其摄人。",
-    image: "https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=800&q=80",
+    image: "/images/truffle-mushroom-pasta.jpg",
+  },
+
+  // ================= 日式美馔 (6张) =================
+  {
+    id: "sushi-platter",
+    title: "Premium Sushi Platter",
+    chineseTitle: "极品手作寿司拼盘",
+    category: "japanese",
+    description: "An exquisite selection of hand-pressed nigiri and creative maki rolls, featuring pristine salmon, tuna, and sweet shrimp.",
+    chineseDescription: "匠心手作的精致握寿司与创意卷物组合，严选肥美三文鱼、金枪鱼及鲜甜牡丹虾，口感丰富饱满。",
+    image: "/images/sushi-platter.jpg",
+    tag: "Signature • 招牌",
+  },
+  {
+    id: "sashimi-boat",
+    title: "Luxury Sashimi Boat",
+    chineseTitle: "奢华深海刺身船",
+    category: "japanese",
+    description: "Chef’s signature display of freshly sliced premium raw seafood, presented on an ice-bedded traditional wooden boat.",
+    chineseDescription: "主厨特选极鲜深海刺身，冰镇呈现于传统木船之上。厚切三文鱼、金枪鱼与极品海胆，极致鲜美。",
+    image: "/images/sashimi-boat.jpg",
+    tag: "Chef's Choice • 主厨推荐",
+  },
+  {
+    id: "onigiri",
+    title: "Artisanal Onigiri Trio",
+    chineseTitle: "手作三角海苔饭团",
+    category: "japanese",
+    description: "Traditional Japanese triangular rice balls wrapped in crispy nori, featuring classic fillings of grilled salmon and savory Umeboshi.",
+    chineseDescription: "传统手作三角饭团裹上香脆海苔，精选蒲烧三文鱼与酸甜梅子内馅，口感质朴而回味无穷。",
+    image: "/images/onigiri.jpg",
+  },
+  {
+    id: "tempura",
+    title: "Crispy Shrimp & Vegetable Tempura",
+    chineseTitle: "黄金海鲜野菜天妇罗",
+    category: "japanese",
+    description: "Lightly battered jumbo prawns and fresh seasonal vegetables, fried to a golden crisp and served with artisan tentsuyu sauce.",
+    chineseDescription: "轻盈酥脆的特大鲜虾与时令野菜，以经典手法炸至金黄，搭配特调天妇罗萝卜泥蘸酱，酥香不腻。",
+    image: "/images/tempura.png",
+  },
+  {
+    id: "yakitori",
+    title: "Charcoal-Grilled Yakitori",
+    chineseTitle: "备长炭火烤鸡肉串",
+    category: "japanese",
+    description: "Succulent chicken thighs and spring onions skewered and grilled over binchotan, glazed with our rich homemade tare sauce.",
+    chineseDescription: "精选鲜嫩鸡腿肉与香葱串起，经备长炭火慢烤，裹上秘制浓郁照烧酱汁，外焦里嫩，香气扑鼻。",
+    image: "/images/yakitori.png",
+    tag: "Popular • 热销",
+  },
+  {
+    id: "katsu",
+    title: "Golden Crispy Pork Katsu",
+    chineseTitle: "黄金吉列炸猪排",
+    category: "japanese",
+    description: "Thick-cut premium pork loin coated in airy panko crumbs, deep-fried to perfect juiciness, served with tangy tonkatsu sauce.",
+    chineseDescription: "严选厚切极佳猪里脊，裹上松软面包糠炸至金黄酥脆。切开时肉汁充盈，搭配特调酸甜吉列酱汁。",
+    image: "/images/katsu.png",
   },
 
   // ================= 宴席摆盘 (6张) =================
@@ -170,7 +229,7 @@ const galleryItems: GalleryItem[] = [
     category: "setup",
     description: "Majestic round table layout adorned with traditional rich crimson linen, golden centerpieces, and fine china.",
     chineseDescription: "极具威仪的巨型圆桌，大气的传统喜庆正红台布，配以璀璨金器盆景与华贵瓷器，尽显大家风范。",
-    image: "https://images.unsplash.com/photo-1519741497674-611481863552?w=800&q=80",
+    image: "/images/setup-chinese-royal.jpg",
   },
   {
     id: "setup-cocktail-canapes",
@@ -179,7 +238,7 @@ const galleryItems: GalleryItem[] = [
     category: "setup",
     description: "Sleek and illuminated food stations featuring meticulously arranged finger foods and party appetizers.",
     chineseDescription: "极简发光餐盘上，整齐排列着五彩斑斓、精致玲珑的西式一口冷餐小食，凸显商务酒会的高端格调。",
-    image: "https://images.unsplash.com/photo-1555244162-803834f70033?w=800&q=80",
+    image: "/images/setup-cocktail-canapes.jpg",
   },
   {
     id: "setup-eco-elegant",
@@ -188,7 +247,7 @@ const galleryItems: GalleryItem[] = [
     category: "setup",
     description: "Elegant curation of handcrafted pastries, fine desserts, and fresh seasonal fruits elegantly presented on tiered platters.",
     chineseDescription: "精心陈列的手工烘焙西式糕点、精美甜品与时令鲜果，以极具艺术层次感的层架高雅呈现，为您的盛宴更添甜蜜与尊贵。",
-    image: "https://images.unsplash.com/photo-1517260911058-0fcfd733c021?w=800&q=80",
+    image: "/images/setup-eco-elegant.jpg",
   },
 ];
 
@@ -197,7 +256,7 @@ interface GallerySectionProps {
 }
 
 export function GallerySection({ lang = "en" }: GallerySectionProps) {
-  const [filter, setFilter] = useState<"all" | "chinese" | "western" | "setup">("all");
+  const [filter, setFilter] = useState<"all" | "chinese" | "western" | "setup" | "japanese">("all");
 
   const filteredItems = galleryItems.filter(
     (item) => filter === "all" || item.category === filter
@@ -244,6 +303,7 @@ export function GallerySection({ lang = "en" }: GallerySectionProps) {
             [
               { id: "all", en: "All Showcase", zh: "全部展示" },
               { id: "chinese", en: "Chinese Heritage", zh: "招牌中餐" },
+              { id: "japanese", en: "Japanese Delights", zh: "日式美馔" },
               { id: "western", en: "Western Favorites", zh: "精致西餐" },
               { id: "setup", en: "Catering Setups", zh: "宴席摆盘" },
             ] as const
@@ -304,6 +364,8 @@ export function GallerySection({ lang = "en" }: GallerySectionProps) {
                     <span className="text-xs text-primary font-bold tracking-widest uppercase">
                       {item.category === "chinese"
                         ? (lang === "en" ? "Heritage Chinese" : "经典中餐")
+                        : item.category === "japanese"
+                        ? (lang === "en" ? "Japanese Delights" : "日式美馔")
                         : item.category === "western"
                         ? (lang === "en" ? "Western Delights" : "西式精选")
                         : (lang === "en" ? "Banquet Setup" : "现场布置")}
