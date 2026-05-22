@@ -86,7 +86,7 @@ export function FooterSection({ lang = "en" }: FooterSectionProps) {
                 </div>
               </motion.div>
 
-              {/* 右侧：极致微缩的高奢地图 */}
+              {/* 右侧：圆角纯净彩色地图，支持悬停优雅放大 */}
               <motion.div
                 initial={{ opacity: 0, x: 30 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -94,53 +94,42 @@ export function FooterSection({ lang = "en" }: FooterSectionProps) {
                 transition={{ duration: 0.6, delay: 0.1 }}
                 className="lg:col-span-4 flex justify-center lg:justify-end"
               >
-                {/* 极致缩小的外层精美框，高奢的白色亮面边缘与磨砂卡片 */}
-                <div className="relative group w-full max-w-[280px] p-2 bg-white/10 backdrop-blur-md rounded-[2rem] border border-white/20 shadow-[0_12px_32px_rgba(0,0,0,0.15)] hover:border-white/30 transition-all duration-500">
-                  <div className="relative w-full h-[120px] rounded-[1.5rem] overflow-hidden">
-                    {/* Skeleton 骨架 screen */}
-                    <AnimatePresence>
-                      {!mapLoaded && (
-                        <motion.div
-                          exit={{ opacity: 0 }}
-                          transition={{ duration: 0.4 }}
-                          className="absolute inset-0 z-20 flex flex-col items-center justify-center bg-stone-100 dark:bg-stone-900 animate-pulse"
-                        >
-                          <Compass className="w-6 h-6 text-amber-600 animate-spin-slow mb-1" />
-                          <span className="text-[9px] font-bold text-muted-foreground uppercase tracking-widest">
-                            {isChinese ? "载入位置..." : "Loading..."}
-                          </span>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
+                {/* 纯净地图容器，直接使用 rounded-[2rem] 和轻量边框，去除外包卡片与浮条，高度调大至 200px，宽度 max-w-[350px]，带 Hover 优雅缩放动效 */}
+                <motion.div 
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                  className="relative w-full max-w-[350px] h-[180px] md:h-[200px] rounded-[2rem] overflow-hidden border border-white/20 shadow-[0_15px_35px_rgba(0,0,0,0.12)] cursor-pointer"
+                >
+                  {/* Skeleton 骨架 screen */}
+                  <AnimatePresence>
+                    {!mapLoaded && (
+                      <motion.div
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.4 }}
+                        className="absolute inset-0 z-20 flex flex-col items-center justify-center bg-stone-100 dark:bg-stone-900 animate-pulse"
+                      >
+                        <Compass className="w-8 h-8 text-amber-600 animate-spin-slow mb-2" />
+                        <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest">
+                          {isChinese ? "载入地图..." : "Loading Map..."}
+                        </span>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
 
-                    {/* 地图 iframe 嵌入 */}
-                    <iframe
-                      title="Kim Long Footer Location Map"
-                      src={mapEmbedSrc}
-                      width="100%"
-                      height="100%"
-                      style={{ border: 0 }}
-                      allowFullScreen={true}
-                      loading="lazy"
-                      referrerPolicy="no-referrer-when-downgrade"
-                      onLoad={() => setMapLoaded(true)}
-                      className="w-full h-full object-cover transition-all duration-500"
-                    />
-                  </div>
-
-                  {/* 极致精简的小条幅一键导航 */}
-                  <a
-                    href={mapUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center justify-between mt-2 px-3.5 py-2 rounded-xl bg-white/15 hover:bg-white/25 text-white transition-all duration-300 group/btn select-none"
-                  >
-                    <span className="text-[10px] font-extrabold tracking-wide">
-                      {isChinese ? "在谷歌地图中打开导航" : "Navigate via Google Maps"}
-                    </span>
-                    <ExternalLink className="w-3 h-3 opacity-80 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
-                  </a>
-                </div>
+                  {/* 地图 iframe 嵌入 */}
+                  <iframe
+                    title="Kim Long Footer Location Map"
+                    src={mapEmbedSrc}
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    allowFullScreen={true}
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    onLoad={() => setMapLoaded(true)}
+                    className="w-full h-full object-cover"
+                  />
+                </motion.div>
               </motion.div>
 
             </div>
