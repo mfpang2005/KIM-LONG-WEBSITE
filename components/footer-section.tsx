@@ -76,6 +76,61 @@ export function FooterSection({ lang = "en" }: FooterSectionProps) {
       {/* Footer Content */}
       <div className="py-16 border-t border-background/5">
         <div className="container mx-auto px-6">
+          
+          {/* Trust Badges Bar / 运营背书亮点横向卡片栏 */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 pb-12 mb-12 border-b border-white/5">
+            {/* 卡片 1 */}
+            <div className="group flex items-center gap-4 bg-white/[0.02] hover:bg-white/[0.04] p-5 rounded-2xl border border-white/5 hover:border-amber-500/20 transition-all duration-300">
+              <div className="p-3 rounded-xl bg-amber-500/5 group-hover:bg-amber-500/10 text-amber-400 transition-colors duration-300 flex-shrink-0">
+                <Truck className="w-6 h-6" />
+              </div>
+              <div className="text-left">
+                <h4 className="text-sm md:text-base font-extrabold text-white">
+                  {isChinese ? "卓越配送与运力" : "Logistics & Delivery"}
+                </h4>
+                <p className="text-xs text-background/60 mt-1 leading-normal font-medium">
+                  {isChinese 
+                    ? "每日配送超 5000 人份 • 日运超 65 趟次" 
+                    : "5000+ pax daily • 65+ trips/day"}
+                </p>
+              </div>
+            </div>
+
+            {/* 卡片 2 */}
+            <div className="group flex items-center gap-4 bg-white/[0.02] hover:bg-white/[0.04] p-5 rounded-2xl border border-white/5 hover:border-amber-500/20 transition-all duration-300">
+              <div className="p-3 rounded-xl bg-amber-500/5 group-hover:bg-amber-500/10 text-amber-400 transition-colors duration-300 flex-shrink-0">
+                <ShieldCheck className="w-6 h-6" />
+              </div>
+              <div className="text-left">
+                <h4 className="text-sm md:text-base font-extrabold text-white">
+                  {isChinese ? "百万食品安全保障" : "Food Safety Insurance"}
+                </h4>
+                <p className="text-xs text-background/60 mt-1 leading-normal font-medium">
+                  {isChinese 
+                    ? "投保 200 万令吉食品责任险" 
+                    : "RM 2 Million Food Product Liability"}
+                </p>
+              </div>
+            </div>
+
+            {/* 卡片 3 */}
+            <div className="group flex items-center gap-4 bg-white/[0.02] hover:bg-white/[0.04] p-5 rounded-2xl border border-white/5 hover:border-amber-500/20 transition-all duration-300">
+              <div className="p-3 rounded-xl bg-amber-500/5 group-hover:bg-amber-500/10 text-amber-400 transition-colors duration-300 flex-shrink-0">
+                <Sparkles className="w-6 h-6" />
+              </div>
+              <div className="text-left">
+                <h4 className="text-sm md:text-base font-extrabold text-white">
+                  {isChinese ? "四十载品牌传承" : "40+ Years Heritage"}
+                </h4>
+                <p className="text-xs text-background/60 mt-1 leading-normal font-medium">
+                  {isChinese 
+                    ? "源自 1982 年马来西亚柔佛老字号" 
+                    : "Since 1982 Johor Senai 老字号"}
+                </p>
+              </div>
+            </div>
+          </div>
+
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
             {/* Brand */}
             <div className="lg:col-span-1 space-y-6">
@@ -102,32 +157,6 @@ export function FooterSection({ lang = "en" }: FooterSectionProps) {
                   ? "“岁月沉淀经典，金龙与您共赴人生每一个重要时刻。” 始于 1982 年的舌尖非遗传承，为马来西亚柔佛提供最正宗的手工中餐味道与高档宴席承办。"
                   : "\"Time honors classic taste. Kim Long accompanies you through every momentous milestone of life.\" Serving Johor with authentic taste since 1982."}
               </p>
-              <div className="space-y-3 pt-3 text-background/70 text-xs font-semibold">
-                <div className="flex items-center gap-2">
-                  <Truck className="w-4 h-4 text-primary flex-shrink-0" />
-                  <span>
-                    {isChinese 
-                      ? "每日配送超 5000人份 • 日运超 65 趟次" 
-                      : "5000+ pax daily • 65+ trips/day"}
-                  </span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <ShieldCheck className="w-4 h-4 text-primary flex-shrink-0" />
-                  <span>
-                    {isChinese 
-                      ? "投保 200 万令吉食品责任险" 
-                      : "RM 2 Million Food Product Liability Insurance"}
-                  </span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Sparkles className="w-4 h-4 text-primary flex-shrink-0" />
-                  <span>
-                    {isChinese 
-                      ? "四十载匠心传承 • 源自 1982 年老字号" 
-                      : "40+ Years Heritage • Since 1982 Johor"}
-                  </span>
-                </div>
-              </div>
             </div>
 
             {/* Quick Links */}
