@@ -221,7 +221,7 @@ export function AboutSection({ lang = "en" }: AboutSectionProps) {
                       className={`group absolute w-full max-w-[280px] md:max-w-[340px] flex flex-col items-center justify-center text-center gap-6 transition-all duration-500 ${award.image ? 'cursor-pointer' : ''}`}
                     >
                       {/* Large Image/Icon Container - Frameless & No Scaling */}
-                      <div className="relative w-40 h-40 md:w-48 md:h-48 flex-shrink-0 flex items-center justify-center">
+                      <div className="relative w-56 h-56 md:w-72 md:h-72 flex-shrink-0 flex items-center justify-center">
                         {award.image ? (
                           <>
                             <Image
@@ -229,7 +229,7 @@ export function AboutSection({ lang = "en" }: AboutSectionProps) {
                               alt={award.title}
                               fill
                               className="object-contain drop-shadow-xl"
-                              sizes="200px"
+                              sizes="300px"
                             />
                             {/* Simple Hover Overlay */}
                             <div className="absolute inset-0 bg-white/10 dark:bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-[2px] rounded-xl">
