@@ -43,6 +43,27 @@ export function AboutSection({ lang = "en" }: AboutSectionProps) {
   const [lightboxTitle, setLightboxTitle] = useState("");
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
+  // NOTE: 轮流滚动状态
+  const [isHovered, setIsHovered] = useState(false);
+  const [awardQueue, setAwardQueue] = useState(() => awards.map((a, i) => ({...a, originalIndex: i})));
+
+  useEffect(() => {
+    setAwardQueue(awards.map((a, i) => ({...a, originalIndex: i})));
+  }, [awards]);
+
+  useEffect(() => {
+    if (isHovered || isLightboxOpen) return;
+    const timer = setInterval(() => {
+      setAwardQueue((prev) => {
+        const next = [...prev];
+        const first = next.shift();
+        if (first) next.push(first);
+        return next;
+      });
+    }, 3000);
+    return () => clearInterval(timer);
+  }, [isHovered, isLightboxOpen]);
+
   // NOTE: 监听 ESC 键盘按键以关闭 Lightbox
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -175,61 +196,72 @@ export function AboutSection({ lang = "en" }: AboutSectionProps) {
               </h3>
             </div>
 
-            {/* Business-style Awards Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {awards.map((award, index) => (
-                <div 
-                  key={index} 
-                  onClick={() => award.image ? handleImageClick(index) : undefined}
-                  className={`group relative bg-white/70 dark:bg-stone-900/40 backdrop-blur-md border border-border/60 hover:border-amber-500/40 rounded-2xl p-4 md:p-5 flex items-center gap-4 transition-all duration-300 ${award.image ? 'cursor-pointer hover:shadow-lg hover:-translate-y-1' : ''} ${index === 4 ? 'sm:col-span-2 bg-gradient-to-br from-white/70 to-amber-50/30 dark:from-stone-900/40 dark:to-stone-800/40' : ''}`}
-                >
-                  {/* Image/Icon Container - Uniform size */}
-                  <div className="relative w-16 h-16 md:w-20 md:h-20 flex-shrink-0 bg-white dark:bg-stone-800 rounded-xl border border-border/50 shadow-sm overflow-hidden flex items-center justify-center p-2 transition-all duration-300 group-hover:shadow-md">
-                    {award.image ? (
-                      <>
-                        <Image
-                          src={award.image}
-                          alt={award.title}
-                          fill
-                          className={`object-contain p-2 transition-transform duration-500 group-hover:scale-110`}
-                          sizes="80px"
-                        />
-                        {/* Hover Overlay */}
-                        <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-[2px]">
-                          <Eye className="w-5 h-5 text-amber-400" />
-                        </div>
-                      </>
-                    ) : (
-                      <div className="w-full h-full bg-primary/5 flex items-center justify-center">
-                        {(() => {
-                          const IconComponent = award.icon;
-                          return <IconComponent className="w-8 h-8 text-primary/80" />;
-                        })()}
+            {/* Business-style Awards Spotlight - Smooth Single Item Carousel */}
+            <div 
+              className="relative w-full h-[320px] md:h-[400px] flex items-center justify-center py-4"
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
+            >
+              <AnimatePresence>
+                {awardQueue.slice(0, 1).map((awardItem) => {
+                  const { originalIndex, ...award } = awardItem;
+                  return (
+                    <motion.div 
+                      key={award.title} 
+                      initial={{ opacity: 0, y: 30, filter: "blur(8px)" }}
+                      animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                      exit={{ opacity: 0, y: -30, filter: "blur(8px)" }}
+                      transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                      onClick={() => award.image ? handleImageClick(originalIndex) : undefined}
+                      className={`group absolute w-full max-w-[280px] md:max-w-[340px] bg-gradient-to-b from-white/90 to-amber-50/80 dark:from-stone-900/80 dark:to-stone-800/80 backdrop-blur-xl border border-amber-500/20 hover:border-amber-500/60 rounded-[2rem] p-6 md:p-8 flex flex-col items-center text-center gap-4 transition-all duration-500 shadow-xl shadow-amber-900/5 ${award.image ? 'cursor-pointer hover:shadow-[0_15px_40px_-10px_rgba(245,158,11,0.3)] hover:-translate-y-2' : ''}`}
+                    >
+                      {/* Large Image/Icon Container - Frameless */}
+                      <div className="relative w-32 h-32 md:w-40 md:h-40 flex-shrink-0 flex items-center justify-center transition-all duration-500 group-hover:scale-105">
+                        {award.image ? (
+                          <>
+                            <Image
+                              src={award.image}
+                              alt={award.title}
+                              fill
+                              className={`object-contain transition-transform duration-700 group-hover:scale-110 drop-shadow-xl`}
+                              sizes="200px"
+                            />
+                            {/* Frameless Hover Overlay */}
+                            <div className="absolute inset-0 bg-white/10 dark:bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-[2px] rounded-2xl">
+                              <Eye className="w-8 h-8 text-amber-500 drop-shadow-md" />
+                            </div>
+                          </>
+                        ) : (
+                          <div className="flex items-center justify-center">
+                            {(() => {
+                              const IconComponent = award.icon;
+                              return <IconComponent className="w-20 h-20 text-amber-500/80 drop-shadow-xl" />;
+                            })()}
+                          </div>
+                        )}
                       </div>
-                    )}
-                  </div>
 
-                  {/* Text Content */}
-                  <div className="flex-1">
-                    <h4 className={`font-bold text-foreground leading-snug line-clamp-2 mb-1.5 transition-colors duration-300 group-hover:text-amber-600 dark:group-hover:text-amber-500 ${index === 4 ? 'text-base md:text-lg' : 'text-sm md:text-base'}`}>
-                      {award.title}
-                    </h4>
-                    <div className="flex items-center gap-3">
-                      <div className="flex gap-0.5">
-                        {[...Array(5)].map((_, i) => (
-                          <Star key={i} className="w-3.5 h-3.5 fill-amber-500 text-amber-500" />
-                        ))}
+                      {/* Text Content */}
+                      <div className="flex flex-col items-center gap-3 w-full">
+                        <div className="flex gap-1">
+                          {[...Array(5)].map((_, i) => (
+                            <Star key={i} className="w-4 h-4 fill-amber-500 text-amber-500 drop-shadow-sm" />
+                          ))}
+                        </div>
+                        <h4 className={`font-bold text-foreground leading-tight line-clamp-2 transition-colors duration-300 group-hover:text-amber-600 dark:group-hover:text-amber-500 text-lg md:text-xl px-1`}>
+                          {award.title}
+                        </h4>
+                        {award.image && (
+                          <span className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-amber-500/10 text-amber-600 dark:text-amber-400 text-xs font-semibold transition-all duration-300 group-hover:bg-amber-500 group-hover:text-white mt-1">
+                            <Eye className="w-3.5 h-3.5" />
+                            {isChinese ? "点击查看原件" : "View Original"}
+                          </span>
+                        )}
                       </div>
-                      {award.image && (
-                        <span className="text-[10px] md:text-xs font-medium text-muted-foreground group-hover:text-amber-500 transition-colors opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 duration-300 flex items-center gap-1">
-                          <Eye className="w-3 h-3" />
-                          {isChinese ? "查看证书" : "View"}
-                        </span>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              ))}
+                    </motion.div>
+                  );
+                })}
+              </AnimatePresence>
             </div>
 
           </motion.div>

@@ -285,6 +285,20 @@ const servicesData = {
       title: "Factory Daily Meal Supply",
       description: "Reliable daily meal supply for factories and large organizations. Serving over 5000+ pax daily with our dedicated fleet.",
     },
+    {
+      id: "canopy-rental",
+      iconName: "Tent" as const,
+      colorScheme: "sapphire" as const,
+      title: "Canopy Rental Services",
+      description: "High-quality canopy and tent rentals for outdoor events. Includes complete setup with tables, chairs, fans, and lighting.",
+    },
+    {
+      id: "event-backdrop",
+      iconName: "Palette" as const,
+      colorScheme: "amber" as const,
+      title: "Event Backdrop Services",
+      description: "Custom event backdrop design, printing, and setup to elevate your event's visual appeal and provide perfect photo opportunities.",
+    },
   ],
   zh: [
     {
@@ -307,6 +321,20 @@ const servicesData = {
       colorScheme: "emerald" as const,
       title: "工厂膳食与大型机构长期供应",
       description: "为大型跨国工厂及机构提供准时、安全、卫生的膳食日常配给。拥有专业恒温保温车队，日配送超5000人份。",
+    },
+    {
+      id: "canopy-rental",
+      iconName: "Tent" as const,
+      colorScheme: "sapphire" as const,
+      title: "大型帐篷租赁服务 (Canopy Rental)",
+      description: "为户外活动、婚礼和企业宴会提供高品质帐篷租赁，涵盖各类型号帐篷、桌椅、风扇及照明搭建。",
+    },
+    {
+      id: "event-backdrop",
+      iconName: "Palette" as const,
+      colorScheme: "amber" as const,
+      title: "活动背景板布置 (Event Backdrop)",
+      description: "专业的活动背景板设计、高清打印与现场搭建服务，提升现场视觉效果，打造完美的拍照打卡点。",
     },
   ],
 };
@@ -589,6 +617,28 @@ export function ServicesSection({ lang = "en" }: ServicesSectionProps) {
                             </p>
                           </div>
                         </>
+                      )}
+
+                      {/* 4. 帐篷租赁服务内容 */}
+                      {service.id === "canopy-rental" && (
+                        <div className="mt-6 p-6 bg-secondary/50 rounded-2xl border border-border/60 text-center">
+                          <p className="text-muted-foreground leading-relaxed">
+                            {isChinese 
+                              ? "我们提供多种规格的帐篷（如 A字帐篷、金字塔帐篷、透明帐篷等），并可配套桌椅、风扇、冷风机及照明设备。请联系我们的客服获取详细报价与场地规划建议。" 
+                              : "We offer various tent sizes (e.g., A-shape, Pyramid, Transparent tents) along with tables, chairs, fans, air coolers, and lighting equipment. Please contact our customer service for a detailed quotation and site planning."}
+                          </p>
+                        </div>
+                      )}
+
+                      {/* 5. 活动背景板布置内容 */}
+                      {service.id === "event-backdrop" && (
+                        <div className="mt-6 p-6 bg-secondary/50 rounded-2xl border border-border/60 text-center">
+                          <p className="text-muted-foreground leading-relaxed">
+                            {isChinese 
+                              ? "我们提供专业的背景板（Backdrop）设计、打印与现场坚固搭建服务，适用于各类晚宴、发布会及庆典活动。欢迎向客服获取更多过往案例及报价。" 
+                              : "We provide professional backdrop design, printing, and sturdy on-site setup services suitable for annual dinners, product launches, and celebrations. Contact us for past portfolios and quotes."}
+                          </p>
+                        </div>
                       )}
 
                     </div>

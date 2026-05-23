@@ -108,12 +108,12 @@ export function ClientsSection({ lang = "en" }: ClientsSectionProps) {
           <div className="absolute inset-y-0 left-0 w-16 md:w-32 bg-gradient-to-r from-secondary/30 to-transparent z-10 pointer-events-none" />
           <div className="absolute inset-y-0 right-0 w-16 md:w-32 bg-gradient-to-l from-secondary/30 to-transparent z-10 pointer-events-none" />
 
-          {/* Row 1 - Scrolling Right */}
-          <div className="flex w-[200%] sm:w-[150%] md:w-[200%] lg:w-[150%] overflow-hidden">
+          {/* Row 1 - Scrolling Left */}
+          <div className="flex overflow-hidden w-full">
             <motion.div
-              animate={{ x: ["-50%", "0%"] }}
-              transition={{ repeat: Infinity, ease: "linear", duration: 35 }}
-              className="flex gap-4 sm:gap-6 w-full"
+              animate={{ x: ["0%", "-50%"] }}
+              transition={{ repeat: Infinity, ease: "linear", duration: 40 }}
+              className="flex gap-4 sm:gap-6 w-max"
             >
               {[...clientsRow1, ...clientsRow1].map((client, index) => (
                 <div
@@ -137,12 +137,12 @@ export function ClientsSection({ lang = "en" }: ClientsSectionProps) {
             </motion.div>
           </div>
 
-          {/* Row 2 - Scrolling Right (Different speed/offset) */}
-          <div className="flex w-[200%] sm:w-[150%] md:w-[200%] lg:w-[150%] overflow-hidden">
+          {/* Row 2 - Scrolling Left (Different speed/offset) */}
+          <div className="flex overflow-hidden w-full">
             <motion.div
-              animate={{ x: ["-50%", "0%"] }}
-              transition={{ repeat: Infinity, ease: "linear", duration: 40 }}
-              className="flex gap-4 sm:gap-6 w-full"
+              animate={{ x: ["0%", "-50%"] }}
+              transition={{ repeat: Infinity, ease: "linear", duration: 45 }}
+              className="flex gap-4 sm:gap-6 w-max ml-8"
             >
               {[...clientsRow2, ...clientsRow2].map((client, index) => (
                 <div
