@@ -327,11 +327,11 @@ function MenuCard({ menu, lang }: MenuCardProps) {
     <motion.div
       initial={{ opacity: 0, y: 15 }}
       animate={{ opacity: 1, y: 0 }}
-      className="bg-card border border-border rounded-2xl p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+      className="relative bg-card border border-border rounded-2xl p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
     >
       <div className="flex items-start justify-between mb-4">
         <div>
-          <h4 className="text-lg font-bold text-foreground">
+          <h4 className="text-lg font-bold text-foreground pr-20">
             {isChinese ? menu.chineseName : menu.name}
           </h4>
           <p className="text-xl font-black text-primary mt-1">
@@ -339,8 +339,8 @@ function MenuCard({ menu, lang }: MenuCardProps) {
           </p>
         </div>
         {(menu.badge || menu.chineseBadge) && (
-          <span className="inline-flex items-center gap-1 bg-primary text-primary-foreground px-3 py-1 rounded-full text-xs font-bold shadow-sm shadow-primary/20">
-            <Star className="w-3.5 h-3.5 fill-current" />
+          <span className="absolute top-[26px] right-6 inline-flex items-center gap-0.5 bg-primary text-primary-foreground px-2 py-0.5 rounded-full text-[10px] font-extrabold shadow-sm shadow-primary/20">
+            <Star className="w-3 h-3 fill-current" />
             {isChinese ? menu.chineseBadge : menu.badge}
           </span>
         )}
@@ -371,12 +371,12 @@ function BentoCard({ menu, lang }: BentoCardProps) {
     <motion.div
       initial={{ opacity: 0, y: 15 }}
       animate={{ opacity: 1, y: 0 }}
-      className="bg-card border border-border rounded-2xl p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between"
+      className="relative bg-card border border-border rounded-2xl p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between"
     >
       <div>
         <div className="flex items-start justify-between mb-4">
           <div>
-            <h4 className="text-lg font-bold text-foreground">
+            <h4 className="text-lg font-bold text-foreground pr-20">
               {isChinese ? menu.chineseName : menu.name}
             </h4>
             <p className="text-xl font-black text-primary mt-1">
@@ -384,8 +384,8 @@ function BentoCard({ menu, lang }: BentoCardProps) {
             </p>
           </div>
           {(menu.badge || menu.chineseBadge) && (
-            <span className="inline-flex items-center gap-1 bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-bold shadow-sm">
-              <Star className="w-3.5 h-3.5 fill-current" />
+            <span className="absolute top-[26px] right-6 inline-flex items-center gap-0.5 bg-primary/10 text-primary px-2 py-0.5 rounded-full text-[10px] font-extrabold shadow-sm">
+              <Star className="w-3 h-3 fill-current" />
               {isChinese ? menu.chineseBadge : menu.badge}
             </span>
           )}
