@@ -288,6 +288,8 @@ export function FooterSection({ lang = "en" }: FooterSectionProps) {
                 <li>{isChinese ? "宴会自助餐承办" : "Event Buffet Catering"}</li>
                 <li>{isChinese ? "高级企业会议便当" : "Premium Corporate Bento"}</li>
                 <li>{isChinese ? "工厂膳食日常配给" : "Factory Daily Meal Supply"}</li>
+                <li>{isChinese ? "大型帐篷租赁服务" : "Canopy Rental Services"}</li>
+                <li>{isChinese ? "活动背景板布置" : "Event Backdrop Services"}</li>
               </ul>
             </div>
 

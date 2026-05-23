@@ -366,37 +366,37 @@ Thank you!`;
         </div>
 
         {/* Main Grid */}
-        <div className="grid lg:grid-cols-12 gap-8 max-w-6xl mx-auto items-stretch">
+        <div className="grid lg:grid-cols-12 gap-6 max-w-5xl mx-auto items-stretch">
           
           {/* Left panel: Inputs (7 cols) */}
-          <div className="lg:col-span-7 bg-card border border-border rounded-3xl p-6 md:p-8 space-y-8 flex flex-col justify-between shadow-sm relative overflow-hidden">
+          <div className="lg:col-span-7 bg-card border border-border rounded-3xl p-5 md:p-6 space-y-6 flex flex-col justify-between shadow-sm relative overflow-hidden">
             
             {/* Step 1: Select Package */}
-            <div className="space-y-4">
+            <div className="space-y-3">
               <div className="flex items-center gap-2">
-                <span className="w-6 h-6 rounded-full bg-primary/20 text-primary flex items-center justify-center text-xs font-bold">1</span>
-                <h3 className="font-extrabold text-base md:text-lg text-foreground">
+                <span className="w-5 h-5 rounded-full bg-primary/20 text-primary flex items-center justify-center text-[10px] font-bold">1</span>
+                <h3 className="font-extrabold text-sm md:text-base text-foreground">
                   {lang === "en" ? "Choose Main Buffet Package" : "第一步：选择基准订餐配套"}
                 </h3>
               </div>
               
-              <div className="grid sm:grid-cols-2 gap-3">
+              <div className="grid sm:grid-cols-2 gap-2.5">
                 {packages.map((pkg) => (
                   <button
                     key={pkg.id}
                     id={`calc-pkg-btn-${pkg.id}`}
                     onClick={() => setSelectedPackageId(pkg.id)}
-                    className={`flex flex-col text-left p-4 rounded-2xl border transition-all duration-300 cursor-pointer ${
+                    className={`flex flex-col text-left p-3.5 rounded-2xl border transition-all duration-300 cursor-pointer ${
                       selectedPackageId === pkg.id
                         ? "border-primary bg-primary/5 ring-1 ring-primary shadow-sm shadow-primary/10"
                         : "border-border bg-background hover:border-foreground/20"
                     }`}
                   >
-                    <span className="font-extrabold text-sm text-foreground">
+                    <span className="font-extrabold text-[13px] text-foreground">
                       {lang === "en" ? pkg.name : pkg.chineseName}
                     </span>
-                    <span className="text-primary font-black text-base mt-1">
-                      RM {pkg.pricePerPax} <span className="text-xs font-normal text-muted-foreground">/ PAX</span>
+                    <span className="text-primary font-black text-[15px] mt-1">
+                      RM {pkg.pricePerPax} <span className="text-[10px] font-normal text-muted-foreground">/ PAX</span>
                     </span>
                     <span className="text-xs text-muted-foreground mt-2 line-clamp-1">
                       {lang === "en" ? pkg.description : pkg.chineseDescription}
@@ -407,17 +407,17 @@ Thank you!`;
             </div>
 
             {/* Step 2: Slider Pax */}
-            <div className="space-y-4">
+            <div className="space-y-3">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                  <span className="w-6 h-6 rounded-full bg-primary/20 text-primary flex items-center justify-center text-xs font-bold">2</span>
-                  <h3 className="font-extrabold text-base md:text-lg text-foreground">
+                  <span className="w-5 h-5 rounded-full bg-primary/20 text-primary flex items-center justify-center text-[10px] font-bold">2</span>
+                  <h3 className="font-extrabold text-sm md:text-base text-foreground">
                     {lang === "en" ? "Set Guest Headcount" : "第二步：设定预计来宾人数 (PAX)"}
                   </h3>
                 </div>
-                <div className="bg-primary/10 text-foreground px-4 py-1.5 rounded-full font-black text-lg flex items-center gap-1">
+                <div className="bg-primary/10 text-foreground px-3 py-1 rounded-full font-black text-base flex items-center gap-1">
                   <span>{paxCount}</span>
-                  <span className="text-xs font-bold text-muted-foreground">PAX</span>
+                  <span className="text-[10px] font-bold text-muted-foreground">PAX</span>
                 </div>
               </div>
 
@@ -440,16 +440,16 @@ Thank you!`;
             </div>
 
             {/* Step 3: NEW INTERACTIVE DIY MENU BUILDER */}
-            <div className="space-y-4 border-t border-border/40 pt-6">
+            <div className="space-y-3 border-t border-border/40 pt-5">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                  <span className="w-6 h-6 rounded-full bg-primary/20 text-primary flex items-center justify-center text-xs font-bold">3</span>
-                  <h3 className="font-extrabold text-base md:text-lg text-foreground flex items-center gap-1.5">
+                  <span className="w-5 h-5 rounded-full bg-primary/20 text-primary flex items-center justify-center text-[10px] font-bold">3</span>
+                  <h3 className="font-extrabold text-sm md:text-base text-foreground flex items-center gap-1.5">
                     {lang === "en" ? "Custom DIY Dish Swapper" : "第三步：菜品在线自选与替换"}
                   </h3>
                 </div>
                 {extraDishSurcharge > 0 && (
-                  <span className="text-xs bg-primary text-primary-foreground font-bold px-2.5 py-1 rounded-full animate-bounce">
+                  <span className="text-[10px] bg-primary text-primary-foreground font-bold px-2 py-0.5 rounded-full animate-bounce">
                     {lang === "en" ? `+RM ${extraDishSurcharge}/PAX Upgrades` : `已升级: +RM ${extraDishSurcharge}/人`}
                   </span>
                 )}
@@ -473,17 +473,17 @@ Thank you!`;
                   return (
                     <div
                       key={category}
-                      className="border border-border/60 rounded-2xl p-4 bg-background/50 space-y-3"
+                      className="border border-border/60 rounded-2xl p-3 bg-background/50 space-y-2.5"
                     >
                       <div className="flex items-center justify-between">
-                        <span className="text-xs text-primary font-bold tracking-widest uppercase">
+                        <span className="text-[10px] text-primary font-bold tracking-widest uppercase">
                           {categoryLabel}
                         </span>
                         <button
                           onClick={() => setActiveSwapCategory(isSwapping ? null : category)}
-                          className="inline-flex items-center gap-1 text-xs font-extrabold text-primary hover:text-primary/80 cursor-pointer"
+                          className="inline-flex items-center gap-1 text-[10px] font-extrabold text-primary hover:text-primary/80 cursor-pointer"
                         >
-                          <RefreshCw className={`w-3.5 h-3.5 ${isSwapping ? "animate-spin" : ""}`} />
+                          <RefreshCw className={`w-3 h-3 ${isSwapping ? "animate-spin" : ""}`} />
                           {isSwapping ? (lang === "en" ? "Cancel" : "取消") : (lang === "en" ? "Swap Dish" : "替换/升级")}
                         </button>
                       </div>
@@ -497,15 +497,15 @@ Thank you!`;
                             exit={{ opacity: 0, y: -5 }}
                             className="flex justify-between items-center"
                           >
-                            <span className="font-bold text-sm text-foreground">
+                            <span className="font-bold text-[13px] text-foreground">
                               {lang === "en" ? currentDish.name : currentDish.chineseName}
                             </span>
                             {currentDish.surcharge > 0 ? (
-                              <span className="text-xs font-bold text-primary">
+                              <span className="text-[11px] font-bold text-primary">
                                 + RM {currentDish.surcharge} / PAX
                               </span>
                             ) : (
-                              <span className="text-[11px] font-bold text-muted-foreground uppercase tracking-widest">
+                              <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest">
                                 {lang === "en" ? "Included" : "已含"}
                               </span>
                             )}
@@ -524,7 +524,7 @@ Thank you!`;
                                 <button
                                   key={dish.id}
                                   onClick={() => handleSwapDish(category, dish.id)}
-                                  className={`w-full flex justify-between items-center p-3 rounded-xl border text-left text-xs font-bold transition-all duration-300 cursor-pointer ${
+                                  className={`w-full flex justify-between items-center p-2.5 rounded-xl border text-left text-[11px] font-bold transition-all duration-300 cursor-pointer ${
                                     isCurrent
                                       ? "border-primary bg-primary/10 text-primary-foreground"
                                       : "border-border bg-card text-muted-foreground hover:border-foreground/20 hover:text-foreground"
@@ -549,15 +549,15 @@ Thank you!`;
             </div>
 
             {/* Step 4: Upgrades */}
-            <div className="space-y-4 border-t border-border/40 pt-6">
+            <div className="space-y-3 border-t border-border/40 pt-5">
               <div className="flex items-center gap-2">
-                <span className="w-6 h-6 rounded-full bg-primary/20 text-primary flex items-center justify-center text-xs font-bold">4</span>
-                <h3 className="font-extrabold text-base md:text-lg text-foreground">
+                <span className="w-5 h-5 rounded-full bg-primary/20 text-primary flex items-center justify-center text-[10px] font-bold">4</span>
+                <h3 className="font-extrabold text-sm md:text-base text-foreground">
                   {lang === "en" ? "Add Optional Services" : "第四步：加购现场服务配套（可选）"}
                 </h3>
               </div>
 
-              <div className="space-y-3">
+              <div className="space-y-2.5">
                 {upgrades.map((upg) => {
                   const isSelected = selectedUpgrades.includes(upg.id);
                   return (
@@ -565,23 +565,23 @@ Thank you!`;
                       key={upg.id}
                       id={`calc-upg-btn-${upg.id}`}
                       onClick={() => handleToggleUpgrade(upg.id)}
-                      className={`w-full flex items-start gap-4 p-4 rounded-2xl border text-left transition-all duration-300 cursor-pointer ${
+                      className={`w-full flex items-start gap-3 p-3.5 rounded-2xl border text-left transition-all duration-300 cursor-pointer ${
                         isSelected
                           ? "border-primary bg-primary/5 shadow-sm"
                           : "border-border bg-background hover:border-foreground/20"
                       }`}
                     >
-                      <div className={`mt-0.5 w-5 h-5 rounded-md border flex items-center justify-center flex-shrink-0 ${
+                      <div className={`mt-0.5 w-4 h-4 rounded-sm border flex items-center justify-center flex-shrink-0 ${
                         isSelected ? "bg-primary border-primary text-primary-foreground" : "border-border bg-card"
                       }`}>
-                        {isSelected && <Check className="w-3.5 h-3.5" />}
+                        {isSelected && <Check className="w-3 h-3" />}
                       </div>
                       <div className="flex-1">
                         <div className="flex justify-between items-baseline flex-wrap gap-2">
-                          <span className="font-bold text-sm text-foreground">
+                          <span className="font-bold text-[13px] text-foreground">
                             {lang === "en" ? upg.name : upg.chineseName}
                           </span>
-                          <span className="text-primary font-bold text-sm">
+                          <span className="text-primary font-bold text-[13px]">
                             {upg.id === "waitstaff"
                               ? `+ RM ${upg.price} / server`
                               : upg.type === "per-pax"
@@ -589,7 +589,7 @@ Thank you!`;
                               : `+ RM ${upg.price}`}
                           </span>
                         </div>
-                        <p className="text-xs text-muted-foreground mt-1.5 leading-relaxed">
+                        <p className="text-[11px] text-muted-foreground mt-1 leading-relaxed">
                           {lang === "en" ? upg.description : upg.chineseDescription}
                         </p>
                         {upg.id === "waitstaff" && isSelected && (
@@ -612,15 +612,15 @@ Thank you!`;
           </div>
 
           {/* Right panel: Receipt & Summary (5 cols) */}
-          <div className="lg:col-span-5 bg-foreground text-background rounded-3xl p-6 md:p-8 flex flex-col justify-between shadow-2xl relative overflow-hidden">
+          <div className="lg:col-span-5 bg-foreground text-background rounded-3xl p-5 md:p-6 flex flex-col justify-between shadow-2xl relative overflow-hidden">
             {/* Design elements */}
             <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-2xl" />
             <div className="absolute bottom-0 left-0 w-32 h-32 bg-primary/5 rounded-full blur-xl" />
 
-            <div className="space-y-8 relative z-10">
-              <div className="flex items-center gap-2 border-b border-background/10 pb-4">
-                <Calculator className="w-5 h-5 text-primary" />
-                <h3 className="font-bold text-lg">
+            <div className="space-y-6 relative z-10">
+              <div className="flex items-center gap-2 border-b border-background/10 pb-3">
+                <Calculator className="w-4 h-4 text-primary" />
+                <h3 className="font-bold text-base">
                   {lang === "en" ? "Custom Order Summary" : "定制询价明细单"}
                 </h3>
               </div>
@@ -685,7 +685,7 @@ Thank you!`;
                 )}
 
                 {/* Standard perks banner */}
-                <div className="bg-background/5 rounded-2xl p-4 text-xs text-background/60 leading-relaxed border border-background/10 mt-4">
+                <div className="bg-background/5 rounded-xl p-3 text-[11px] text-background/60 leading-relaxed border border-background/10 mt-3">
                   <span className="font-bold text-primary mr-1">💡 {lang === "en" ? "Free Included Perks" : "配套尊享特权"} :</span>
                   {lang === "en"
                     ? "Includes double portion of high-end disposable cutleries, warming food pans, table spreads, trash bags, and post-event cleaning."
@@ -695,21 +695,21 @@ Thank you!`;
             </div>
 
             {/* Total Section */}
-            <div className="border-t border-background/10 pt-6 mt-8 relative z-10 space-y-6">
+            <div className="border-t border-background/10 pt-5 mt-6 relative z-10 space-y-5">
               <div className="flex justify-between items-baseline">
                 <div>
-                  <p className="text-background font-black text-2xl md:text-3xl tracking-tight">
+                  <p className="text-background font-black text-xl md:text-2xl tracking-tight">
                     RM {totalCost.toLocaleString()}
                   </p>
-                  <p className="text-background/50 text-xs mt-1">
+                  <p className="text-background/50 text-[11px] mt-1">
                     {lang === "en" ? "Custom Estimated Total" : "预计总金额"}
                   </p>
                 </div>
                 <div className="text-right">
-                  <p className="text-primary font-extrabold text-base md:text-lg">
+                  <p className="text-primary font-extrabold text-[15px] md:text-base">
                     RM {avgCostPerPax.toFixed(1)}
                   </p>
-                  <p className="text-background/50 text-xs mt-1">
+                  <p className="text-background/50 text-[11px] mt-1">
                     {lang === "en" ? "Per Guest" : "人均预算"}
                   </p>
                 </div>
@@ -719,11 +719,11 @@ Thank you!`;
               <button
                 id="btn-calc-submit-whatsapp"
                 onClick={handleSendWhatsApp}
-                className="w-full flex items-center justify-center gap-2 bg-primary text-primary-foreground py-4 rounded-full font-extrabold hover:bg-primary/90 transition-all duration-300 shadow-lg hover:shadow-primary/20 cursor-pointer active:scale-95 text-base"
+                className="w-full flex items-center justify-center gap-2 bg-primary text-primary-foreground py-3 rounded-full font-extrabold hover:bg-primary/90 transition-all duration-300 shadow-lg hover:shadow-primary/20 cursor-pointer active:scale-95 text-sm"
               >
-                <MessageCircle className="w-5 h-5 fill-current" />
+                <MessageCircle className="w-4 h-4 fill-current" />
                 {lang === "en" ? "Send DIY Menu to WhatsApp" : "一键发送 DIY 菜单询价"}
-                <ChevronRight className="w-4 h-4 ml-1" />
+                <ChevronRight className="w-3.5 h-3.5 ml-1" />
               </button>
             </div>
 
