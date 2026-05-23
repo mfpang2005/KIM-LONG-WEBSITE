@@ -122,7 +122,7 @@ export function AboutSection({ lang = "en" }: AboutSectionProps) {
                     {isChinese ? "品牌创立" : "Heritage"}
                   </span>
                 </div>
-                <div>
+                <div className="text-right">
                   <h4 className="text-3xl md:text-4xl font-extrabold bg-gradient-to-r from-amber-600 to-amber-500 bg-clip-text text-transparent tracking-tight">
                     1982
                   </h4>
@@ -144,7 +144,7 @@ export function AboutSection({ lang = "en" }: AboutSectionProps) {
                     {isChinese ? "品质卓越" : "Awards"}
                   </span>
                 </div>
-                <div>
+                <div className="text-right">
                   <h4 className="text-3xl md:text-4xl font-extrabold bg-gradient-to-r from-amber-600 to-amber-500 bg-clip-text text-transparent tracking-tight">
                     5+
                   </h4>
