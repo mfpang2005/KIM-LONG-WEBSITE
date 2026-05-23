@@ -14,8 +14,8 @@ export const metadata: Metadata = {
     default: 'Kim Long Catering | A Taste Heritage from 1982 in Johor',
     template: '%s | Kim Long Catering'
   },
-  description: 'Kim Long Catering provides premium buffet catering services in Senai, Johor, Malaysia since 1982. We accompany you through every momentous milestone of life.',
-  keywords: ['catering services Johor', 'buffet catering Malaysia', 'Kim Long Catering', '金龙自助餐', 'event catering', 'wedding catering Johor', 'corporate catering'],
+  description: 'Kim Long Catering provides premium buffet catering services in Senai, Johor, Malaysia since 1982. We accompany you through every momentous milestone of life. Serving JB, Skudai, and Kulai.',
+  keywords: ['jb catering', 'johor catering', '新山自由餐', '新山伙食', 'johor caterer', 'skudai catering', 'kulai catering', '伙食承包马来西亚', 'catering services Johor', 'buffet catering Malaysia', 'Kim Long Catering', '金龙自助餐', 'event catering', 'wedding catering Johor'],
   alternates: {
     canonical: '/',
   },
@@ -71,7 +71,7 @@ export default function RootLayout({
     "@type": "FoodEstablishment",
     "name": "Kim Long Catering",
     "image": "https://www.kimlongcaterings.com/og-image.jpg",
-    "description": "Kim Long Catering provides premium buffet catering services in Senai, Johor, Malaysia since 1982.",
+    "description": "Kim Long Catering provides premium buffet catering services in JB, Skudai, Kulai and Johor. 柔佛新山领先的伙食承包马来西亚服务商，提供顶级新山自由餐与新山伙食。",
     "url": "https://www.kimlongcaterings.com",
     "address": {
       "@type": "PostalAddress",
@@ -79,6 +79,7 @@ export default function RootLayout({
       "addressRegion": "Johor",
       "addressCountry": "MY"
     },
+    "areaServed": ["Johor Bahru", "Skudai", "Kulai", "Senai", "Johor"],
     "servesCuisine": "Buffet Catering, Asian, Western",
     "foundingDate": "1982"
   };

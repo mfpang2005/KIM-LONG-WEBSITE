@@ -225,11 +225,11 @@ export function HeroSectionVideo({
             >
               {isChinese ? (
                 <>
-                  岁月沉淀经典，金龙自助餐与您 <br />
-                  共赴人生每一个重要时刻。
+                  岁月沉淀经典，金龙为您提供顶级的新山自由餐与新山伙食。 <br />
+                  作为专业伙食承包商，我们的服务覆盖 JB, Skudai 及 Kulai，与您共赴人生重要时刻。
                 </>
               ) : (
-                "Time honors classic taste. Kim Long Catering accompanies you through every momentous milestone of life."
+                "Time honors classic taste. Providing premium JB catering and Johor catering services across Skudai and Kulai. We accompany you through every momentous milestone."
               )}
             </motion.p>
           </div>

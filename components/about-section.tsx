@@ -126,6 +126,11 @@ export function AboutSection({ lang = "en" }: AboutSectionProps) {
               </p>
               <p>
                 {isChinese
+                  ? "作为领先的伙食承包马来西亚服务商，我们的冷链车队每日为您覆盖新山 (JB)、士古来 (Skudai)、古来 (Kulai) 等地区，提供顶级的新山自由餐与新山伙食服务。"
+                  : "As a premier caterer in Malaysia, our insulated fleet serves JB, Skudai, Kulai, and greater Johor daily, bringing premium catering experiences right to your doorstep."}
+              </p>
+              <p>
+                {isChinese
                   ? "如今，我们在恪守传统祖传秘方的同时，积极拥抱数字化变革，引入冷链配送车队与标准化现代厨政管理。每一道摆上餐台的佳肴，都倾注了三代人传承不息的诚意与温度。"
                   : "Now, we continue to honor our heritage while embracing innovation. Every dish we serve carries the passion, dedication, and expertise passed down through generations of culinary masters."}
               </p>

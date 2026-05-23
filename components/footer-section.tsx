@@ -375,8 +375,26 @@ export function FooterSection({ lang = "en" }: FooterSectionProps) {
             </div>
           </div>
 
+          {/* SEO Service Areas */}
+          <div className="mt-12 pt-8 border-t border-background/10">
+            <h3 className="text-background/40 text-[10px] font-bold uppercase tracking-wider mb-2">
+              {isChinese ? "主要服务区域 (Service Areas)" : "Service Areas"}
+            </h3>
+            <p className="text-background/40 text-[10px] leading-relaxed flex flex-wrap gap-x-2">
+              {isChinese ? (
+                <>
+                  <span>JB Catering</span> • <span>Johor Catering</span> • <span>新山自由餐</span> • <span>新山伙食</span> • <span>Johor Caterer</span> • <span>Skudai Catering</span> • <span>Kulai Catering</span> • <span>伙食承包马来西亚</span>
+                </>
+              ) : (
+                <>
+                  <span>JB Catering</span> • <span>Johor Catering</span> • <span>Johor Caterer</span> • <span>Skudai Catering</span> • <span>Kulai Catering</span>
+                </>
+              )}
+            </p>
+          </div>
+
           {/* Bottom Bar */}
-          <div className="border-t border-background/10 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+          <div className="border-t border-background/10 mt-6 pt-6 flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-background/50 text-xs">
               © {new Date().getFullYear()} {isChinese ? "金龙自助餐 (Kim Long Catering)" : "Kim Long Catering"}. All rights reserved.
             </p>
