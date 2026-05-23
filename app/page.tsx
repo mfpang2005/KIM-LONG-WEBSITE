@@ -12,11 +12,9 @@ import { ClientsSection } from "@/components/clients-section";
 import { FAQSection } from "@/components/faq-section";
 import { FooterSection } from "@/components/footer-section";
 import { WhatsAppButton } from "@/components/whatsapp-button";
-import { motion } from "framer-motion";
 
 export default function Home() {
   const [lang, setLang] = useState<"en" | "zh">("zh"); // Set default language to Chinese for high localization conversion
-  const isChinese = lang === "zh";
 
   return (
     <main className="min-h-screen bg-background text-foreground antialiased selection:bg-primary selection:text-primary-foreground transition-colors duration-500">
