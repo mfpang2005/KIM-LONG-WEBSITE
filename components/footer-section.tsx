@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Phone, Mail, MapPin, Truck, Clock, MessageCircle, ShieldCheck, Sparkles, Compass, ExternalLink, Facebook, Instagram } from "lucide-react";
+import { Phone, Mail, MapPin, Truck, Clock, ShieldCheck, Sparkles, Compass, ExternalLink, Facebook, Instagram } from "lucide-react";
+import { WhatsAppIcon } from "./whatsapp-icon";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -72,7 +73,7 @@ export function FooterSection({ lang = "en" }: FooterSectionProps) {
                     rel="noopener noreferrer"
                     className="inline-flex items-center justify-center gap-2 bg-foreground text-background px-7 py-3.5 rounded-full font-bold text-base hover:bg-foreground/90 transition-all duration-300 hover:shadow-lg active:scale-98 cursor-pointer"
                   >
-                    <MessageCircle className="w-5 h-5 fill-current" />
+                    <WhatsAppIcon className="w-5 h-5" />
                     {isChinese ? "立即 WhatsApp 询价" : "WhatsApp Us Now"}
                   </a>
                   <a
@@ -280,16 +281,36 @@ export function FooterSection({ lang = "en" }: FooterSectionProps) {
             </div>
 
             {/* Services */}
-            <div>
+            <div className="lg:pl-6 xl:pl-10">
               <h3 className="font-bold text-base tracking-wider text-white mb-6 uppercase">
                 {isChinese ? "核心业务" : "Our Services"}
               </h3>
-              <ul className="space-y-3 text-sm font-semibold text-background/70">
-                <li>{isChinese ? "宴会自助餐承办" : "Event Buffet Catering"}</li>
-                <li>{isChinese ? "高级企业会议便当" : "Premium Corporate Bento"}</li>
-                <li>{isChinese ? "工厂膳食日常配给" : "Factory Daily Meal Supply"}</li>
-                <li>{isChinese ? "大型帐篷租赁服务" : "Canopy Rental Services"}</li>
-                <li>{isChinese ? "活动背景板布置" : "Event Backdrop Services"}</li>
+              <ul className="space-y-3 text-sm font-semibold flex flex-col">
+                <li>
+                  <a href="#services" className="text-background/70 hover:text-white transition-colors">
+                    {isChinese ? "宴会自助餐承办" : "Event Buffet Catering"}
+                  </a>
+                </li>
+                <li>
+                  <a href="#services" className="text-background/70 hover:text-white transition-colors">
+                    {isChinese ? "高级企业会议便当" : "Premium Corporate Bento"}
+                  </a>
+                </li>
+                <li>
+                  <a href="#services" className="text-background/70 hover:text-white transition-colors">
+                    {isChinese ? "工厂膳食日常配给" : "Factory Daily Meal Supply"}
+                  </a>
+                </li>
+                <li>
+                  <a href="#services" className="text-background/70 hover:text-white transition-colors">
+                    {isChinese ? "大型帐篷租赁服务" : "Canopy Rental Services"}
+                  </a>
+                </li>
+                <li>
+                  <a href="#services" className="text-background/70 hover:text-white transition-colors">
+                    {isChinese ? "活动背景板布置" : "Event Backdrop Services"}
+                  </a>
+                </li>
               </ul>
             </div>
 

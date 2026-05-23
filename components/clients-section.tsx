@@ -14,9 +14,33 @@ const testimonialsData = {
       rating: 5,
     },
     {
+      name: "PHHP Marketing",
+      role: "Corporate Client",
+      content: "We've used Kim Long for our annual dinners multiple times. The buffet setup is premium and the food quality is always top-notch.",
+      rating: 5,
+    },
+    {
+      name: "Foon Yew High School",
+      role: "Mega Event Organizer",
+      content: "Managing food for thousands of students and parents is not easy, but Kim Long handled it flawlessly. Punctual delivery and strict food safety.",
+      rating: 5,
+    },
+    {
       name: "Shim Chung Nam",
       role: "Regular Customer",
       content: "This is the authentic Golden Dragon Catering. Great food, fair prices. The signature Pipa Duck is a must-order.",
+      rating: 5,
+    },
+    {
+      name: "Nirvana Asia",
+      role: "Long-term Partner",
+      content: "A highly reliable catering partner. Their service is extremely professional and the traditional Chinese dishes always meet our strict standards.",
+      rating: 5,
+    },
+    {
+      name: "Joyee Preschool",
+      role: "Educational Institution",
+      content: "The kids absolutely love the food! It's nutritious, safe, and the variety is excellent. We highly recommend their daily meal services.",
       rating: 5,
     },
   ],
@@ -28,9 +52,33 @@ const testimonialsData = {
       rating: 5,
     },
     {
+      name: "PHHP 派克集团",
+      role: "企业级客户",
+      content: "作为企业客户，我们多次指定金龙承办公司晚宴。从高档的餐台布幔设计到菜品质量都极具水准，员工反馈非常满意！",
+      rating: 5,
+    },
+    {
+      name: "宽柔中学",
+      role: "大型活动主办方",
+      content: "要在校庆时为数千名师生与家长提供膳食是一项巨大挑战，但金龙完美做到了！不仅出餐准时，而且食品卫生把控得非常严格。",
+      rating: 5,
+    },
+    {
       name: "沈忠南",
       role: "资深老顾客",
       content: "这就是士乃老字号正宗的‘金龙自助餐’。菜品水准常年稳定，收费合理。招牌手工琵琶鸭绝了，每场宴会必点！",
+      rating: 5,
+    },
+    {
+      name: "Nirvana 富贵",
+      role: "长期合作伙伴",
+      content: "非常可靠的长期餐饮合作伙伴。团队服务极度专业，无论是传统中式宴席还是精美企业便当，都完美契合我们的高标准要求。",
+      rating: 5,
+    },
+    {
+      name: "Joyee 卓悦幼儿园",
+      role: "教育机构",
+      content: "无论是每日餐食的营养科学搭配还是卫生安全，金龙都让人彻底放心。孩子们非常喜欢，强烈推荐他们的机构日常配餐服务！",
       rating: 5,
     },
   ],
@@ -168,7 +216,7 @@ export function ClientsSection({ lang = "en" }: ClientsSectionProps) {
         </div>
 
         {/* Testimonials */}
-        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
           {testimonials.map((testimonial, index) => (
             <motion.div
               key={index}

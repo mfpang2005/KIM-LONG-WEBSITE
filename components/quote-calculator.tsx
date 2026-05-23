@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Calculator, MessageCircle, Info, ChevronRight, Check, RefreshCw, Sparkles } from "lucide-react";
+import { Calculator, Info, ChevronRight, Check, RefreshCw, Sparkles } from "lucide-react";
+import { WhatsAppIcon } from "./whatsapp-icon";
 import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
 
@@ -721,7 +722,7 @@ Thank you!`;
                 onClick={handleSendWhatsApp}
                 className="w-full flex items-center justify-center gap-2 bg-primary text-primary-foreground py-3 rounded-full font-extrabold hover:bg-primary/90 transition-all duration-300 shadow-lg hover:shadow-primary/20 cursor-pointer active:scale-95 text-sm"
               >
-                <MessageCircle className="w-4 h-4 fill-current" />
+                <WhatsAppIcon className="w-4 h-4" />
                 {lang === "en" ? "Send DIY Menu to WhatsApp" : "一键发送 DIY 菜单询价"}
                 <ChevronRight className="w-3.5 h-3.5 ml-1" />
               </button>

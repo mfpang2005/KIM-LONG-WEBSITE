@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, MessageCircle, Globe } from "lucide-react";
+import { Menu, X, Globe } from "lucide-react";
+import { WhatsAppIcon } from "./whatsapp-icon";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -146,7 +147,7 @@ export function Navbar({ lang = "en", setLang }: NavbarProps) {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-5 py-2.5 rounded-full font-black text-sm hover:bg-primary/90 transition-all hover:scale-105 active:scale-95 shadow-md shadow-primary/10 hover:shadow-primary/20"
             >
-              <MessageCircle className="w-4 h-4 fill-current" />
+              <WhatsAppIcon className="w-4.5 h-4.5" />
               {lang === "en" ? "WhatsApp" : "联系客服"}
             </a>
 
@@ -223,7 +224,7 @@ export function Navbar({ lang = "en", setLang }: NavbarProps) {
                     rel="noopener noreferrer"
                     className="w-full inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground py-3 rounded-full font-bold text-sm hover:bg-primary/90 transition-colors"
                   >
-                    <MessageCircle className="w-4 h-4 fill-current" />
+                    <WhatsAppIcon className="w-4.5 h-4.5" />
                     {lang === "en" ? "WhatsApp Us" : "立即联系客服"}
                   </a>
                 </div>
