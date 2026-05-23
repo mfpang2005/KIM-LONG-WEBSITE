@@ -197,7 +197,7 @@ export function FooterSection({ lang = "en" }: FooterSectionProps) {
               </ul>
 
               {/* 徽章与社交图标并排容器（响应式空间适配） */}
-              <div className="flex flex-col sm:flex-row lg:flex-col xl:flex-row xl:items-center justify-between gap-3 mt-6">
+              <div className="flex flex-col sm:flex-row lg:flex-col xl:flex-row xl:items-center justify-between gap-3 mt-10">
                 {/* 极度缩小、精简并排成一行的迷你背书徽章（高奢金字发亮） */}
                 <div className="grid grid-cols-3 gap-1 flex-grow max-w-[210px] lg:max-w-none xl:max-w-[210px]">
                   {/* 徽章 1 */}
