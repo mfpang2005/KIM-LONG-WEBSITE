@@ -252,8 +252,8 @@ const factoryHighlights: FactoryHighlight[] = [
   {
     title: "Flexible Monthly Corporate Budgets",
     chineseTitle: "弹性化企业包月阶梯预算",
-    desc: "Packages from RM 6.50 to RM 12.50 per head tailored to your allowance. Standard transparent invoices and audit logs provided.",
-    chineseDesc: "提供 RM 6.50 / RM 8.50 / RM 10.50 / RM 12.50 等多种阶梯式包月或包餐预算方案，满足各类企业餐贴额度，对账透明，支持灵活月结。",
+    desc: "Packages from RM 9.50 to RM 35.00 per head tailored to your allowance. Standard transparent invoices and audit logs provided.",
+    chineseDesc: "提供 RM 9.50 / RM 18.50 / RM 25.50 / RM 35.00 等多种阶梯式包月或包餐预算方案，满足各类企业餐贴额度，对账透明，支持灵活月结。",
     iconName: "CircleDollarSign",
     colorScheme: "gold",
   },
@@ -578,8 +578,8 @@ export function ServicesSection({ lang = "en" }: ServicesSectionProps) {
                                 {isChinese ? "专属通道：" : "Cooperation Channel:"}
                               </span>
                               {isChinese
-                                ? "我们热忱欢迎企业行政及厂区经理亲临中央厨房实地考察卫生。针对百人以上长期客户，可提供 3 天免费样餐试吃评估，并享有透明对账与灵活月结金融支持。"
-                                : "We warmly invite corporate HR & factory site managers to physically inspect our central kitchens. For 100+ pax long-term clients, we offer 3 days of free trial meals for quality auditing, plus flexible credit terms."}
+                                ? "我们热忱欢迎企业行政及厂区经理亲临中央厨房实地考察卫生。针对百人以上长期客户，可提供1天免费样餐试吃评估，并享有透明对账与灵活月结金融支持。"
+                                : "We warmly invite corporate HR & factory site managers to physically inspect our central kitchens. For 100+ pax long-term clients, we offer 1 day of free trial meals for quality auditing, plus flexible credit terms."}
                             </p>
                           </div>
                         </>
