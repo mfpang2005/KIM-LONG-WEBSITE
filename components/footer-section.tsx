@@ -296,20 +296,46 @@ export function FooterSection({ lang = "en" }: FooterSectionProps) {
               <ul className="space-y-4 text-sm font-semibold">
                 <li className="flex items-start gap-3">
                   <Phone className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
-                  <div className="text-background/70">
-                    <p>019-728 8226</p>
-                    <p>012-728 8226</p>
+                  <div className="text-background/70 flex flex-col gap-1.5">
+                    <a
+                      href="https://wa.me/60197288226"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:text-amber-400 transition-colors duration-200 flex items-center gap-1 group/phone cursor-pointer"
+                    >
+                      <span>019-728 8226</span>
+                      <span className="text-[9px] text-emerald-500 font-bold bg-emerald-500/10 px-1.5 py-0.5 rounded opacity-0 group-hover/phone:opacity-100 transition-opacity duration-200 ml-1.5">WhatsApp</span>
+                    </a>
+                    <a
+                      href="https://wa.me/60127288226"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:text-amber-400 transition-colors duration-200 flex items-center gap-1 group/phone cursor-pointer"
+                    >
+                      <span>012-728 8226</span>
+                      <span className="text-[9px] text-emerald-500 font-bold bg-emerald-500/10 px-1.5 py-0.5 rounded opacity-0 group-hover/phone:opacity-100 transition-opacity duration-200 ml-1.5">WhatsApp</span>
+                    </a>
                   </div>
                 </li>
                 <li className="flex items-start gap-3">
                   <Mail className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
-                  <span className="text-background/70">info.kimlongsenai@gmail.com</span>
+                  <a
+                    href="mailto:info.kimlongsenai@gmail.com"
+                    className="text-background/70 hover:text-amber-400 transition-colors duration-200 cursor-pointer"
+                  >
+                    info.kimlongsenai@gmail.com
+                  </a>
                 </li>
                 <li className="flex items-start gap-3">
                   <MapPin className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
-                  <span className="text-background/70 leading-normal">
+                  <a
+                    href={mapUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-background/70 hover:text-amber-400 transition-colors duration-200 leading-normal cursor-pointer"
+                  >
                     120, Jalan Senai Utama 5/17, Taman Senai Utama, 81400 Senai, Johor
-                  </span>
+                  </a>
                 </li>
                 <li className="flex items-start gap-3">
                   <Clock className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
