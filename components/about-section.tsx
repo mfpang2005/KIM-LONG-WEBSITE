@@ -35,7 +35,7 @@ interface AboutSectionProps {
 export function AboutSection({ lang = "en" }: AboutSectionProps) {
   const isChinese = lang === "zh";
   const awards = awardsData[lang];
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [selectedAwardIndex, setSelectedAwardIndex] = useState<number | null>(null);
 
   // NOTE: 声明高级 Lightbox 状态用于高清证书原件大图展示
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
@@ -55,8 +55,9 @@ export function AboutSection({ lang = "en" }: AboutSectionProps) {
   }, []);
 
   // NOTE: 点击图片或提示时触发高清大图 Lightbox 预览
-  const handleImageClick = () => {
-    if (activeIndex === 4) {
+  const handleImageClick = (index: number) => {
+    setSelectedAwardIndex(index);
+    if (index === 4) {
       setLightboxImages([
         "/images/food-safety-1.jpg",
         "/images/food-safety-2.jpg",
@@ -68,22 +69,12 @@ export function AboutSection({ lang = "en" }: AboutSectionProps) {
           : "Zurich Insurance - Food Safety & Public Liability Insurance"
       );
     } else {
-      setLightboxImages([awards[activeIndex].image!]);
-      setLightboxTitle(awards[activeIndex].title);
+      setLightboxImages([awards[index].image!]);
+      setLightboxTitle(awards[index].title);
     }
     setCurrentImageIndex(0);
     setIsLightboxOpen(true);
   };
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      // 开启大图预览时暂停自动旋转
-      if (!isLightboxOpen) {
-        setActiveIndex((prev) => (prev + 1) % awards.length);
-      }
-    }, 3000);
-    return () => clearInterval(timer);
-  }, [awards.length, isLightboxOpen]);
 
   return (
     <section id="about" className="py-24 bg-secondary/30">
@@ -167,13 +158,13 @@ export function AboutSection({ lang = "en" }: AboutSectionProps) {
             </div>
           </motion.div>
 
-          {/* Right - Awards Marquee */}
+          {/* Right - Awards Grid */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="space-y-8"
+            className="space-y-8 h-full flex flex-col justify-center"
           >
             <div>
               <p className="text-primary font-bold mb-2">
@@ -184,89 +175,61 @@ export function AboutSection({ lang = "en" }: AboutSectionProps) {
               </h3>
             </div>
 
-            {/* 3D Page Flip Viewer (Background-free & Flipping continuous) */}
-            <div className="relative h-[240px] md:h-[280px] w-full flex items-center justify-center overflow-hidden border-y border-border/60 py-8">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={activeIndex}
-                  initial={{ opacity: 0, rotateX: 80, y: 60 }}
-                  animate={{ opacity: 1, rotateX: 0, y: 0 }}
-                  exit={{ opacity: 0, rotateX: -80, y: -60 }}
-                  transition={{ duration: 0.6, ease: "easeInOut" }}
-                  className="absolute w-full flex flex-col md:flex-row items-center justify-center gap-8 select-none"
-                  style={{ transformStyle: "preserve-3d" }}
+            {/* Business-style Awards Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {awards.map((award, index) => (
+                <div 
+                  key={index} 
+                  onClick={() => award.image ? handleImageClick(index) : undefined}
+                  className={`group relative bg-white/70 dark:bg-stone-900/40 backdrop-blur-md border border-border/60 hover:border-amber-500/40 rounded-2xl p-4 md:p-5 flex items-center gap-4 transition-all duration-300 ${award.image ? 'cursor-pointer hover:shadow-lg hover:-translate-y-1' : ''} ${index === 4 ? 'sm:col-span-2 bg-gradient-to-br from-white/70 to-amber-50/30 dark:from-stone-900/40 dark:to-stone-800/40' : ''}`}
                 >
-                  {/* Left: Award Emblem / Image Slot — 统一尺寸无相框直出 */}
-                  <div className="relative w-36 h-36 md:w-44 md:h-44 flex items-center justify-center flex-shrink-0">
-                    {awards[activeIndex].image ? (
-                      <div 
-                        onClick={handleImageClick}
-                        className="group relative w-36 h-36 md:w-44 md:h-44 overflow-hidden transition-all duration-300 cursor-pointer hover:scale-105"
-                      >
+                  {/* Image/Icon Container - Uniform size */}
+                  <div className="relative w-16 h-16 md:w-20 md:h-20 flex-shrink-0 bg-white dark:bg-stone-800 rounded-xl border border-border/50 shadow-sm overflow-hidden flex items-center justify-center p-2 transition-all duration-300 group-hover:shadow-md">
+                    {award.image ? (
+                      <>
                         <Image
-                          src={awards[activeIndex].image}
-                          alt={awards[activeIndex].title}
+                          src={award.image}
+                          alt={award.title}
                           fill
-                          className="object-contain transition-transform duration-300 group-hover:scale-105"
-                          priority
+                          className={`object-contain p-2 transition-transform duration-500 group-hover:scale-110`}
+                          sizes="80px"
                         />
-                        {/* NOTE: 精美 Hover 遮罩层 */}
-                        <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center gap-1.5 rounded-xl backdrop-blur-[2px]">
-                          <Eye className="w-6 h-6 md:w-8 md:h-8 text-amber-500 animate-pulse" />
-                          <span className="text-[10px] md:text-xs text-white font-semibold tracking-wider">
-                            {isChinese ? "点击查看原件" : "Click to View"}
-                          </span>
+                        {/* Hover Overlay */}
+                        <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-[2px]">
+                          <Eye className="w-5 h-5 text-amber-400" />
                         </div>
-                      </div>
+                      </>
                     ) : (
-                      <div className="w-36 h-36 md:w-44 md:h-44 bg-primary/5 rounded-full flex items-center justify-center border border-amber-500/20 shadow-inner">
+                      <div className="w-full h-full bg-primary/5 flex items-center justify-center">
                         {(() => {
-                          const IconComponent = awards[activeIndex].icon;
-                          return <IconComponent className="w-14 h-14 md:w-16 md:h-16 text-primary" />;
+                          const IconComponent = award.icon;
+                          return <IconComponent className="w-8 h-8 text-primary/80" />;
                         })()}
                       </div>
                     )}
                   </div>
 
-                  {/* Right: Typography */}
-                  <div className="text-center md:text-left space-y-3">
-                    <h4 className="text-2xl md:text-3xl lg:text-4xl font-black bg-gradient-to-r from-foreground via-amber-600 to-amber-700 bg-clip-text text-transparent tracking-wide leading-tight max-w-lg">
-                      {awards[activeIndex].title}
+                  {/* Text Content */}
+                  <div className="flex-1">
+                    <h4 className={`font-bold text-foreground leading-snug line-clamp-2 mb-1.5 transition-colors duration-300 group-hover:text-amber-600 dark:group-hover:text-amber-500 ${index === 4 ? 'text-base md:text-lg' : 'text-sm md:text-base'}`}>
+                      {award.title}
                     </h4>
-                    <div className="flex flex-col items-center md:items-start gap-2">
-                      <div className="flex justify-center md:justify-start gap-1.5">
+                    <div className="flex items-center gap-3">
+                      <div className="flex gap-0.5">
                         {[...Array(5)].map((_, i) => (
-                          <Star key={i} className="w-5 h-5 md:w-6 md:h-6 fill-primary text-primary animate-pulse" />
+                          <Star key={i} className="w-3.5 h-3.5 fill-amber-500 text-amber-500" />
                         ))}
                       </div>
-                      {/* NOTE: 高清原件大图快速预览链接 */}
-                      {awards[activeIndex].image && (
-                        <button
-                          onClick={handleImageClick}
-                          className="mt-1 flex items-center gap-1.5 text-xs text-amber-500/80 hover:text-amber-400 font-medium transition-colors group"
-                        >
-                          <Eye className="w-3.5 h-3.5 group-hover:animate-bounce" />
-                          <span>
-                            {isChinese ? "💡 点击查看高清官方保单/证书原件" : "💡 Click to view high-res official document"}
-                          </span>
-                        </button>
+                      {award.image && (
+                        <span className="text-[10px] md:text-xs font-medium text-muted-foreground group-hover:text-amber-500 transition-colors opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 duration-300 flex items-center gap-1">
+                          <Eye className="w-3 h-3" />
+                          {isChinese ? "查看证书" : "View"}
+                        </span>
                       )}
                     </div>
                   </div>
-                </motion.div>
-              </AnimatePresence>
-
-              {/* Ornate page flip indicators */}
-              <div className="absolute left-2 flex flex-col gap-1.5 pointer-events-none">
-                {awards.map((_, idx) => (
-                  <div
-                    key={idx}
-                    className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
-                      idx === activeIndex ? "bg-primary scale-125 shadow-[0_0_6px_rgba(245,158,11,0.6)]" : "bg-border"
-                    }`}
-                  />
-                ))}
-              </div>
+                </div>
+              ))}
             </div>
 
           </motion.div>
@@ -374,7 +337,7 @@ export function AboutSection({ lang = "en" }: AboutSectionProps) {
                 )}
 
                 {/* 针对食品安全保单的具体描述 */}
-                {activeIndex === 4 && (
+                {selectedAwardIndex === 4 && (
                   <p className="text-[10px] md:text-xs text-stone-400 max-w-xl text-center leading-relaxed">
                     {currentImageIndex === 0 && (
                       isChinese 
