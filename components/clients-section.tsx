@@ -270,7 +270,7 @@ export function ClientsSection({ lang = "en" }: ClientsSectionProps) {
           <div className="absolute inset-y-0 right-0 w-8 md:w-32 bg-gradient-to-l from-secondary/30 to-transparent z-10 pointer-events-none" />
 
           <motion.div
-            animate={{ x: ["0%", "-50%"] }}
+            animate={{ x: ["-50%", "0%"] }}
             transition={{ repeat: Infinity, ease: "linear", duration: 120 }}
             className="flex gap-4 md:gap-5 w-max"
           >
