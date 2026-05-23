@@ -176,39 +176,6 @@ export function FooterSection({ lang = "en" }: FooterSectionProps) {
                 <p>TIN: C58115357100</p>
                 <p>MISC CODE: 10799 & 56210</p>
               </div>
-
-              {/* 极度缩小、精简并排成一行的迷你背书徽章 */}
-              <div className="grid grid-cols-3 gap-1.5 pt-4">
-                {/* 徽章 1 */}
-                <div className="group flex flex-col items-center text-center p-2 py-3 rounded-xl bg-white/[0.015] hover:bg-white/[0.035] border border-white/5 hover:border-amber-500/15 transition-all duration-300">
-                  <span className="text-[10px] font-extrabold text-white tracking-wide block leading-tight whitespace-nowrap">
-                    {isChinese ? "卓越配送" : "Logistics"}
-                  </span>
-                  <span className="text-[8px] text-background/50 font-medium block mt-0.5 leading-none whitespace-nowrap">
-                    {isChinese ? "5000人/日" : "5000+ Daily"}
-                  </span>
-                </div>
-
-                {/* 徽章 2 */}
-                <div className="group flex flex-col items-center text-center p-2 py-3 rounded-xl bg-white/[0.015] hover:bg-white/[0.035] border border-white/5 hover:border-amber-500/15 transition-all duration-300">
-                  <span className="text-[10px] font-extrabold text-white tracking-wide block leading-tight whitespace-nowrap">
-                    {isChinese ? "200万食安" : "RM2M Insured"}
-                  </span>
-                  <span className="text-[8px] text-background/50 font-medium block mt-0.5 leading-none whitespace-nowrap">
-                    {isChinese ? "责任险保障" : "Liability Ins"}
-                  </span>
-                </div>
-
-                {/* 徽章 3 */}
-                <div className="group flex flex-col items-center text-center p-2 py-3 rounded-xl bg-white/[0.015] hover:bg-white/[0.035] border border-white/5 hover:border-amber-500/15 transition-all duration-300">
-                  <span className="text-[10px] font-extrabold text-white tracking-wide block leading-tight whitespace-nowrap">
-                    {isChinese ? "40载老字号" : "40Y Heritage"}
-                  </span>
-                  <span className="text-[8px] text-background/50 font-medium block mt-0.5 leading-none whitespace-nowrap">
-                    {isChinese ? "始于 1982" : "Since 1982"}
-                  </span>
-                </div>
-              </div>
             </div>
 
             {/* Quick Links */}
@@ -229,8 +196,41 @@ export function FooterSection({ lang = "en" }: FooterSectionProps) {
                 ))}
               </ul>
 
+              {/* 极度缩小、精简并排成一行的迷你背书徽章（高奢金字发亮） */}
+              <div className="grid grid-cols-3 gap-1.5 mt-6">
+                {/* 徽章 1 */}
+                <div className="group flex flex-col items-center text-center p-2 py-3 rounded-xl bg-amber-500/[0.03] border border-amber-500/15 shadow-[0_0_12px_rgba(245,158,11,0.05)] hover:bg-amber-500/[0.08] hover:border-amber-500/40 hover:shadow-[0_0_20px_rgba(245,158,11,0.15)] transition-all duration-300">
+                  <span className="text-[10px] font-black text-amber-400 tracking-wide block leading-tight whitespace-nowrap drop-shadow-[0_0_6px_rgba(245,158,11,0.85)]">
+                    {isChinese ? "卓越配送" : "Logistics"}
+                  </span>
+                  <span className="text-[8px] text-amber-300/80 font-bold block mt-0.5 leading-none whitespace-nowrap drop-shadow-[0_0_3px_rgba(245,158,11,0.4)]">
+                    {isChinese ? "5000人/日" : "5000+ Daily"}
+                  </span>
+                </div>
+
+                {/* 徽章 2 */}
+                <div className="group flex flex-col items-center text-center p-2 py-3 rounded-xl bg-amber-500/[0.03] border border-amber-500/15 shadow-[0_0_12px_rgba(245,158,11,0.05)] hover:bg-amber-500/[0.08] hover:border-amber-500/40 hover:shadow-[0_0_20px_rgba(245,158,11,0.15)] transition-all duration-300">
+                  <span className="text-[10px] font-black text-amber-400 tracking-wide block leading-tight whitespace-nowrap drop-shadow-[0_0_6px_rgba(245,158,11,0.85)]">
+                    {isChinese ? "200万食安" : "RM2M Insured"}
+                  </span>
+                  <span className="text-[8px] text-amber-300/80 font-bold block mt-0.5 leading-none whitespace-nowrap drop-shadow-[0_0_3px_rgba(245,158,11,0.4)]">
+                    {isChinese ? "责任险保障" : "Liability Ins"}
+                  </span>
+                </div>
+
+                {/* 徽章 3 */}
+                <div className="group flex flex-col items-center text-center p-2 py-3 rounded-xl bg-amber-500/[0.03] border border-amber-500/15 shadow-[0_0_12px_rgba(245,158,11,0.05)] hover:bg-amber-500/[0.08] hover:border-amber-500/40 hover:shadow-[0_0_20px_rgba(245,158,11,0.15)] transition-all duration-300">
+                  <span className="text-[10px] font-black text-amber-400 tracking-wide block leading-tight whitespace-nowrap drop-shadow-[0_0_6px_rgba(245,158,11,0.85)]">
+                    {isChinese ? "40载老字号" : "40Y Heritage"}
+                  </span>
+                  <span className="text-[8px] text-amber-300/80 font-bold block mt-0.5 leading-none whitespace-nowrap drop-shadow-[0_0_3px_rgba(245,158,11,0.4)]">
+                    {isChinese ? "始于 1982" : "Since 1982"}
+                  </span>
+                </div>
+              </div>
+
               {/* 社交媒体与 Google 链接图标 */}
-              <div className="flex items-center gap-3.5 mt-8">
+              <div className="flex items-center gap-3.5 mt-6">
                 {/* Facebook */}
                 <a
                   href="https://www.facebook.com/JimLongCatering/"
