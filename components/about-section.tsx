@@ -213,21 +213,21 @@ export function AboutSection({ lang = "en" }: AboutSectionProps) {
                       exit={{ opacity: 0, y: -30, filter: "blur(8px)" }}
                       transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
                       onClick={() => award.image ? handleImageClick(originalIndex) : undefined}
-                      className={`group absolute w-full max-w-[280px] md:max-w-[340px] bg-gradient-to-b from-white/90 to-amber-50/80 dark:from-stone-900/80 dark:to-stone-800/80 backdrop-blur-xl border border-amber-500/20 hover:border-amber-500/60 rounded-[2rem] p-6 md:p-8 flex flex-col items-center text-center gap-4 transition-all duration-500 shadow-xl shadow-amber-900/5 ${award.image ? 'cursor-pointer hover:shadow-[0_15px_40px_-10px_rgba(245,158,11,0.3)] hover:-translate-y-2' : ''}`}
+                      className={`group absolute w-full max-w-[280px] md:max-w-[340px] flex flex-col items-center justify-center text-center gap-6 transition-all duration-500 ${award.image ? 'cursor-pointer' : ''}`}
                     >
-                      {/* Large Image/Icon Container - Frameless */}
-                      <div className="relative w-32 h-32 md:w-40 md:h-40 flex-shrink-0 flex items-center justify-center transition-all duration-500 group-hover:scale-105">
+                      {/* Large Image/Icon Container - Frameless & No Scaling */}
+                      <div className="relative w-40 h-40 md:w-48 md:h-48 flex-shrink-0 flex items-center justify-center">
                         {award.image ? (
                           <>
                             <Image
                               src={award.image}
                               alt={award.title}
                               fill
-                              className={`object-contain transition-transform duration-700 group-hover:scale-110 drop-shadow-xl`}
+                              className="object-contain drop-shadow-xl"
                               sizes="200px"
                             />
-                            {/* Frameless Hover Overlay */}
-                            <div className="absolute inset-0 bg-white/10 dark:bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-[2px] rounded-2xl">
+                            {/* Simple Hover Overlay */}
+                            <div className="absolute inset-0 bg-white/10 dark:bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-[2px] rounded-xl">
                               <Eye className="w-8 h-8 text-amber-500 drop-shadow-md" />
                             </div>
                           </>
@@ -235,7 +235,7 @@ export function AboutSection({ lang = "en" }: AboutSectionProps) {
                           <div className="flex items-center justify-center">
                             {(() => {
                               const IconComponent = award.icon;
-                              return <IconComponent className="w-20 h-20 text-amber-500/80 drop-shadow-xl" />;
+                              return <IconComponent className="w-24 h-24 text-amber-500/80 drop-shadow-xl" />;
                             })()}
                           </div>
                         )}
@@ -248,11 +248,11 @@ export function AboutSection({ lang = "en" }: AboutSectionProps) {
                             <Star key={i} className="w-4 h-4 fill-amber-500 text-amber-500 drop-shadow-sm" />
                           ))}
                         </div>
-                        <h4 className={`font-bold text-foreground leading-tight line-clamp-2 transition-colors duration-300 group-hover:text-amber-600 dark:group-hover:text-amber-500 text-lg md:text-xl px-1`}>
+                        <h4 className="font-bold text-foreground leading-tight line-clamp-2 transition-colors duration-300 group-hover:text-amber-600 dark:group-hover:text-amber-500 text-lg md:text-xl px-1">
                           {award.title}
                         </h4>
                         {award.image && (
-                          <span className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-amber-500/10 text-amber-600 dark:text-amber-400 text-xs font-semibold transition-all duration-300 group-hover:bg-amber-500 group-hover:text-white mt-1">
+                          <span className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-amber-500/10 text-amber-600 dark:text-amber-400 text-xs font-semibold mt-1 transition-colors group-hover:bg-amber-500/20">
                             <Eye className="w-3.5 h-3.5" />
                             {isChinese ? "点击查看原件" : "View Original"}
                           </span>
