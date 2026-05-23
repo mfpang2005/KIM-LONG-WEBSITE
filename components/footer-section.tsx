@@ -92,13 +92,13 @@ export function FooterSection({ lang = "en" }: FooterSectionProps) {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.1 }}
-                className="lg:col-span-6 flex justify-center lg:justify-end lg:translate-x-12"
+                className="lg:col-span-6 flex justify-center lg:justify-end lg:translate-x-24"
               >
-                {/* 纯净地图容器，直接使用 rounded-[2rem] 和轻量边框，去除外包卡片与浮条，高度调大至 320px，宽度 max-w-[500px]，带 Hover 优雅缩放动效 */}
+                {/* 纯净地图容器，取消圆角以呈直角几何，带 Hover 优雅缩放动效 */}
                 <motion.div 
                   whileHover={{ scale: 1.05 }}
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                  className="relative w-full max-w-[500px] h-[260px] md:h-[320px] rounded-[2rem] overflow-hidden border border-white/20 shadow-[0_15px_35px_rgba(0,0,0,0.12)] cursor-pointer"
+                  className="relative w-full max-w-[500px] h-[260px] md:h-[320px] overflow-hidden border border-white/20 shadow-[0_15px_35px_rgba(0,0,0,0.12)] cursor-pointer"
                 >
                   {/* Skeleton 骨架 screen */}
                   <AnimatePresence>

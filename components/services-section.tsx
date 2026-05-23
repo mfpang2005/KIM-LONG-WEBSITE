@@ -327,33 +327,37 @@ function MenuCard({ menu, lang }: MenuCardProps) {
     <motion.div
       initial={{ opacity: 0, y: 15 }}
       animate={{ opacity: 1, y: 0 }}
-      className="relative bg-card border border-border rounded-2xl p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+      className="bg-card border border-border rounded-2xl p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between"
     >
-      <div className="flex items-start justify-between mb-4">
-        <div>
-          <h4 className="text-lg font-bold text-foreground pr-20">
+      <div>
+        {/* 上置的特色标签 */}
+        {(menu.badge || menu.chineseBadge) && (
+          <div className="mb-2">
+            <span className="inline-flex items-center gap-0.5 bg-primary text-primary-foreground px-2 py-0.5 rounded-full text-[10px] font-extrabold shadow-sm shadow-primary/20">
+              <Star className="w-3 h-3 fill-current" />
+              {isChinese ? menu.chineseBadge : menu.badge}
+            </span>
+          </div>
+        )}
+
+        <div className="mb-4">
+          <h4 className="text-lg font-bold text-foreground">
             {isChinese ? menu.chineseName : menu.name}
           </h4>
           <p className="text-xl font-black text-primary mt-1">
             {isChinese ? menu.chinesePrice : menu.price}
           </p>
         </div>
-        {(menu.badge || menu.chineseBadge) && (
-          <span className="absolute top-[26px] right-6 inline-flex items-center gap-0.5 bg-primary text-primary-foreground px-2 py-0.5 rounded-full text-[10px] font-extrabold shadow-sm shadow-primary/20">
-            <Star className="w-3 h-3 fill-current" />
-            {isChinese ? menu.chineseBadge : menu.badge}
-          </span>
-        )}
-      </div>
 
-      <ul className="space-y-2">
-        {items.map((item, index) => (
-          <li key={index} className="flex items-center gap-2 text-muted-foreground">
-            <Check className="w-4 h-4 text-primary flex-shrink-0" />
-            <span className="text-sm font-semibold leading-relaxed">{item}</span>
-          </li>
-        ))}
-      </ul>
+        <ul className="space-y-2">
+          {items.map((item, index) => (
+            <li key={index} className="flex items-center gap-2 text-muted-foreground">
+              <Check className="w-4 h-4 text-primary flex-shrink-0" />
+              <span className="text-sm font-semibold leading-relaxed">{item}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
     </motion.div>
   );
 }
@@ -371,24 +375,26 @@ function BentoCard({ menu, lang }: BentoCardProps) {
     <motion.div
       initial={{ opacity: 0, y: 15 }}
       animate={{ opacity: 1, y: 0 }}
-      className="relative bg-card border border-border rounded-2xl p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between"
+      className="bg-card border border-border rounded-2xl p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between"
     >
       <div>
-        <div className="flex items-start justify-between mb-4">
-          <div>
-            <h4 className="text-lg font-bold text-foreground pr-20">
-              {isChinese ? menu.chineseName : menu.name}
-            </h4>
-            <p className="text-xl font-black text-primary mt-1">
-              {isChinese ? menu.chinesePrice : menu.price}
-            </p>
-          </div>
-          {(menu.badge || menu.chineseBadge) && (
-            <span className="absolute top-[26px] right-6 inline-flex items-center gap-0.5 bg-primary/10 text-primary px-2 py-0.5 rounded-full text-[10px] font-extrabold shadow-sm">
+        {/* 上置的特色标签 */}
+        {(menu.badge || menu.chineseBadge) && (
+          <div className="mb-2">
+            <span className="inline-flex items-center gap-0.5 bg-primary/10 text-primary px-2 py-0.5 rounded-full text-[10px] font-extrabold shadow-sm">
               <Star className="w-3 h-3 fill-current" />
               {isChinese ? menu.chineseBadge : menu.badge}
             </span>
-          )}
+          </div>
+        )}
+
+        <div className="mb-4">
+          <h4 className="text-lg font-bold text-foreground">
+            {isChinese ? menu.chineseName : menu.name}
+          </h4>
+          <p className="text-xl font-black text-primary mt-1">
+            {isChinese ? menu.chinesePrice : menu.price}
+          </p>
         </div>
 
         <ul className="space-y-2 mb-4">
