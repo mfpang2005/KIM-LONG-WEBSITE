@@ -180,10 +180,7 @@ export function FooterSection({ lang = "en" }: FooterSectionProps) {
               {/* 极度缩小、精简并排成一行的迷你背书徽章 */}
               <div className="grid grid-cols-3 gap-1.5 pt-4">
                 {/* 徽章 1 */}
-                <div className="group flex flex-col items-center text-center p-2 rounded-xl bg-white/[0.015] hover:bg-white/[0.035] border border-white/5 hover:border-amber-500/15 transition-all duration-300">
-                  <div className="p-1.5 rounded-lg bg-amber-500/5 group-hover:bg-amber-500/10 text-amber-400 transition-colors duration-300 flex-shrink-0 mb-1">
-                    <Truck className="w-4 h-4" />
-                  </div>
+                <div className="group flex flex-col items-center text-center p-2 py-3 rounded-xl bg-white/[0.015] hover:bg-white/[0.035] border border-white/5 hover:border-amber-500/15 transition-all duration-300">
                   <span className="text-[10px] font-extrabold text-white tracking-wide block leading-tight whitespace-nowrap">
                     {isChinese ? "卓越配送" : "Logistics"}
                   </span>
@@ -193,10 +190,7 @@ export function FooterSection({ lang = "en" }: FooterSectionProps) {
                 </div>
 
                 {/* 徽章 2 */}
-                <div className="group flex flex-col items-center text-center p-2 rounded-xl bg-white/[0.015] hover:bg-white/[0.035] border border-white/5 hover:border-amber-500/15 transition-all duration-300">
-                  <div className="p-1.5 rounded-lg bg-amber-500/5 group-hover:bg-amber-500/10 text-amber-400 transition-colors duration-300 flex-shrink-0 mb-1">
-                    <ShieldCheck className="w-4 h-4" />
-                  </div>
+                <div className="group flex flex-col items-center text-center p-2 py-3 rounded-xl bg-white/[0.015] hover:bg-white/[0.035] border border-white/5 hover:border-amber-500/15 transition-all duration-300">
                   <span className="text-[10px] font-extrabold text-white tracking-wide block leading-tight whitespace-nowrap">
                     {isChinese ? "200万食安" : "RM2M Insured"}
                   </span>
@@ -206,10 +200,7 @@ export function FooterSection({ lang = "en" }: FooterSectionProps) {
                 </div>
 
                 {/* 徽章 3 */}
-                <div className="group flex flex-col items-center text-center p-2 rounded-xl bg-white/[0.015] hover:bg-white/[0.035] border border-white/5 hover:border-amber-500/15 transition-all duration-300">
-                  <div className="p-1.5 rounded-lg bg-amber-500/5 group-hover:bg-amber-500/10 text-amber-400 transition-colors duration-300 flex-shrink-0 mb-1">
-                    <Sparkles className="w-4 h-4" />
-                  </div>
+                <div className="group flex flex-col items-center text-center p-2 py-3 rounded-xl bg-white/[0.015] hover:bg-white/[0.035] border border-white/5 hover:border-amber-500/15 transition-all duration-300">
                   <span className="text-[10px] font-extrabold text-white tracking-wide block leading-tight whitespace-nowrap">
                     {isChinese ? "40载老字号" : "40Y Heritage"}
                   </span>
