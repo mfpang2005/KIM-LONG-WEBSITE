@@ -196,83 +196,86 @@ export function FooterSection({ lang = "en" }: FooterSectionProps) {
                 ))}
               </ul>
 
-              {/* 极度缩小、精简并排成一行的迷你背书徽章（高奢金字发亮） */}
-              <div className="grid grid-cols-3 gap-1.5 mt-6">
-                {/* 徽章 1 */}
-                <div className="group flex flex-col items-center text-center p-2 py-3 rounded-xl bg-amber-500/[0.03] border border-amber-500/15 shadow-[0_0_12px_rgba(245,158,11,0.05)] hover:bg-amber-500/[0.08] hover:border-amber-500/40 hover:shadow-[0_0_20px_rgba(245,158,11,0.15)] transition-all duration-300">
-                  <span className="text-[10px] font-black text-amber-400 tracking-wide block leading-tight whitespace-nowrap drop-shadow-[0_0_6px_rgba(245,158,11,0.85)]">
-                    {isChinese ? "卓越配送" : "Logistics"}
-                  </span>
-                  <span className="text-[8px] text-amber-300/80 font-bold block mt-0.5 leading-none whitespace-nowrap drop-shadow-[0_0_3px_rgba(245,158,11,0.4)]">
-                    {isChinese ? "5000人/日" : "5000+ Daily"}
-                  </span>
+              {/* 徽章与社交图标并排容器（响应式空间适配） */}
+              <div className="flex flex-col sm:flex-row lg:flex-col xl:flex-row xl:items-center justify-between gap-3 mt-6">
+                {/* 极度缩小、精简并排成一行的迷你背书徽章（高奢金字发亮） */}
+                <div className="grid grid-cols-3 gap-1 flex-grow max-w-[210px] lg:max-w-none xl:max-w-[210px]">
+                  {/* 徽章 1 */}
+                  <div className="group flex flex-col items-center text-center p-1 py-1.5 rounded-lg bg-amber-500/[0.03] border border-amber-500/15 shadow-[0_0_8px_rgba(245,158,11,0.04)] hover:bg-amber-500/[0.08] hover:border-amber-500/40 hover:shadow-[0_0_15px_rgba(245,158,11,0.12)] transition-all duration-300">
+                    <span className="text-[9.5px] font-black text-amber-400 tracking-wide block leading-tight whitespace-nowrap drop-shadow-[0_0_5px_rgba(245,158,11,0.85)]">
+                      {isChinese ? "卓越配送" : "Logistics"}
+                    </span>
+                    <span className="text-[7.5px] text-amber-300/80 font-bold block mt-0.5 leading-none whitespace-nowrap drop-shadow-[0_0_3px_rgba(245,158,11,0.4)]">
+                      {isChinese ? "5000人/日" : "5000+ Daily"}
+                    </span>
+                  </div>
+
+                  {/* 徽章 2 */}
+                  <div className="group flex flex-col items-center text-center p-1 py-1.5 rounded-lg bg-amber-500/[0.03] border border-amber-500/15 shadow-[0_0_8px_rgba(245,158,11,0.04)] hover:bg-amber-500/[0.08] hover:border-amber-500/40 hover:shadow-[0_0_15px_rgba(245,158,11,0.12)] transition-all duration-300">
+                    <span className="text-[9.5px] font-black text-amber-400 tracking-wide block leading-tight whitespace-nowrap drop-shadow-[0_0_5px_rgba(245,158,11,0.85)]">
+                      {isChinese ? "200万食安" : "RM2M Insured"}
+                    </span>
+                    <span className="text-[7.5px] text-amber-300/80 font-bold block mt-0.5 leading-none whitespace-nowrap drop-shadow-[0_0_3px_rgba(245,158,11,0.4)]">
+                      {isChinese ? "责任险保障" : "Liability Ins"}
+                    </span>
+                  </div>
+
+                  {/* 徽章 3 */}
+                  <div className="group flex flex-col items-center text-center p-1 py-1.5 rounded-lg bg-amber-500/[0.03] border border-amber-500/15 shadow-[0_0_8px_rgba(245,158,11,0.04)] hover:bg-amber-500/[0.08] hover:border-amber-500/40 hover:shadow-[0_0_15px_rgba(245,158,11,0.12)] transition-all duration-300">
+                    <span className="text-[9.5px] font-black text-amber-400 tracking-wide block leading-tight whitespace-nowrap drop-shadow-[0_0_5px_rgba(245,158,11,0.85)]">
+                      {isChinese ? "40载老字号" : "40Y Heritage"}
+                    </span>
+                    <span className="text-[7.5px] text-amber-300/80 font-bold block mt-0.5 leading-none whitespace-nowrap drop-shadow-[0_0_3px_rgba(245,158,11,0.4)]">
+                      {isChinese ? "始于 1982" : "Since 1982"}
+                    </span>
+                  </div>
                 </div>
 
-                {/* 徽章 2 */}
-                <div className="group flex flex-col items-center text-center p-2 py-3 rounded-xl bg-amber-500/[0.03] border border-amber-500/15 shadow-[0_0_12px_rgba(245,158,11,0.05)] hover:bg-amber-500/[0.08] hover:border-amber-500/40 hover:shadow-[0_0_20px_rgba(245,158,11,0.15)] transition-all duration-300">
-                  <span className="text-[10px] font-black text-amber-400 tracking-wide block leading-tight whitespace-nowrap drop-shadow-[0_0_6px_rgba(245,158,11,0.85)]">
-                    {isChinese ? "200万食安" : "RM2M Insured"}
-                  </span>
-                  <span className="text-[8px] text-amber-300/80 font-bold block mt-0.5 leading-none whitespace-nowrap drop-shadow-[0_0_3px_rgba(245,158,11,0.4)]">
-                    {isChinese ? "责任险保障" : "Liability Ins"}
-                  </span>
-                </div>
-
-                {/* 徽章 3 */}
-                <div className="group flex flex-col items-center text-center p-2 py-3 rounded-xl bg-amber-500/[0.03] border border-amber-500/15 shadow-[0_0_12px_rgba(245,158,11,0.05)] hover:bg-amber-500/[0.08] hover:border-amber-500/40 hover:shadow-[0_0_20px_rgba(245,158,11,0.15)] transition-all duration-300">
-                  <span className="text-[10px] font-black text-amber-400 tracking-wide block leading-tight whitespace-nowrap drop-shadow-[0_0_6px_rgba(245,158,11,0.85)]">
-                    {isChinese ? "40载老字号" : "40Y Heritage"}
-                  </span>
-                  <span className="text-[8px] text-amber-300/80 font-bold block mt-0.5 leading-none whitespace-nowrap drop-shadow-[0_0_3px_rgba(245,158,11,0.4)]">
-                    {isChinese ? "始于 1982" : "Since 1982"}
-                  </span>
-                </div>
-              </div>
-
-              {/* 社交媒体与 Google 链接图标 */}
-              <div className="flex items-center gap-3.5 mt-6">
-                {/* Facebook */}
-                <a
-                  href="https://www.facebook.com/JimLongCatering/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Facebook"
-                  className="w-10 h-10 rounded-full flex items-center justify-center bg-white/[0.03] border border-white/5 text-background/70 hover:bg-amber-500/10 hover:border-amber-500/30 hover:text-amber-400 transition-all duration-300 active:scale-95 cursor-pointer"
-                >
-                  <Facebook className="w-5 h-5" />
-                </a>
-
-                {/* Instagram */}
-                <a
-                  href="https://www.instagram.com/kimlongcatering"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Instagram"
-                  className="w-10 h-10 rounded-full flex items-center justify-center bg-white/[0.03] border border-white/5 text-background/70 hover:bg-amber-500/10 hover:border-amber-500/30 hover:text-amber-400 transition-all duration-300 active:scale-95 cursor-pointer"
-                >
-                  <Instagram className="w-5 h-5" />
-                </a>
-
-                {/* Google */}
-                <a
-                  href="https://g.page/r/CZvo85hhoYSbEAE/review"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Google"
-                  className="w-10 h-10 rounded-full flex items-center justify-center bg-white/[0.03] border border-white/5 text-background/70 hover:bg-amber-500/10 hover:border-amber-500/30 hover:text-amber-400 transition-all duration-300 active:scale-95 cursor-pointer"
-                >
-                  <svg
-                    viewBox="0 0 24 24"
-                    className="w-5 h-5"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
+                {/* 社交媒体与 Google 链接图标 */}
+                <div className="flex items-center gap-2 flex-shrink-0">
+                  {/* Facebook */}
+                  <a
+                    href="https://www.facebook.com/JimLongCatering/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Facebook"
+                    className="w-8.5 h-8.5 rounded-full flex items-center justify-center bg-white/[0.03] border border-white/5 text-background/70 hover:bg-amber-500/10 hover:border-amber-500/30 hover:text-amber-400 transition-all duration-300 active:scale-95 cursor-pointer"
                   >
-                    <path d="M12 2a10 10 0 0 1 7.65 3.57L16.2 8.8A5.94 5.94 0 0 0 12 8a6 6 0 1 0 5.83 7.42h-5.83v-3.08H21.9a10 10 0 0 1 .1 1.66A10 10 0 1 1 12 2z" />
-                  </svg>
-                </a>
+                    <Facebook className="w-4.5 h-4.5" />
+                  </a>
+
+                  {/* Instagram */}
+                  <a
+                    href="https://www.instagram.com/kimlongcatering"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Instagram"
+                    className="w-8.5 h-8.5 rounded-full flex items-center justify-center bg-white/[0.03] border border-white/5 text-background/70 hover:bg-amber-500/10 hover:border-amber-500/30 hover:text-amber-400 transition-all duration-300 active:scale-95 cursor-pointer"
+                  >
+                    <Instagram className="w-4.5 h-4.5" />
+                  </a>
+
+                  {/* Google */}
+                  <a
+                    href="https://g.page/r/CZvo85hhoYSbEAE/review"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Google"
+                    className="w-8.5 h-8.5 rounded-full flex items-center justify-center bg-white/[0.03] border border-white/5 text-background/70 hover:bg-amber-500/10 hover:border-amber-500/30 hover:text-amber-400 transition-all duration-300 active:scale-95 cursor-pointer"
+                  >
+                    <svg
+                      viewBox="0 0 24 24"
+                      className="w-4.5 h-4.5"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d="M12 2a10 10 0 0 1 7.65 3.57L16.2 8.8A5.94 5.94 0 0 0 12 8a6 6 0 1 0 5.83 7.42h-5.83v-3.08H21.9a10 10 0 0 1 .1 1.66A10 10 0 1 1 12 2z" />
+                    </svg>
+                  </a>
+                </div>
               </div>
             </div>
 
