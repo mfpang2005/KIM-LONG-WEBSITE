@@ -233,7 +233,7 @@ export function FooterSection({ lang = "en" }: FooterSectionProps) {
               <div className="flex items-center gap-3.5 mt-8">
                 {/* Facebook */}
                 <a
-                  href="#" // TODO: 待用户提供 Facebook 链接后替换
+                  href="https://www.facebook.com/JimLongCatering/"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Facebook"
@@ -244,7 +244,7 @@ export function FooterSection({ lang = "en" }: FooterSectionProps) {
 
                 {/* Instagram */}
                 <a
-                  href="#" // TODO: 待用户提供 Instagram 链接后替换
+                  href="https://www.instagram.com/kimlongcatering"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Instagram"
@@ -255,7 +255,7 @@ export function FooterSection({ lang = "en" }: FooterSectionProps) {
 
                 {/* Google */}
                 <a
-                  href="#" // TODO: 待用户提供 Google 链接后替换
+                  href="https://g.page/r/CZvo85hhoYSbEAE/review"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Google"
