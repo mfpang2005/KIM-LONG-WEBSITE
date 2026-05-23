@@ -92,7 +92,7 @@ export function FooterSection({ lang = "en" }: FooterSectionProps) {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.1 }}
-                className="lg:col-span-6 flex justify-center lg:justify-end"
+                className="lg:col-span-6 flex justify-center lg:justify-end lg:translate-x-12"
               >
                 {/* 纯净地图容器，直接使用 rounded-[2rem] 和轻量边框，去除外包卡片与浮条，高度调大至 320px，宽度 max-w-[500px]，带 Hover 优雅缩放动效 */}
                 <motion.div 
