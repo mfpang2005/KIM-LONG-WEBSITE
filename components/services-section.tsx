@@ -535,8 +535,8 @@ export function ServicesSection({ lang = "en" }: ServicesSectionProps) {
                                 {isChinese ? "注意事项：" : "Note:"}
                               </span>
                               {isChinese
-                                ? "会议便当起订门槛为 15 盒，提供专属恒温保温箱派送上门。所有便当均采用食品级防溢多格环保盒装，附赠精美独立包装餐具及高级消毒湿纸巾。"
-                                : "Minimum order 15 boxes. Delivered in dedicated insulation bags. Packaged in premium spill-proof compartmentalized boxes. Includes individually packed utensils and sanitized wet wipes."}
+                                ? "会议便当起订门槛为 30 盒（已免费赠送特调冷饮与精美甜品），提供专属恒温保温箱派送上门。所有便当均采用食品级防溢多格环保盒装，附赠精美独立包装餐具及高级消毒湿纸巾。"
+                                : "Minimum order 30 boxes (Includes complimentary beverage & dessert). Delivered in dedicated insulation bags. Packaged in premium spill-proof compartmentalized boxes. Includes individually packed utensils and sanitized wet wipes."}
                             </p>
                           </div>
                         </>
