@@ -162,20 +162,20 @@ export function FooterSection({ lang = "en" }: FooterSectionProps) {
                   </span>
                 </div>
               </Link>
-              <p className="text-background/70 text-sm leading-relaxed">
-                {isChinese
-                  ? "“岁月沉淀经典，金龙与您共赴人生每一个重要时刻。” 始于 1982 年的舌尖非遗传承，为马来西亚柔佛提供最正宗的手工中餐味道与高档宴席承办。"
-                  : "\"Time honors classic taste. Kim Long accompanies you through every momentous milestone of life.\" Serving Johor with authentic taste since 1982."}
-              </p>
-
               {/* 企业注册与合规披露信息，小巧精致，排在一起 */}
-              <div className="space-y-0.5 text-[11px] text-background/50 font-medium tracking-wide leading-relaxed pt-3 border-t border-white/5">
+              <div className="space-y-0.5 text-[11px] text-background/50 font-medium tracking-wide leading-relaxed">
                 <p className="font-extrabold text-background/80 tracking-wider">KIM LONG CATERING SDN BHD</p>
                 <p>REG: 202301025752 (1519675-T)</p>
                 <p>SST: J31-2409-32000022</p>
                 <p>TIN: C58115357100</p>
                 <p>MISC CODE: 10799 & 56210</p>
               </div>
+
+              <p className="text-background/70 text-sm leading-relaxed pt-3 border-t border-white/5">
+                {isChinese
+                  ? "“岁月沉淀经典，金龙与您共赴人生每一个重要时刻。” 始于 1982 年的舌尖非遗传承，为马来西亚柔佛提供最正宗的手工中餐味道与高档宴席承办。"
+                  : "\"Time honors classic taste. Kim Long accompanies you through every momentous milestone of life.\" Serving Johor with authentic taste since 1982."}
+              </p>
             </div>
 
             {/* Quick Links */}
