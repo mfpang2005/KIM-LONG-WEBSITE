@@ -3,6 +3,8 @@
 import { motion } from "framer-motion";
 import { Quote, GraduationCap, Building2 } from "lucide-react";
 
+import Image from "next/image";
+
 const testimonialsData = {
   en: [
     {
@@ -34,28 +36,39 @@ const testimonialsData = {
   ],
 };
 
-const clientsData = {
-  en: [
-    {
-      name: "Southern University College",
-      icon: GraduationCap,
-    },
-    {
-      name: "Chinese Chamber of Commerce Kulai (CCCK)",
-      icon: Building2,
-    },
-  ],
-  zh: [
-    {
-      name: "南方大学学院 (Southern University College)",
-      icon: GraduationCap,
-    },
-    {
-      name: "古来中华总商会 (CCCK)",
-      icon: Building2,
-    },
-  ],
-};
+// Total 27 clients divided into two rows for the marquee
+const clientsRow1 = [
+  { name: "PHHP", image: "/images/clients/phhp.png" },
+  { name: "Persatuan Hainan Johor Bahru", image: "/images/clients/hainan.png" },
+  { name: "EPG", image: "/images/clients/epg.png" },
+  { name: "SP SAM PROPERTY", image: "/images/clients/spsam.png" },
+  { name: "Bank Rakyat", image: "/images/clients/bankrakyat.png" },
+  { name: "Persatuan Hin Ann Johor Selatan", image: "/images/clients/hinann.png" },
+  { name: "PRO3C", image: "/images/clients/pro3c.png" },
+  { name: "GS P", image: "/images/clients/gsp.png" },
+  { name: "Persatuan Hokkien Johor Bahru", image: "/images/clients/hokkien.png" },
+  { name: "Teochew Eight Districts Assoc.", image: "/images/clients/teochew.png" },
+  { name: "Joyee Preschool", image: "/images/clients/joyee.png" },
+  { name: "S.J.K (C) Seelong", image: "/images/clients/seelong.png" },
+  { name: "Nirvana", image: "/images/clients/nirvana.png" },
+  { name: "LINBAQ", image: "/images/clients/linbaq.png" },
+];
+
+const clientsRow2 = [
+  { name: "VK", image: "/images/clients/vk.png" },
+  { name: "SJK (C) Foon Yew 1", image: "/images/clients/foonyew1.png" },
+  { name: "SJK (C) Foon Yew 2", image: "/images/clients/foonyew2.png" },
+  { name: "SJK (C) Foon Yew 4", image: "/images/clients/foonyew4.png" },
+  { name: "SJK (C) Foon Yew 5", image: "/images/clients/foonyew5.png" },
+  { name: "SJK (C) Kulai Besar", image: "/images/clients/kulaibesar.png" },
+  { name: "SJK (C) Senai", image: "/images/clients/senai.png" },
+  { name: "Foon Yew High School", image: "/images/clients/foonyew.png" },
+  { name: "Foon Yew High School - Kulai", image: "/images/clients/foonyew-kulai.png" },
+  { name: "Chinese Chamber of Commerce Kulai (CCCK)", image: "/images/clients/ccck.png" },
+  { name: "Persekutuan Tiong-Hua Johor Baru", image: "/images/clients/tionghua.png" },
+  { name: "Southern University College", image: "/images/clients/southern.png" },
+  { name: "Corporate Client", image: "/images/clients/client-a.png" },
+];
 
 interface ClientsSectionProps {
   lang?: "en" | "zh";
@@ -64,10 +77,9 @@ interface ClientsSectionProps {
 export function ClientsSection({ lang = "en" }: ClientsSectionProps) {
   const isChinese = lang === "zh";
   const testimonials = testimonialsData[lang];
-  const clients = clientsData[lang];
 
   return (
-    <section id="clients" className="py-24 bg-secondary/30">
+    <section id="clients" className="py-24 bg-secondary/30 overflow-hidden">
       <div className="container mx-auto px-6">
         {/* Header */}
         <motion.div
@@ -90,26 +102,70 @@ export function ClientsSection({ lang = "en" }: ClientsSectionProps) {
           </p>
         </motion.div>
 
-        {/* Client Logos */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="flex flex-wrap justify-center gap-6 mb-16"
-        >
-          {clients.map((client, index) => (
-            <div
-              key={index}
-              className="flex items-center gap-3 bg-card border border-border rounded-2xl px-6 py-4 hover:shadow-md transition-shadow"
+        {/* Client Logos 2-Row Marquee */}
+        <div className="relative mb-20 flex flex-col gap-6">
+          {/* 边缘渐变遮罩，让滚动过渡更自然 */}
+          <div className="absolute inset-y-0 left-0 w-16 md:w-32 bg-gradient-to-r from-secondary/30 to-transparent z-10 pointer-events-none" />
+          <div className="absolute inset-y-0 right-0 w-16 md:w-32 bg-gradient-to-l from-secondary/30 to-transparent z-10 pointer-events-none" />
+
+          {/* Row 1 - Scrolling Right */}
+          <div className="flex w-[200%] sm:w-[150%] md:w-[200%] lg:w-[150%] overflow-hidden">
+            <motion.div
+              animate={{ x: ["-50%", "0%"] }}
+              transition={{ repeat: Infinity, ease: "linear", duration: 35 }}
+              className="flex gap-4 sm:gap-6 w-full"
             >
-              <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center">
-                <client.icon className="w-6 h-6 text-primary" />
-              </div>
-              <span className="font-bold text-foreground text-sm">{client.name}</span>
-            </div>
-          ))}
-        </motion.div>
+              {[...clientsRow1, ...clientsRow1].map((client, index) => (
+                <div
+                  key={index}
+                  className="flex-shrink-0 w-48 sm:w-56 flex flex-col items-center justify-center gap-3 bg-white border border-border/60 rounded-2xl p-4 shadow-sm hover:shadow-md transition-shadow"
+                >
+                  <div className="relative w-full h-20 sm:h-24 flex items-center justify-center p-2 mix-blend-multiply">
+                    <Image
+                      src={client.image}
+                      alt={client.name}
+                      fill
+                      className="object-contain"
+                      sizes="(max-width: 768px) 150px, 200px"
+                    />
+                  </div>
+                  <span className="font-bold text-foreground text-xs sm:text-sm text-center line-clamp-2 min-h-[2rem]">
+                    {client.name}
+                  </span>
+                </div>
+              ))}
+            </motion.div>
+          </div>
+
+          {/* Row 2 - Scrolling Right (Different speed/offset) */}
+          <div className="flex w-[200%] sm:w-[150%] md:w-[200%] lg:w-[150%] overflow-hidden">
+            <motion.div
+              animate={{ x: ["-50%", "0%"] }}
+              transition={{ repeat: Infinity, ease: "linear", duration: 40 }}
+              className="flex gap-4 sm:gap-6 w-full"
+            >
+              {[...clientsRow2, ...clientsRow2].map((client, index) => (
+                <div
+                  key={index}
+                  className="flex-shrink-0 w-48 sm:w-56 flex flex-col items-center justify-center gap-3 bg-white border border-border/60 rounded-2xl p-4 shadow-sm hover:shadow-md transition-shadow"
+                >
+                  <div className="relative w-full h-20 sm:h-24 flex items-center justify-center p-2 mix-blend-multiply">
+                    <Image
+                      src={client.image}
+                      alt={client.name}
+                      fill
+                      className="object-contain"
+                      sizes="(max-width: 768px) 150px, 200px"
+                    />
+                  </div>
+                  <span className="font-bold text-foreground text-xs sm:text-sm text-center line-clamp-2 min-h-[2rem]">
+                    {client.name}
+                  </span>
+                </div>
+              ))}
+            </motion.div>
+          </div>
+        </div>
 
         {/* Testimonials */}
         <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
@@ -120,7 +176,7 @@ export function ClientsSection({ lang = "en" }: ClientsSectionProps) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="bg-card border border-border rounded-3xl p-8 relative flex flex-col justify-between shadow-sm"
+              className="bg-card border border-border rounded-3xl p-8 relative flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow"
             >
               <Quote className="w-10 h-10 text-primary/20 absolute top-6 right-6" />
 
