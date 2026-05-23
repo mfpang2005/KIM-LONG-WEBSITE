@@ -42,6 +42,7 @@ const testimonialsData = {
       role: "Educational Institution",
       content: "The kids absolutely love the food! It's nutritious, safe, and the variety is excellent. We highly recommend their daily meal services.",
       rating: 5,
+    },
     {
       name: "Southern University College",
       role: "University Event Organizer",
@@ -103,6 +104,7 @@ const testimonialsData = {
       role: "教育机构",
       content: "无论是每日餐食的营养科学搭配还是卫生安全，金龙都让人彻底放心。孩子们非常喜欢，强烈推荐他们的机构日常配餐服务！",
       rating: 5,
+    },
     {
       name: "南方大学学院",
       role: "高校大型活动组",
