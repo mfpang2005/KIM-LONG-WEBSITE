@@ -41,16 +41,6 @@ export const metadata: Metadata = {
     description: 'Premium buffet catering services in Senai, Johor, Malaysia since 1982.',
     images: ['/og-image.jpg'],
   },
-  generator: 'v0.app',
-  icons: {
-    icon: [
-      {
-        url: '/images/logo.jpg',
-        type: 'image/jpeg',
-      }
-    ],
-    apple: '/images/logo.jpg',
-  },
 }
 
 export default function RootLayout({
