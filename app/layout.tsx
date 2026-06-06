@@ -76,7 +76,7 @@ export default function RootLayout({
       </head>
       <body className={`${inter.variable} font-sans antialiased`}>
         {children}
-        {process.env.NODE_ENV === 'production' && <Analytics />}
+        <Analytics />
       </body>
     </html>
   )
